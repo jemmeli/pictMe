@@ -4,7 +4,6 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.order('created_at desc')
-    byebug
   end
 
   def new

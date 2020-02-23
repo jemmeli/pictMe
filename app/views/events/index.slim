@@ -18,7 +18,7 @@
           th.text-center ID
           th.text-center Evènement
       tbody
-        - @events.each do |event|
+        -@events.each do |event|
           tr
             td= event.id
             td
@@ -31,7 +31,7 @@
                 .col-md-5
                   .editions
                     .text-right
-                      - event.editions.each do |edition|
+                      -event.editions.each do |edition|
                         = link_to edition.date.year, event_edition_path(edition.event, edition)
                   .event-link-buttons
                     .pull-right
