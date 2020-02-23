@@ -31,7 +31,8 @@
                 .col-md-5
                   .editions
                     .text-right
-                      = "hhj"
+                      - for edition in event.editions
+                        = link_to edition.date.year, event_edition_path(edition.event, edition)
                   .event-link-buttons
                     .pull-right
                       = link_to 'Dupliquer', new_event_path(event, event: event.attributes), class: 'btn btn-default btn-sm'
