@@ -33,7 +33,7 @@
                     .text-right
                       - event.editions.each do |edition|
                         / = link_to edition.date.year, event_edition_path(edition.event, edition)
-                        a href=event_edition_path(edition.event, edition) edition.date.year
+                        a href="http://slim-lang.com" title='Slim Homepage' Goto the Slim homepage
                   .event-link-buttons
                     .pull-right
                       = link_to 'Dupliquer', new_event_path(event, event: event.attributes), class: 'btn btn-default btn-sm'
