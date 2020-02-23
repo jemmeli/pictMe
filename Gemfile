@@ -73,6 +73,10 @@ group :development, :test do
   gem 'shoulda-matchers'
 end
 
+group :production do
+	gem 'dotenv-rails', '~> 2.1.1' # parsing du fichier ENV en dev
+end
+
 group :development do
   gem 'annotate'
   gem "letter_opener_web"
