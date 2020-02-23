@@ -9,3 +9,23 @@
       = link_to 'Liste Clients', clients_path, class:'btn btn-default'
       = link_to 'Liste Challenges', challenges_path, class:'btn btn-default'
       = link_to 'Nouvel évènement', new_event_path, class:'btn btn-warning margin-right-0'
+
+.row.events
+  .col-xs-12
+    table.table.table-bordered.table-default.table-striped
+      thead
+        tr
+          th.text-center ID
+          th.text-center Evènement
+      tbody
+        - @events.each do |event|
+          tr
+            td= event.id
+            td
+              .row
+                .col-md-7
+                  = link_to event.name, event_path(event)
+                  .place
+                    = "Lieu : #{event.place}"
+
+                
