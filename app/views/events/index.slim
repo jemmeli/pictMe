@@ -31,10 +31,8 @@
                 .col-md-5
                   .editions
                     .text-right
-                      = debug event.editions
                       - event.editions.each do |edition|
-
-                        = link_to edition.date.year, event_edition_path(edition.event, edition)
+                        = link_to edition.date.year, '#'
                   .event-link-buttons
                     .pull-right
                       = link_to 'Dupliquer', new_event_path(event, event: event.attributes), class: 'btn btn-default btn-sm'
