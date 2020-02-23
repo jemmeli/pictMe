@@ -79,7 +79,7 @@ end
 #========================================
 group :production do
   gem 'dotenv-rails', '~> 2.1.1' # parsing du fichier ENV en dev
-  gem 'puma'
+  gem 'puma', '~> 3.7.1'
 end
 
 group :development do
