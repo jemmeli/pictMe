@@ -2,7 +2,7 @@ class EditionsController < ApplicationController
   before_action :set_edition, only: [:show, :edit, :update, :destroy, :results, :delete_results, :generate_widget, :generate_photos_widget,
   :generate_diplomas_widget, :generate_diplomas, :delete_diplomas, :send_results]
   helper_method :sort_column, :sort_direction
-  http_basic_authenticate_with name: ENV['ADMIN_LOGIN'], password: ENV['ADMIN_PASSWORD'], except: :widget
+  #http_basic_authenticate_with name: ENV['ADMIN_LOGIN'], password: ENV['ADMIN_PASSWORD'], except: :widget
 
   def new
     @event = Event.find(params[:event_id])

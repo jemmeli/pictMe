@@ -1,7 +1,7 @@
 class RunnersController < ApplicationController
   before_action :set_runner, only: [:show, :update]
   protect_from_forgery with: :exception
-  http_basic_authenticate_with name: ENV['ADMIN_LOGIN'], password: ENV['ADMIN_PASSWORD']
+  #http_basic_authenticate_with name: ENV['ADMIN_LOGIN'], password: ENV['ADMIN_PASSWORD']
 
   def index
     runners = params[:q].present? ? Runner.with_name(params[:q]) : Runner.all
