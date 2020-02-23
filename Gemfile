@@ -73,8 +73,13 @@ group :development, :test do
   gem 'shoulda-matchers'
 end
 
+
+#========================================
+#===Very Important to work on Heroku=====
+#========================================
 group :production do
-	gem 'dotenv-rails', '~> 2.1.1' # parsing du fichier ENV en dev
+  gem 'dotenv-rails', '~> 2.1.1' # parsing du fichier ENV en dev
+  gem 'puma'
 end
 
 group :development do
