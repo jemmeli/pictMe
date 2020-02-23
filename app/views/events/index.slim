@@ -32,9 +32,4 @@
                   .editions
                     .text-right
                       - event.editions.each do |edition|
-                        = link_to "edition.date.year", event_edition_path(edition.event, edition)
-                  .event-link-buttons
-                    .pull-right
-                      = link_to 'Dupliquer', new_event_path(event, event: event.attributes), class: 'btn btn-default btn-sm'
-                      = link_to 'Visualiser', event_path(event), class: 'btn btn-default btn-sm'
-                      = link_to 'Editer', edit_event_path(event), class: 'btn btn-default btn-sm'
+                        = link_to "thelink", '#', class: 'btn btn-default btn-sm'
