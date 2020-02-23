@@ -64,19 +64,6 @@ module Kapp10Finishline
       }
     }
 
-    if Rails.env.production?
-      config.paperclip_defaults = {
-        storage: :s3,
-        s3_credentials: {
-          bucket: ENV.fetch('S3_BUCKET'),
-          s3_protocol: 'https',
-          access_key_id: ENV.fetch('AWS_ACCESS_KEY_ID'),
-          secret_access_key: ENV.fetch('AWS_SECRET_ACCESS_KEY'),
-          s3_region: ENV.fetch('AWS_REGION'),
-        }
-      }
-    end
-
     # Use SQL instead of Active Record's schema dumper when creating the database.
     # This is necessary if your schema can't be completely dumped by the schema dumper,
     # like if you have constraints or database-specific column types
