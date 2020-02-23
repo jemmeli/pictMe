@@ -62,6 +62,7 @@ GEM
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
+    bcrypt (3.1.13)
     bitly (0.10.4)
       httparty (>= 0.7.6)
       multi_json (~> 1.3)
@@ -104,6 +105,12 @@ GEM
     database_cleaner (1.7.0)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
+    devise (4.7.1)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 4.1.0)
+      responders
+      warden (~> 1.2.3)
     diff-lcs (1.3)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
@@ -314,6 +321,7 @@ GEM
       rack (>= 1.2, < 3)
     oj (3.7.12)
     open_uri_redirections (0.2.1)
+    orm_adapter (0.5.0)
     os (1.0.1)
     paperclip (5.0.0)
       activemodel (>= 4.2.0)
@@ -350,7 +358,7 @@ GEM
       activemodel (= 5.0.2)
       activerecord (= 5.0.2)
       activesupport (= 5.0.2)
-      bundler (>= 1.3.0, < 2.0)
+      bundler (>= 1.3.0, < 2.2)
       railties (= 5.0.2)
       sprockets-rails (>= 2.0.0)
     rails-dom-testing (2.0.3)
@@ -379,6 +387,9 @@ GEM
       parser (>= 2.5.0.0, < 2.7, != 2.5.1.1)
       psych (~> 3.1.0)
       rainbow (>= 2.0, < 4.0)
+    responders (3.0.0)
+      actionpack (>= 5.0)
+      railties (>= 5.0)
     rest-client (2.0.2)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
@@ -519,6 +530,8 @@ GEM
       coercible (~> 1.0)
       descendants_tracker (~> 0.0, >= 0.0.3)
       equalizer (~> 0.0, >= 0.0.9)
+    warden (1.2.8)
+      rack (>= 2.0.6)
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.4)
@@ -544,6 +557,7 @@ DEPENDENCIES
   charlock_holmes
   coffee-rails
   database_cleaner
+  devise
   doorkeeper (~> 4.2.6)
   dotenv-rails (~> 2.1.1)
   dox
