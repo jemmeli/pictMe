@@ -80,7 +80,6 @@ end
 group :production do
   gem 'dotenv-rails', '~> 2.1.1' # parsing du fichier ENV en dev
   gem 'puma', '~> 3.7.1'#3.7.1
-  gem 'hirb'
 end
 
 group :development do
