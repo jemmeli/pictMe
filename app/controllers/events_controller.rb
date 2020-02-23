@@ -3,8 +3,8 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
-    byebug
     @events = Event.order('created_at desc')
+    byebug
   end
 
   def new
