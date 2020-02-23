@@ -5,10 +5,10 @@
 .row
   .col-xs-12
     .pull-right
-      = link_to 'Liste Coureurs', runners_path, class:'btn btn-default'
-      = link_to 'Liste Clients', clients_path, class:'btn btn-default'
-      = link_to 'Liste Challenges', challenges_path, class:'btn btn-default'
-      = link_to 'Nouvel évènement', new_event_path, class:'btn btn-warning margin-right-0'
+      = link_to 'Liste Coureurs', runners_path, class: 'btn btn-default'
+      = link_to 'Liste Clients', clients_path, class: 'btn btn-default'
+      = link_to 'Liste Challenges', challenges_path, class: 'btn btn-default'
+      = link_to 'Nouvel évènement', new_event_path, class: 'btn btn-warning margin-right-0'
 
 .row.events
   .col-xs-12
@@ -31,11 +31,11 @@
                 .col-md-5
                   .editions
                     .text-right
-                      - if event.editions.present?
-                        - event.editions.each do |edition|
+                      - event.editions.each do |edition|
+                        - if edition
                           = link_to edition.date.year, event_edition_path(edition.event, edition)
-                      -else
-                        = "no editions"
+                        - else
+                          = "no editions"
                   .event-link-buttons
                     .pull-right
                       = link_to 'Dupliquer', new_event_path(event, event: event.attributes), class: 'btn btn-default btn-sm'
