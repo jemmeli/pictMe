@@ -31,7 +31,7 @@
                 .col-md-5
                   .editions
                     .text-right
-                      - if event.editions?
+                      - if event.editions
                         - event.editions.each do |edition|
                           = link_to edition.date.year, event_edition_path(edition.event, edition)
                   .event-link-buttons
