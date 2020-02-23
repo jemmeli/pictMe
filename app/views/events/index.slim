@@ -32,11 +32,7 @@
                   .editions
                     .text-right
                       - event.editions.each do |edition|
-                        - if edition
-                          = link_to edition.date.year, event_edition_path(edition.event, edition)
-                        - else
-                          .place
-                            = "no editions"
+                        = link_to edition.date.year, event_edition_path(edition.event, edition)
 
                   .event-link-buttons
                     .pull-right
