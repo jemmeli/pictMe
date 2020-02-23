@@ -31,7 +31,9 @@
                 .col-md-5
                   .editions
                     .text-right
-                      - for edition in event.editions
+                      = debug event.editions
+                      - event.editions.each do |edition|
+
                         = link_to edition.date.year, event_edition_path(edition.event, edition)
                   .event-link-buttons
                     .pull-right
