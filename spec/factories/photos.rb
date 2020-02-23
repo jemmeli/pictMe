@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :photo do
     sequence(:suggested_bibs) {|n| "Suggested_bib_#{n}"}
     sequence(:bib) {|n| "Bib_#{n}"}

@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :edition do
     association :event, factory: :event
     date { DateTime.now.to_s }

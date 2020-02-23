@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :race do
     association :edition, factory: :edition
     sequence(:name) {|n| "Race_#{n}"}

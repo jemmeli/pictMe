@@ -61,7 +61,6 @@ ActiveRecord::Schema.define(version: 20190917132722) do
     t.boolean  "download_chargeable",             default: false
     t.integer  "download_chargeable_price_cents"
     t.string   "registration_link"
-    t.datetime "diplomas_widget_generated_at"
   end
 
   create_table "email_requests", id: :bigint, force: :cascade do |t|

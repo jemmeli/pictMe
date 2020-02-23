@@ -3,7 +3,7 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'dox'
-require 'factory_girl_rails'
+require 'factory_bot'
 
 
 # Requires supporting ruby files with custom matchers and macros, etc,
@@ -94,7 +94,7 @@ Shoulda::Matchers.configure do |config|
 end
 
 RSpec.configure do |config|
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
 end
 
 Dox.configure do |config|

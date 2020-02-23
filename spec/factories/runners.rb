@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :runner do
     sequence(:id_key) {|n| "ID_#{n}"}
     sequence(:first_name) {|n| "First_#{n}"}

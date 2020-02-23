@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 require 'rubygems'
-ruby '2.4.1'
+ruby '2.5.1'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -58,6 +58,7 @@ group :development, :test do
   gem 'byebug'
   gem 'minitest-rails'
   gem 'dotenv-rails', '~> 2.1.1' # parsing du fichier ENV en dev
+  #gem 'dotenv-rails', require: 'dotenv/rails-now'
   gem 'minitest-rails-capybara'
   gem 'guard'
   gem 'guard-bundler'
@@ -65,7 +66,8 @@ group :development, :test do
   gem 'guard-minitest'
   gem 'timecop'
   gem 'ffaker'
-  gem 'factory_girl_rails'
+  #gem 'factory_girl_rails'
+  gem "factory_bot"
   gem 'rspec-rails'
   gem 'rspec_api_documentation'
   gem 'shoulda-matchers'

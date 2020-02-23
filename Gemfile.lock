@@ -123,11 +123,8 @@ GEM
     et-orbi (1.2.1)
       tzinfo
     execjs (2.7.0)
-    factory_girl (4.9.0)
-      activesupport (>= 3.0.0)
-    factory_girl_rails (4.9.0)
-      factory_girl (~> 4.9.0)
-      railties (>= 3.0.0)
+    factory_bot (5.1.1)
+      activesupport (>= 4.2.0)
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
     ffaker (2.11.0)
@@ -551,7 +548,7 @@ DEPENDENCIES
   dotenv-rails (~> 2.1.1)
   dox
   enumerize
-  factory_girl_rails
+  factory_bot
   ffaker
   font-awesome-sass (~> 4.7.0)
   geocoder
@@ -605,7 +602,7 @@ DEPENDENCIES
   wkhtmltoimage-binary (~> 0.12.2)
 
 RUBY VERSION
-   ruby 2.4.1p111
+   ruby 2.5.1p57
 
 BUNDLED WITH
    1.17.2
