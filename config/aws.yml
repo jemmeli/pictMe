@@ -1,7 +1,7 @@
 defaults: &defaults
-  access_key_id: "837990458163"
-  secret_access_key: "b841bcca26d99f6dc49818a17ce0f522ab3f1e9923f0e2f99a9197a7addc182f"
-  bucket: "kapp10"
+  access_key_id: <%=ENV["AWS_ACCESS_KEY_ID"]%>
+  secret_access_key: <%=ENV["AWS_SECRET_ACCESS_KEY"]%>
+  bucket: <%=ENV["S3_BUCKET"]%>
 development:
   <<: *defaults
 test:
