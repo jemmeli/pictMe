@@ -2,6 +2,7 @@ require 'sidekiq/web'
 require 'sidekiq-scheduler/web'
 
 Rails.application.routes.draw do
+  devise_for :users
   get 'widget', to: redirect('/widget3.js')
   get 'client_widget', to: redirect('/widget-client.js')
   get 'client_widget_css', to: redirect('/widget-client.css')

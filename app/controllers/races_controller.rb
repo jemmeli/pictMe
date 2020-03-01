@@ -2,7 +2,7 @@ class RacesController < ApplicationController
   protect_from_forgery with: :exception,  except: :widget
   before_action :set_race, except: [:index, :new, :create, :regenerate_all_widgets]
 	helper_method :sort_column, :sort_direction
-  http_basic_authenticate_with name: ENV['ADMIN_LOGIN'], password: ENV['ADMIN_PASSWORD'], except: :widget
+  #http_basic_authenticate_with name: ENV['ADMIN_LOGIN'], password: ENV['ADMIN_PASSWORD'], except: :widget
 
   def index
     @races = Race.order('date desc')

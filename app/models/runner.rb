@@ -58,7 +58,6 @@ class Runner < ApplicationRecord
   private
 
   def generate_id_key
-    id_key = "#{I18n.transliterate(first_name).downcase}-#{I18n.transliterate(last_name).downcase}-#{dob.strftime('%d-%m-%Y')}"
   end
 
   def unflag_fake_runner
