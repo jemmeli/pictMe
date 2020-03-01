@@ -29,7 +29,10 @@ gem 'sidekiq-scheduler' # planificateur de tâche pr Sidekiq
 gem 'simple_form'
 gem 'stripe'
 gem "paperclip", "~> 5.0.0"
+
 gem 'devise'
+gem 'devise-bootstrap-views', '~> 1.0'
+
 gem 'rack-cors', :require => 'rack/cors'
 gem 'rollbar' # reporting des erreurs
 gem 'bootstrap-sass'
