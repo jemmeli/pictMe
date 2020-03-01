@@ -22,12 +22,14 @@ gem 'httparty'
 gem 'newrelic_rpm'
 gem 'charlock_holmes'
 gem 'bitly', '~> 0.10.4'
-gem 'sidekiq' #gestionnaire de tâche de fond
+#sidekiq use redis as a job management store to process thousands of jobs per second.
+gem 'sidekiq' #gestionnaire de tâche de fond/background job framework
 gem 'sinatra', :require => false #for sidekiq
 gem 'sidekiq-scheduler' # planificateur de tâche pr Sidekiq
 gem 'simple_form'
 gem 'stripe'
 gem "paperclip", "~> 5.0.0"
+gem 'devise'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'rollbar' # reporting des erreurs
 gem 'bootstrap-sass'
@@ -52,6 +54,8 @@ gem 'active_model_serializers', '~> 0.10.7'
 
 gem 'blueprinter'
 gem 'oj'
+
+
 
 group :development, :test do
   gem 'pry-rails'
