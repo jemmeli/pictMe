@@ -6,6 +6,7 @@ Rails.application.config.assets.version = '1.1'
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path
 Rails.application.config.assets.precompile += %w( diploma.css )
+Rails.application.config.assets.precompile += %w( login.css )
 #Rails.application.config.assets.precompile += %w( diploma_form.sass )
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
