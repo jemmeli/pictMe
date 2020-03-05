@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  layout "picto", only: [:list_picto]
   require 'csv'
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
@@ -54,6 +55,13 @@ class EventsController < ApplicationController
       p e
       redirect_to root_path, notice: "Erreur: impossible d'importer les évènements"
     end
+  end
+
+  #=================
+  #Events for Picto
+  #=================
+  def list_picto
+    @events = Event.order('created_at desc').limit(3)
   end
 
   private

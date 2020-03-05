@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   post 'results/process_diploma_email', to: 'results#process_diploma_email'
   get 'mail_viewers/result/:id', to: 'mail_viewers#result', as: 'result_mail_viewer'
 
+  #get 'events/list_picto', to: 'events#list_picto'
+
   resources :races do
     member do
       post 'send_results'
@@ -140,7 +142,8 @@ Rails.application.routes.draw do
   # /Routes pour l'API
   #############################
 
-  root :to => 'events#index'
+  #root :to => 'events#index'
+  root :to => 'events#list_picto'
 
   # config/routes.rb
   Sidekiq::Web.use Rack::Auth::Basic do |username, password|
