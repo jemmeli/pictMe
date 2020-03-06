@@ -1,0 +1,189 @@
+body.picto-page {
+    padding-top: 90px;
+    padding-bottom: 20px;
+    background: #e7e7e7;
+    /* enable absolute positioning */
+    /* style icon */
+    /* align icon */
+    /* add padding  */
+}
+
+body.picto-page h1 {
+    text-align: center;
+    color: #222222;
+}
+
+body.picto-page .navbar-inverse {
+    border-bottom: 4px solid #d9d9d9;
+    color: white;
+}
+
+body.picto-page .navbar-brand {
+    height: 70px;
+    background: #f99b1c;
+}
+
+body.picto-page .navbar-brand:hover {
+    background: #f99b1c;
+}
+
+body.picto-page .navbar-right {
+    margin-top: 25px;
+    line-height: 27px;
+    margin-right: 20px;
+}
+
+body.picto-page .navbar-right img {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+body.picto-page .caret {
+    color: #aaaaaa;
+}
+
+body.picto-page .filtreForm {
+    margin-top: 18px;
+    text-align: center;
+}
+
+body.picto-page .filtreForm button.btn-orange {
+    font-size: 19px;
+    border-radius: 150px;
+    background: #f99b1c;
+    color: white;
+    outline: none;
+    font-weight: bold;
+}
+
+body.picto-page .filtreForm span {
+    color: #aaaaaa;
+    font-size: 22px;
+}
+
+body.picto-page .filtreForm select, body.picto-page .filtreForm input {
+    border-radius: 100px;
+    background: #e7e7e7;
+}
+
+body.picto-page .eventRow {
+    margin-bottom: 43px;
+    padding: 40px 70px;
+    background: #f2f2f2;
+}
+
+body.picto-page .eventRow .editionBox {
+    background: #fafafa;
+    margin: 0 5px;
+    width: 32%;
+    padding: 10px 20px;
+}
+
+body.picto-page .eventRow .editionBox h2.courseDate {
+    font-size: 24px;
+    overflow: hidden;
+}
+
+body.picto-page .eventRow .editionBox h2.courseDate img {
+    margin-top: 8px;
+    float: right;
+}
+
+body.picto-page .eventRow .editionBox .courseType, body.picto-page .eventRow .editionBox .courseName {
+    font-size: 13px;
+    color: #666666;
+    line-height: 17px;
+}
+
+body.picto-page .eventRow .editionBox .inProgress {
+    background-image: linear-gradient(to right, #d17902, #f6981a);
+    color: white;
+    width: 80%;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 14px;
+    margin-bottom: 25px;
+    padding: 10px;
+}
+
+body.picto-page .eventRow .editionBox .finishProgress {
+    background-color: #b4b4b4;
+    width: 100px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 14px;
+    margin-bottom: 25px;
+    color: white;
+    padding: 10px;
+}
+
+body.picto-page .eventRow .editionBox .statisticsCourse {
+    background: #ffffff;
+    text-align: center;
+    padding: 7px;
+}
+
+body.picto-page .eventRow .editionBox .statisticsCourse li {
+    color: #888888;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+body.picto-page .eventRow .editionBox .statisticsCourse li span {
+    color: #222222;
+    font-size: 16px;
+}
+
+body.picto-page .eventRow .eventControl {
+    margin-bottom: 20px;
+}
+
+body.picto-page .eventRow .eventControl h3 {
+    font-size: 23px;
+    color: #222222;
+}
+
+body.picto-page .eventRow .eventControl span {
+    font-size: 12px;
+    color: #888888;
+}
+
+body.picto-page .eventRow .eventControl .btn {
+    border-radius: 100px;
+    border-width: 2px;
+}
+
+body.picto-page .searchEvent {
+    margin-top: 10px;
+    min-width: 300px;
+}
+
+body.picto-page .inner-addon {
+    position: relative;
+}
+
+body.picto-page .inner-addon .glyphicon {
+    position: absolute;
+    padding: 10px;
+    pointer-events: none;
+}
+
+body.picto-page .left-addon .glyphicon {
+    left: 0px;
+    color: #888888;
+    top: 10px;
+}
+
+body.picto-page .right-addon .glyphicon {
+    right: 0px;
+    color: #888888;
+    top: 10px;
+}
+
+body.picto-page .left-addon input {
+    padding-left: 30px;
+}
+
+body.picto-page .right-addon input {
+    padding-right: 30px;
+}
