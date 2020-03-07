@@ -143,6 +143,7 @@ Rails.application.routes.draw do
   #############################
 
   #root :to => 'events#index'
+  get 'events', to: 'events#index'
   root :to => 'events#list_picto'
 
   # config/routes.rb

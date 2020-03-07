@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
-    @events = Event.order('created_at desc').limit(40)
+    @events = Event.order('created_at desc').limit(20)
   end
 
   def new

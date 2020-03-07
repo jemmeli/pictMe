@@ -1,163 +1,47 @@
 <!-- Example row of columns -->
-<div class="row eventRow">
-  <div class="row eventControl">
-    <div class="col-md-4">
-      <h3 class="titleEvent">
-        HIVERNALE DU BAIGURA <br> <span> Bayonne - 64 </span>
-      </h3>
-    </div>
-    <div class="col-md-8">
-      <a href="#" class="btn btn-default">Visualiser</a>
-      <a href="#" class="btn btn-default">Editer</a>
-      <a href="#" class="btn btn-default">Dupliquer</a>
-    </div>
-  </div>
-  <div class="col-md-4 editionBox">
-    <h2 class="courseDate">
-      22 juillet 2020 <a href="#"> <img src="<%= asset_path('editIcon.png') %>" width="15" height="15" > </a> <br>
-      <span class="courseType">Trail, Route</span> <br>
-      <span class="courseName">10Km, 20Km</span>
-    </h2>
-    <div class="courseStatus inProgress">EN COURS DE TRAITEMENT</div>
-    <ul class="list-inline statisticsCourse">
-      <li>
-        <span class="coursePhotos">1245</span> <br>
-        PHOTOS
-      </li>
-      <li>
-        <span class="courseContacts">780</span> <br>
-        CONTACTS
-      </li>
-      <li>
-        <span class="courseCampagnes">3</span> <br>
-        CAMPAGNES
-      </li>
-    </ul>
-  </div>
-  <div class="col-md-4 editionBox">
-    <h2 class="courseDate">
-      22 juillet 2020 <a href="#"> <img src="<%= asset_path('editIcon.png') %>" width="15" height="15" > </a> <br>
-      <span class="courseType">Trail, Route</span> <br>
-      <span class="courseName">10Km, 20Km</span>
-    </h2>
-    <div class="courseStatus finishProgress">Traité</div>
-    <ul class="list-inline statisticsCourse">
-      <li>
-        <span class="coursePhotos">1245</span> <br>
-        PHOTOS
-      </li>
-      <li>
-        <span class="courseContacts">780</span> <br>
-        CONTACTS
-      </li>
-      <li>
-        <span class="courseCampagnes">3</span> <br>
-        CAMPAGNES
-      </li>
-    </ul>
-  </div>
-  <div class="col-md-4 editionBox">
-    <h2 class="courseDate">
-      22 juillet 2020 <a href="#"> <img src="<%= asset_path('editIcon.png') %>" width="15" height="15" > </a> <br>
-      <span class="courseType">Trail, Route</span> <br>
-      <span class="courseName">10Km, 20Km</span>
-    </h2>
-    <div class="courseStatus finishProgress">Traité</div>
-    <ul class="list-inline statisticsCourse">
-      <li>
-        <span class="coursePhotos">1245</span> <br>
-        PHOTOS
-      </li>
-      <li>
-        <span class="courseContacts">780</span> <br>
-        CONTACTS
-      </li>
-      <li>
-        <span class="courseCampagnes">3</span> <br>
-        CAMPAGNES
-      </li>
-    </ul>
-  </div>
-</div>
 
-<!--secont event-->
+<% @events.each do |event| %>
 <div class="row eventRow">
-  <div class="row eventControl">
-    <div class="col-md-4">
-      <h3 class="titleEvent">
-        HIVERNALE DU BAIGURA <br> <span> Bayonne - 64 </span>
-      </h3>
+    <div class="row eventControl">
+      <div class="col-md-4">
+        <h3 class="titleEvent">
+          <%= event.name %> <br> <span> <%= event.place %>  </span>
+        </h3>
+      </div>
+      <div class="col-md-8">
+        <%= link_to 'Visualiser', event_path(event), class: 'btn btn-default' %>
+        <%= link_to 'Editer', edit_event_path(event), class: 'btn btn-default' %>
+        <%= link_to 'Dupliquer', new_event_path(event, event: event.attributes), class: 'btn btn-default' %>
+      </div>
     </div>
-    <div class="col-md-8">
-      <a href="#" class="btn btn-default">Visualiser</a>
-      <a href="#" class="btn btn-default">Editer</a>
-      <a href="#" class="btn btn-default">Dupliquer</a>
-    </div>
-  </div>
-  <div class="col-md-4 editionBox">
-    <h2 class="courseDate">
-      22 juillet 2020 <a href="#"> <img src="<%= asset_path('editIcon.png') %>" width="15" height="15" > </a> <br>
-      <span class="courseType">Trail, Route</span> <br>
-      <span class="courseName">10Km, 20Km</span>
-    </h2>
-    <div class="courseStatus finishProgress">Traité</div>
-    <ul class="list-inline statisticsCourse">
-      <li>
-        <span class="coursePhotos">1245</span> <br>
-        PHOTOS
-      </li>
-      <li>
-        <span class="courseContacts">780</span> <br>
-        CONTACTS
-      </li>
-      <li>
-        <span class="courseCampagnes">3</span> <br>
-        CAMPAGNES
-      </li>
-    </ul>
-  </div>
-  <div class="col-md-4 editionBox">
-    <h2 class="courseDate">
-      22 juillet 2020 <a href="#"> <img src="<%= asset_path('editIcon.png') %>" width="15" height="15" > </a> <br>
-      <span class="courseType">Trail, Route</span> <br>
-      <span class="courseName">10Km, 20Km</span>
-    </h2>
-    <div class="courseStatus finishProgress">Traité</div>
-    <ul class="list-inline statisticsCourse">
-      <li>
-        <span class="coursePhotos">1245</span> <br>
-        PHOTOS
-      </li>
-      <li>
-        <span class="courseContacts">780</span> <br>
-        CONTACTS
-      </li>
-      <li>
-        <span class="courseCampagnes">3</span> <br>
-        CAMPAGNES
-      </li>
-    </ul>
-  </div>
-  <div class="col-md-4 editionBox">
-    <h2 class="courseDate">
-      22 juillet 2020 <a href="#"> <img src="<%= asset_path('editIcon.png') %>" width="15" height="15" > </a> <br>
-      <span class="courseType">Trail, Route</span> <br>
-      <span class="courseName">10Km, 20Km</span>
-    </h2>
-    <div class="courseStatus finishProgress">Traité</div>
-    <ul class="list-inline statisticsCourse">
-      <li>
-        <span class="coursePhotos">1245</span> <br>
-        PHOTOS
-      </li>
-      <li>
-        <span class="courseContacts">780</span> <br>
-        CONTACTS
-      </li>
-      <li>
-        <span class="courseCampagnes">3</span> <br>
-        CAMPAGNES
-      </li>
-    </ul>
-  </div>
+    <% event.races.each do |race| %>
+      <div class="col-md-4 editionBox">
+        <h2 class="courseDate">
+          <%= race.start_at.strftime('%d/%m/%Y') %>
+            <a href="#">
+<!--              <%#= link_to <img src="<%= asset_path('editIcon.png') %>" width="15" height="15" > , edit_event_edition_path(edition.event.id, edition.id) %>-->
+              <%= link_to(image_tag("editIcon.png", width: 15, height: 15), edit_race_path(race) ) %>
+
+            </a> <br>
+          <span class="courseType"><%= race.race_type %> </span> <br>
+          <span class="courseName"> <%= race.name %> </span>
+        </h2>
+        <div class="courseStatus inProgress">EN COURS DE TRAITEMENT</div>
+        <ul class="list-inline statisticsCourse">
+          <li>
+            <span class="coursePhotos">1245</span> <br>
+            PHOTOS
+          </li>
+          <li>
+            <span class="courseContacts">780</span> <br>
+            CONTACTS
+          </li>
+          <li>
+            <span class="courseCampagnes">3</span> <br>
+            CAMPAGNES
+          </li>
+        </ul>
+      </div>
+    <% end %>
 </div>
+<% end %>
