@@ -1,7 +1,14 @@
 class EventsController < ApplicationController
-  layout "picto", only: [:list_picto]
+  layout "picto", only: [:list_picto, :home_picto]
   require 'csv'
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :home_picto]
+
+  # disable the filter for for all actions in this controller
+  before_filter :disable_filter_pict_home!
+  # enable the filter for action list_picto in this controller
+  before_filter :enable_filter_pict_home!, :only => [:list_picto]
+
+
 
   def index
     @events = Event.order('created_at desc').limit(20)
@@ -61,7 +68,10 @@ class EventsController < ApplicationController
   #Events for Picto
   #=================
   def list_picto
-    @events = Event.order('created_at desc').limit(3)
+    @events = Event.order('created_at desc').limit(5)
+  end
+
+  def home_picto
   end
 
   private

@@ -72,6 +72,7 @@ body.picto-page .eventRow {
     background: #f2f2f2;
 }
 
+
 body.picto-page .eventRow .editionBox {
     background: #fafafa;
     margin: 0 5px;
@@ -151,6 +152,29 @@ body.picto-page .eventRow .eventControl span {
 body.picto-page .eventRow .eventControl .btn {
     border-radius: 100px;
     border-width: 2px;
+}
+
+body.picto-page .breadcrumb{
+    padding-left: 0;
+    font-size: 20px;
+    color: #777777;
+    font-weight: bold;
+    background: transparent;
+}
+body.picto-page .breadcrumb span{
+    font-size: 16px;
+    font-weight: lighter;
+}
+body.picto-page .breadcrumb a{
+    font-size: 16px;
+    font-weight: lighter;
+    text-decoration: none;
+    color: #777777;
+}
+
+
+body.picto-page .eventRowHome{
+    background: transparent;
 }
 
 body.picto-page .searchEvent {
