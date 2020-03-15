@@ -177,6 +177,16 @@ body.picto-page .eventRowHome{
     background: transparent;
 }
 
+body.picto-page .editionControl{
+    text-align: center;
+}
+
+body.picto-page .editionControl .btn{
+    text-align: center;
+    margin-left: 7px;
+    margin-right: 7px;
+}
+
 body.picto-page .searchEvent {
     margin-top: 10px;
     min-width: 300px;
