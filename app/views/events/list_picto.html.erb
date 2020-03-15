@@ -1,5 +1,3 @@
-<!-- Example row of columns -->
-
 <% @events.each do |event| %>
 <div class="row eventRow">
     <div class="row eventControl">
@@ -9,39 +7,44 @@
         </h3>
       </div>
       <div class="col-md-8">
-        <%#= link_to 'Visualiser', event_path(event), class: 'btn btn-default' %>
         <%= link_to 'Editer', home_picto_event_path(event), class: 'btn btn-default' %>
         <%= link_to 'Dupliquer', new_event_path(event, event: event.attributes), class: 'btn btn-default' %>
       </div>
     </div>
-    <% event.races.each do |race| %>
-      <div class="col-md-4 editionBox">
-        <h2 class="courseDate">
-          <%= race.start_at.strftime('%d/%m/%Y') %>
-            <a href="#">
-              <!--<%#= link_to <img src="<%= asset_path('editIcon.png') %>" width="15" height="15" > , edit_event_edition_path(edition.event.id, edition.id) %>-->
-              <%= link_to(image_tag("editIcon.png", width: 15, height: 15), edit_race_path(race) ) %>
 
+    <% if event.editions.blank? %>
+      <p>Il n'y pas encore d'édition créée pour cet évènement</p>
+    <% else %>
+      <% event.editions.each do |edition| %>
+        <div class="col-md-4 editionBox">
+          <h2 class="courseDate">
+            <%= edition.date.strftime('%d/%m/%Y') %>
+            <a href="#">
+              <%= link_to(image_tag("editIcon.png", width: 15, height: 15), edit_event_edition_path(edition.event.id, edition.id) ) %>
             </a> <br>
-          <span class="courseType"><%= race.race_type %> </span> <br>
-          <span class="courseName"> <%= race.name %> </span>
-        </h2>
-        <div class="courseStatus inProgress">EN COURS DE TRAITEMENT</div>
-        <ul class="list-inline statisticsCourse">
-          <li>
-            <span class="coursePhotos">1245</span> <br>
-            PHOTOS
-          </li>
-          <li>
-            <span class="courseContacts">780</span> <br>
-            CONTACTS
-          </li>
-          <li>
-            <span class="courseCampagnes">3</span> <br>
-            CAMPAGNES
-          </li>
-        </ul>
-      </div>
+            <span class="courseType"><%= edition.races.pluck(:race_type).join(', ') %> </span> <br>
+            <span class="courseName"> <%= edition.races.pluck(:name).join(', ') %> </span>
+
+          </h2>
+          <div class="courseStatus inProgress">EN COURS DE TRAITEMENT</div>
+          <ul class="list-inline statisticsCourse">
+            <li>
+              <span class="coursePhotos">1245</span> <br>
+              PHOTOS
+            </li>
+            <li>
+              <span class="courseContacts">780</span> <br>
+              CONTACTS
+            </li>
+            <li>
+              <span class="courseCampagnes">3</span> <br>
+              CAMPAGNES
+            </li>
+          </ul>
+        </div>
+      <% end %>
     <% end %>
+
+
 </div>
 <% end %>
