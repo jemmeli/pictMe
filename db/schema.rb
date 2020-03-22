@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200229204040) do
+ActiveRecord::Schema.define(version: 20200322220604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,8 +81,8 @@ ActiveRecord::Schema.define(version: 20200229204040) do
     t.string   "contact"
     t.string   "email"
     t.string   "phone"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.integer  "client_1"
     t.integer  "client_2"
     t.integer  "client_3"
@@ -91,6 +91,9 @@ ActiveRecord::Schema.define(version: 20200229204040) do
     t.boolean  "global_challenge"
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "country"
+    t.string   "adress"
+    t.boolean  "pictme",           default: false
   end
 
   create_table "oauth_access_grants", force: :cascade do |t|

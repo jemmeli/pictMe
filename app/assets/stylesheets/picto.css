@@ -221,3 +221,15 @@ body.picto-page .left-addon input {
 body.picto-page .right-addon input {
     padding-right: 30px;
 }
+
+body.picto-page .editEventTabs .nav-tabs {
+    background: #ffffff;
+    padding: 8px 50px;
+    margin-bottom: 10px;
+    border-bottom: 7px solid #dbdbdb;
+}
+
+body.picto-page .editEventTabs .tab-content{
+    background: #ffffff;
+    padding: 25px 50px;
+}

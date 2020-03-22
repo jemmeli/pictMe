@@ -96,7 +96,10 @@ class EventsController < ApplicationController
         :client_3,
         :department,
         :challenge_id,
-        :global_challenge
+        :global_challenge,
+        :country,
+        :adress,
+        :pictme
     )
   end
 end

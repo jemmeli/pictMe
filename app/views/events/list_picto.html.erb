@@ -7,6 +7,7 @@
         </h3>
       </div>
       <div class="col-md-8">
+        <%#= link_to 'Visualiser', event_path(event), class: 'btn btn-default' %>
         <%= link_to 'Editer', home_picto_event_path(event), class: 'btn btn-default' %>
         <%= link_to 'Dupliquer', new_event_path(event, event: event.attributes), class: 'btn btn-default' %>
       </div>

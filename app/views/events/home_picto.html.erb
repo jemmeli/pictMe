@@ -44,5 +44,95 @@
       </div>
     <% end %>
   <% end %>
+</div>
 
+
+<div class="editEventTabs" style="margin:20px;">
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#sectionA">INFORMATIONS GENERALES</a></li>
+    <li><a data-toggle="tab" href="#sectionB">SUPPORTS WEB</a></li>
+    <li><a data-toggle="tab" href="#sectionC">CONTACT</a></li>
+    <li><a data-toggle="tab" href="#sectionD">CONFIDENTIALITE</a></li>
+  </ul>
+  <div class="tab-content">
+    <div id="sectionA" class="tab-pane fade in active">
+
+
+      <%#= form_for(@event, :html => { role: "form"}) do |f| %>
+<!--        <input type="text" class="form-control input-lg" placeholder="Nom de l'evenement">-->
+        <%#= f.text_field :name , placeholder: "Nom de l'evenement", class: "form-control input-lg" %>
+
+<!--        <input type="text" class="form-control input-lg" placeholder="Ville">-->
+        <%#= f.text_field :place , placeholder: "Ville", class: "form-control input-lg" %>
+
+
+<!--        <input type="text" class="form-control input-lg" placeholder="Ville">-->
+        <%#= f.text_field :department , placeholder: "Département", class: "form-control input-lg", as: :select, collection: Event::DEPARTMENTS %>
+
+
+<!--        = f.input :department, label: 'Département', as: :select, collection: Event::DEPARTMENTS-->
+
+
+        <%#= f.text_field :title %>
+        <%#= f.text_area :body, size: "60x12" %>
+        <%#= f.submit "Enregistrer" , class: 'btn btn-default btn-lg' %>
+      <%# end %>
+
+      <%= form_for(@event, :html => { role: "form"}) do |f| %>
+        <div class="row">
+          <div class="col-xs-12">
+            <%= f.text_field :name , placeholder: "Nom de l'evenement", class: "form-control input-lg" %>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-xs-6">
+            <%= f.text_field :place , placeholder: "Ville", class: "form-control input-lg" %>
+          </div>
+          <div class="col-xs-6">
+            <%= f.select(:country, options_for_select(Event::COUNTRIES.collect{|dep| ["#{dep}", dep] },
+                                                         selected: @event.country || nil), { include_blank: "Pays" },
+                         { class: 'form-control input-lg'}) %>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-xs-12">
+            <%= f.text_field :adress , placeholder: "Adresse", class: "form-control input-lg" %>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-xs-6">
+            <%= f.select(:department, options_for_select(Event::DEPARTMENTS.collect{|dep| ["#{dep}", dep] },
+                                                         selected: @event.department || nil), { include_blank: "Département" },
+                         { class: 'form-control input-lg'}) %>
+          </div>
+        </div>
+        <br>
+        <p>
+          <button type="submit" class="btn btn-default btn-lg">Enregistrer</button>
+        </p>
+      <% end %>
+
+    </div>
+    <div id="sectionB" class="tab-pane fade">
+      <h3>Section B</h3>
+      <p>Vestibulum nec erat eu nulla rhoncus fringilla ut non neque. Vivamus nibh urna, ornare id gravida ut, mollis a magna.
+        Aliquam porttitor condimentum nisi, eu viverra ipsum porta ut. Nam hendrerit bibendum turpis, sed molestie mi fermentum id.
+        Aenean volutpat velit sem. Sed consequat ante in rutrum convallis. Nunc facilisis leo at faucibus adipiscing.</p>
+    </div>
+    <div id="sectionC" class="tab-pane fade">
+      <h3>Section C</h3>
+      <p>Vestibulum nec erat eu nulla rhoncus fringilla ut non neque. Vivamus nibh urna, ornare id gravida ut, mollis a magna.
+        Aliquam porttitor condimentum nisi, eu viverra ipsum porta ut. Nam hendrerit bibendum turpis, sed molestie mi fermentum id.
+        Aenean volutpat velit sem. Sed consequat ante in rutrum convallis. Nunc facilisis leo at faucibus adipiscing.</p>
+    </div>
+    <div id="sectionD" class="tab-pane fade">
+      <h3>Section D</h3>
+      <p>Vestibulum nec erat eu nulla rhoncus fringilla ut non neque. Vivamus nibh urna, ornare id gravida ut, mollis a magna.
+        Aliquam porttitor condimentum nisi, eu viverra ipsum porta ut. Nam hendrerit bibendum turpis, sed molestie mi fermentum id.
+        Aenean volutpat velit sem. Sed consequat ante in rutrum convallis. Nunc facilisis leo at faucibus adipiscing.</p>
+    </div>
+  </div>
 </div>
