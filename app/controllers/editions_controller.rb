@@ -1,6 +1,7 @@
 class EditionsController < ApplicationController
+  layout "picto_edition_home", only: [:home_picto_edition]
   before_action :set_edition, only: [:show, :edit, :update, :destroy, :results, :delete_results, :generate_widget, :generate_photos_widget,
-  :generate_diplomas_widget, :generate_diplomas, :delete_diplomas, :send_results]
+  :generate_diplomas_widget, :generate_diplomas, :delete_diplomas, :send_results, :home_picto_edition]
   helper_method :sort_column, :sort_direction
   #http_basic_authenticate_with name: ENV['ADMIN_LOGIN'], password: ENV['ADMIN_PASSWORD'], except: :widget
 
@@ -133,6 +134,18 @@ class EditionsController < ApplicationController
       redirect_to event_edition_path(@edition.event, @edition), alert: "L'envoi des résutats est bloqué sur l'environnement de #{Rails.env}"
     end
   end
+
+
+  #=================
+  # for Picto
+  #=================
+  def home_picto_edition
+    @has_filter_pict_home = false
+  end
+
+  #=================
+  # END for Picto
+  #=================
 
   private
 

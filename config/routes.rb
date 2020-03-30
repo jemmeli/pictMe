@@ -144,8 +144,10 @@ Rails.application.routes.draw do
 
   #root :to => 'events#index'
   root :to => 'events#list_picto'
+  get 'event/:id/edition/:id', to: 'editions#home_picto_edition', as: 'home_picto_edition'
   get 'event/:id', to: 'events#home_picto', as: 'home_picto_event'
   get 'events', to: 'events#index'
+
 
   # config/routes.rb
   Sidekiq::Web.use Rack::Auth::Basic do |username, password|

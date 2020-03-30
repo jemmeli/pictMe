@@ -1,0 +1,83 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%= if content_for?(:title) then
+          yield(:title) + ' | '
+        end %>
+    PictMe
+  </title>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'picto', media: 'all' , 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+
+  <%= csrf_meta_tags %>
+</head>
+<body class="picto-page picto-edition">
+
+<%= render 'layouts/picto_navigation' %>
+
+<div class="container-fluid mainContainer">
+
+  <div class="row">
+    <div class="col-xs-1 leftNavBar">
+      <ul class="list-unstyled">
+        <li>
+          <a href="#">
+            <span class="helper"></span>
+            <img src="<%= asset_path('icon-home-pictme.png') %>" alt="home">
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="helper"></span>
+            <img src="<%= asset_path('icon-map-pictme.png') %>" alt="map">
+          </a>
+        </li>
+
+        <li>
+          <a href="#">
+            <span class="helper"></span>
+            <img src="<%= asset_path('icon-list-pictme.png') %>" alt="list">
+          </a>
+          <ul class="list-unstyled">
+            <li><a href="#">Contacts</a></li>
+            <li><a href="#">Résultats</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="#">
+            <span class="helper"></span>
+            <img src="<%= asset_path('icon-guage-pictme.png') %>" alt="guage">
+          </a>
+        </li>
+
+        <li>
+          <a href="#">
+            <span class="helper"></span>
+            <img src="<%= asset_path('icon-settings-pictme.png') %>" alt="guage">
+          </a>
+        </li>
+
+      </ul>
+    </div>
+
+    <div class="col-xs-11 editionContent">
+      <%= yield %>
+    </div>
+  </div>
+
+  <hr>
+
+  <footer>
+    <p>&copy; 2020 PictMe, Inc.</p>
+  </footer>
+
+</div> <!-- /container -->
+
+</body>
+</html>

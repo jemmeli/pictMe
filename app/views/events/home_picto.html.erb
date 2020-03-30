@@ -15,11 +15,13 @@
           <%= edition.date.strftime('%d/%m/%Y') %>
           <a href="#">
             <%= link_to(image_tag("editIcon.png", width: 15, height: 15), edit_event_edition_path(edition.event.id, edition.id) ) %>
-          </a> <br>
-          <span class="courseType"><%= edition.races.pluck(:race_type).join(', ') %> </span> <br>
-          <span class="courseName"> <%= edition.races.pluck(:name).join(', ') %> </span>
-
+          </a>
         </h2>
+        <br>
+        <span class="courseType"><%= edition.races.pluck(:race_type).join(', ') %> </span> <br>
+        <span class="courseName"> <%= edition.races.pluck(:name).join(', ') %> </span>
+
+
         <div class="courseStatus inProgress">EN COURS DE TRAITEMENT</div>
         <ul class="list-inline statisticsCourse">
           <li>
@@ -36,7 +38,8 @@
           </li>
         </ul>
         <div class="editionControl">
-          <%= link_to "Visualiser", event_edition_path(edition.event, edition), class: 'btn btn-default' %>
+          <%#= link_to "Visualiser", event_edition_path(edition.event, edition), class: 'btn btn-default' %>
+          <%= link_to "Visualiser", home_picto_edition_path(edition), class: 'btn btn-default' %>
           <%= link_to "Editer", edit_event_edition_path(edition.event.id, edition.id), class: 'btn btn-default' %>
           <%= link_to 'Dupliquer', new_event_edition_path(edition.event, edition: edition.attributes), class: 'btn btn-default' %>
           <%= link_to 'Supprimer', event_edition_path(edition.event.id, edition.id), class: 'btn btn-default' %>

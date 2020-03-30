@@ -16,6 +16,7 @@ body.picto-page h1 {
 body.picto-page .navbar-inverse {
     border-bottom: 4px solid #d9d9d9;
     color: white;
+    margin-bottom: 0;
 }
 
 body.picto-page .navbar-brand {
@@ -90,10 +91,17 @@ body.picto-page .eventRow .editionBox h2.courseDate img {
     float: right;
 }
 
-body.picto-page .eventRow .editionBox .courseType, body.picto-page .eventRow .editionBox .courseName {
+body.picto-page .eventRow .editionBox .courseType,
+body.picto-page .eventRow .editionBox .courseName{
     font-size: 13px;
     color: #666666;
     line-height: 17px;
+}
+
+body.picto-page .eventRow .editionBox .dateEdition{
+    font-size: 15px;
+    color: #000000;
+    line-height: 19px;
 }
 
 body.picto-page .eventRow .editionBox .inProgress {
@@ -232,4 +240,85 @@ body.picto-page .editEventTabs .nav-tabs {
 body.picto-page .editEventTabs .tab-content{
     background: #ffffff;
     padding: 25px 50px;
+}
+
+/*=========================
+===== picto edition
+========================== */
+
+body.picto-edition{
+    padding-top: 70px;
+}
+
+body.picto-edition .eventRow .editionBox {
+    margin: 10px 5px;
+}
+
+body.picto-edition .eventRow .editionBox {
+    width: 100%;
+}
+.editionContent{
+    padding-left: 80px;
+}
+
+body.picto-edition .navbar-inverse{
+    border-bottom: 0px solid transparent;
+}
+
+body.picto-page .leftNavBar{
+    min-height: 500px;
+    padding: 0;
+    width: 60px;
+    position: relative;
+    background: #222222;
+    color: white;
+    text-align: center;
+}
+
+body.picto-page .leftNavBar ul li ul{
+    position: absolute;
+    left: 60px;
+    top: 0;
+    background: #222222;
+    width: 75px;
+    height: 100%;
+    text-align: center;
+    z-index: 99;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 90px;
+}
+
+body.picto-page .leftNavBar li a{
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    height: 55px;
+    background: #292c30;
+    margin: 5px 0;
+    line-height: 55px;
+}
+
+body.picto-page .leftNavBar ul li ul li a{
+    height: 50px;
+    line-height: 50px;
+}
+
+body.picto-page .leftNavBar li a:hover{
+    background: #3f4245;
+    border-left: 2px solid #f99b1b ;
+}
+
+.helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+body.picto-page .leftNavBar li a img{
+    vertical-align: middle;
+    width: 15px;
+    height: 15px;
 }
