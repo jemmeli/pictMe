@@ -32,6 +32,9 @@ gem "paperclip", "~> 5.0.0"
 
 gem 'devise'
 gem 'devise-bootstrap-views', '~> 1.0'
+git_source(:github){ |repo_name| "https://github.com/#{repo_name}.git" }
+gem 'remotipart', github: 'jbox-web/remotipart', tag: '1.6.0'
+gem 'gon'
 
 gem 'rack-cors', :require => 'rack/cors'
 gem 'rollbar' # reporting des erreurs
@@ -64,7 +67,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'byebug'
   gem 'minitest-rails'
-  gem 'dotenv-rails', '~> 2.1.1' # parsing du fichier ENV en dev
+  gem 'dotenv-rails', '~> 2.1.1' # parsing du fichier ENV en dev important
   #gem 'dotenv-rails', require: 'dotenv/rails-now'
   gem 'minitest-rails-capybara'
   gem 'guard'

@@ -18,7 +18,7 @@
           <h2 class="courseDate">
             DESCRIPTIF
             <a href="#">
-              <%= link_to(image_tag("editIcon.png", width: 15, height: 15), edit_event_edition_path(@edition.id, @edition.id) ) %>
+              <%= link_to(image_tag("editIcon.png", width: 15, height: 15), edit_event_edition_path(@edition.event.id, @edition.id) ) %>
             </a>
           </h2>
           <br>
@@ -46,7 +46,7 @@
           <span class="coursePhotos">1245</span> <br>
           PHOTOS
         </li>
-        <li>
+        <li class="middleList">
           <span class="courseContacts">780</span> <br>
           CONTACTS
         </li>
@@ -61,7 +61,7 @@
 
   <div class="col-md-6">
 
-    <div class="col-md-12 editionBox">
+    <div class="col-md-12 editionBox editionContactsBox">
       <h2 class="courseDate">
         CONTACTS
         <a href="#">
@@ -70,41 +70,44 @@
       </h2>
       <br>
       <ul class="list-inline statisticsCourse">
-        <li>
-          <span class="coursePhotos">1245</span> <br>
-          PHOTOS
+        <li  class="rightList">
+          <span class="coursePhotos">845</span> <br>
+          CONTACTS <br> IMPORTES
         </li>
-        <li>
+        <li class="rightList">
           <span class="courseContacts">780</span> <br>
-          CONTACTS
+          CONTACTS <br> AVEC EMAIL
+        </li>
+        <li class="rightList">
+          <span class="courseCampagnes">635</span> <br>
+          CONTACTS <br> AVEC SMS
         </li>
         <li>
-          <span class="courseCampagnes">3</span> <br>
-          CAMPAGNES
+          <span class="courseCampagnes">1090</span> <br>
+          RESULTATS <br> OFFICIELS
         </li>
       </ul>
     </div>
 
-    <div class="col-md-12 editionBox">
+    <div class="col-md-12 editionBox editionCampagnesBox">
       <h2 class="courseDate">
         CAMPAGNES
         <a href="#">
           <%= link_to(image_tag("editIcon.png", width: 15, height: 15), "#" ) %>
         </a>
       </h2>
-      <br>
-      <ul class="list-inline statisticsCourse">
+      <ul class="list-unstyled statisticsCourse">
         <li>
-          <span class="coursePhotos">1245</span> <br>
-          PHOTOS
+          <h3>Campagne envoi email</h3>
+          <span class="campagneDate">21 JUILLET 2020 - 20h20 </span>
         </li>
         <li>
-          <span class="courseContacts">780</span> <br>
-          CONTACTS
+          <h3>Campagne envoi SMS 1</h3>
+          <span class="campagneDate">21 JUILLET 2020 - 20h20 </span>
         </li>
         <li>
-          <span class="courseCampagnes">3</span> <br>
-          CAMPAGNES
+          <h3>Campagne envoi SMS 1</h3>
+          <span class="campagneDate">21 JUILLET 2020 - 20h20 </span>
         </li>
       </ul>
     </div>

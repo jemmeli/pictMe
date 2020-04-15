@@ -39,7 +39,7 @@
         </ul>
         <div class="editionControl">
           <%#= link_to "Visualiser", event_edition_path(edition.event, edition), class: 'btn btn-default' %>
-          <%= link_to "Visualiser", home_picto_edition_path(edition), class: 'btn btn-default' %>
+          <%= link_to "Visualiser", home_picto_edition_event_edition_path(edition.event.id, edition.id), class: 'btn btn-default' %>
           <%= link_to "Editer", edit_event_edition_path(edition.event.id, edition.id), class: 'btn btn-default' %>
           <%= link_to 'Dupliquer', new_event_edition_path(edition.event, edition: edition.attributes), class: 'btn btn-default' %>
           <%= link_to 'Supprimer', event_edition_path(edition.event.id, edition.id), class: 'btn btn-default' %>

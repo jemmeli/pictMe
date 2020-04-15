@@ -1,9 +1,11 @@
 class EditionsController < ApplicationController
-  layout "picto_edition_home", only: [:home_picto_edition]
+  layout "picto_edition_home", only: [:home_picto_edition, :contacts_picto_edition, :upload_csv_picto]
   before_action :set_edition, only: [:show, :edit, :update, :destroy, :results, :delete_results, :generate_widget, :generate_photos_widget,
-  :generate_diplomas_widget, :generate_diplomas, :delete_diplomas, :send_results, :home_picto_edition]
+  :generate_diplomas_widget, :generate_diplomas, :delete_diplomas, :send_results, :home_picto_edition, :contacts_picto_edition]
   helper_method :sort_column, :sort_direction
+  #skip_before_filter :verify_authenticity_token, :only => :upload_csv_picto
   #http_basic_authenticate_with name: ENV['ADMIN_LOGIN'], password: ENV['ADMIN_PASSWORD'], except: :widget
+  #respond_to :js, only: :process_csv_picto
 
   def new
     @event = Event.find(params[:event_id])
@@ -141,6 +143,62 @@ class EditionsController < ApplicationController
   #=================
   def home_picto_edition
     @has_filter_pict_home = false
+  end
+
+  def contacts_picto_edition
+
+    gon.firstRowCsv = session[:firstRowCsv]
+
+    #gon.firstRowCsv = { "Telephone" => session[:firstRowCsv]["Email"], "Email"=>session[:firstRowCsv]["Email"], "Prenom"=>session[:firstRowCsv]["Prenom"], "Nom"=>session[:firstRowCsv]["Nom"], "Doss"=>session[:firstRowCsv]["Doss"].to_i }
+  end
+
+  def send_email_modal
+    #send an email for modal send email
+    #byebug
+    begin
+      SendEmailModalMailer.help_csv(params).deliver
+      flash[:success] = 'Email est envoyer'
+      redirect_to contacts_picto_edition_event_edition_path
+    rescue StandardError => e
+      # do something with the messages in exception object e
+      flash[:error] = "#{e.class}Probléme envoie du Email , #{e.message}"
+      redirect_to contacts_picto_edition_event_edition_path
+    end
+  end
+
+
+  def process_csv_picto
+    #read the CSV
+    readCsv= CSV.parse open( params[:edition][:description].path ).read, :headers=>true, :converters=>:numeric
+    session[:firstRowCsv] = readCsv.first
+    session[:pathCsv] = params[:edition][:description].path
+  end
+
+  def upload_csv_picto
+    # 1-telephone row[1]
+    # 2-email     row[2]
+    # 3-dossars   row[3]
+    # 4-nom       row[4]
+    # 5-prenom    row[5]
+    #byebug
+    counter = 0
+    CSV.foreach(session[:pathCsv],  headers: true) do |row|
+      contact = Contact.where( email: row["Email"] ).first_or_initialize
+      contact.assign_attributes(
+          telephone: row["Telephone"],
+          email: row["Email"],
+          dossard: row["Doss"],
+          nom: row["Nom"],
+          prenom: row["Prenom"],
+          edition_id: params[:id]
+      )
+      if contact.save
+        counter += 1
+      else
+        #show eny error msg
+        puts "#{email} - #{user.errors.full_messages.join(",")}" if user.errors.any?
+      end
+    end
   end
 
   #=================

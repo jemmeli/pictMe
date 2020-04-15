@@ -28,5 +28,9 @@ module ApplicationHelper
 		@has_filter_pict_home.nil? ? true : @has_filter_pict_home
 	end
 
+	def active_btn_class(link_path)
+		current_page?(link_path) ? "activeBtn" : ""
+	end
+
 
 end

@@ -66,6 +66,43 @@ Rails.application.routes.draw do
     end
   end
 
+
+  #############################
+  # /Routes pour PictMe
+  #############################
+  #root :to => 'events#index'
+  root :to => 'events#list_picto'
+  get 'events', to: 'events#index'
+  get 'event/:id', to: 'events#home_picto', as: 'home_picto_event'
+
+
+  resources :events do
+    resources :editions do
+
+      member do
+        get 'home_picto_edition'
+        get 'contacts_picto_edition', as: 'contacts_picto_edition'
+        post 'send_email_modal'
+        post 'upload_csv_picto'
+        post 'process_csv_picto'
+      end
+
+      #get 'events', to: 'events#index'
+      #get 'event/:id', to: 'events#home_picto', as: 'home_picto_event'
+      #get 'event/:id/edition/:id', to: 'editions#home_picto_edition', as: 'home_picto_edition'
+      #get 'event/:id/edition/:id/contacts', to: 'editions#contacts_picto_edition', as: 'contacts_picto_edition'
+      #post 'edition/send_email_modal', to: 'editions#send_email_modal'
+
+    end
+  end
+
+
+
+
+
+
+
+
   resources :photos, only: %I[show update destroy]
 
   resources :results, only: :show do
@@ -137,17 +174,6 @@ Rails.application.routes.draw do
       resources :featured_runners, only: [:index]
     end
   end
-
-  #############################
-  # /Routes pour l'API
-  #############################
-
-  #root :to => 'events#index'
-  root :to => 'events#list_picto'
-  get 'event/:id/edition/:id', to: 'editions#home_picto_edition', as: 'home_picto_edition'
-  get 'event/:id', to: 'events#home_picto', as: 'home_picto_event'
-  get 'events', to: 'events#index'
-
 
   # config/routes.rb
   Sidekiq::Web.use Rack::Auth::Basic do |username, password|

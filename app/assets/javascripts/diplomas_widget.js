@@ -1,3 +1,4 @@
+/*
 function resizePhotoContainers() {
   const photoContainers = document.querySelectorAll(".photo-container")
   const photoContainer = document.querySelector(".photo-container:not(.d-none)")
@@ -235,3 +236,5 @@ function filterPhotos(pageNumber = 1) {
 
   resizePhotoContainers()
 }
+*/
+

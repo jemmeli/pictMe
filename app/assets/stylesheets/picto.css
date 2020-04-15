@@ -1,4 +1,5 @@
 body.picto-page {
+    font-family: 'PT Sans', sans-serif;
     padding-top: 90px;
     padding-bottom: 20px;
     background: #e7e7e7;
@@ -247,6 +248,7 @@ body.picto-page .editEventTabs .tab-content{
 ========================== */
 
 body.picto-edition{
+    font-family: 'PT Sans', sans-serif;
     padding-top: 70px;
 }
 
@@ -260,6 +262,56 @@ body.picto-edition .eventRow .editionBox {
 .editionContent{
     padding-left: 80px;
 }
+
+body.picto-edition .eventRow .editionBox .statisticsCourse{
+    background: transparent;
+    text-align: left;
+}
+
+body.picto-edition .eventRow .editionBox .statisticsCourse li {
+    width: 31%;
+    padding: 0 10px;
+}
+body.picto-edition .eventRow .editionBox .statisticsCourse li.middleList{
+    border-left: 3px solid #dddddd;
+    border-right: 3px solid #dddddd;
+}
+
+
+body.picto-edition .eventRow .editionContactsBox .statisticsCourse{
+    background: transparent;
+    text-align: left;
+}
+
+body.picto-edition .eventRow .editionContactsBox .statisticsCourse li {
+    width: 22%;
+    padding: 0 10px;
+}
+
+
+body.picto-edition .eventRow .editionCampagnesBox .statisticsCourse li{
+    width: 100%;
+    padding: 0;
+}
+body.picto-edition .eventRow .editionCampagnesBox .statisticsCourse h3{
+    margin: 15px 0 0 0;
+    color: #666666;
+    font-size: 20px;
+}
+body.picto-edition .eventRow .editionCampagnesBox .statisticsCourse li span{
+    color: #b5b5b5;
+    font-size: 14px;
+}
+
+body.picto-edition .eventRow .editionBox h2.courseDate {
+    color: #666666;
+}
+
+.rightList{
+    border-right: 3px solid #dddddd;
+}
+
+
 
 body.picto-edition .navbar-inverse{
     border-bottom: 0px solid transparent;
@@ -322,3 +374,138 @@ body.picto-page .leftNavBar li a img{
     width: 15px;
     height: 15px;
 }
+
+.activeBtn{
+    background: #3f4245 !important;
+    border-left: 2px solid #f99b1b ;
+}
+
+.dropDiv{
+    font-size: 18px;
+    text-align: center;
+    padding-top: 97px;
+    padding-bottom: 97px;
+    background: #909090;
+    color: white;
+    line-height: 40px;
+}
+
+.dropDiv .btn-import{
+    display: inline-block;
+    margin: 0 auto;
+    text-align: center;
+    background: #f99b1c;
+    color: white;
+    border-radius: 30px;
+    padding: 10px 100px;
+    font-size: 18px;
+}
+.contactPara{
+    font-size: 16px;
+}
+
+/*================================
+sendEmailModal + importCsvModal
+ ================================*/
+.sendEmailModal{
+    /*max-width: 500px;*/
+}
+.sendEmailModal .modal-dialog.modal-small{
+    width: 450px;
+    margin: 30px auto;
+}
+.importCsvModal  .modal-footer {
+    padding: 5px;
+    text-align: right;
+    border-top: 0px solid transparent;
+}
+.sendEmailModal .modal-header,
+.importCsvModal .modal-header{
+    text-align: center;
+    border-bottom: 0px solid transparent;
+}
+.importCsvModal select.form-control{
+    border-radius: 30px;
+}
+.sendEmailModal .modal-header button,
+.importCsvModal .modal-header button{
+    background: #e7e7e7;
+    width: 35px;
+    height: 35px;
+    color: #222222;
+    border-radius: 50%;
+}
+.importCsvModal .table thead th{
+    background-color: transparent;
+    color: #909090;
+    text-transform: uppercase;
+    font-weight: lighter;
+}
+.importCsvModal .table > tbody > tr > td{
+    border-top: 0px solid transparent;
+}
+.importCsvModal .table > thead > tr > th{
+    border-bottom: 0px solid transparent;
+}
+.sendEmailModal .modal-header h4{
+    font-size: 27px;
+    color: #222222;
+    letter-spacing: 1.4px;
+}
+.sendEmailModal .modal-header p{
+    font-size: 13px;
+}
+
+.sendEmailModal textarea{
+    width: 100%;
+    height: 150px;
+    background: #eeeeee;
+    color: #aaaaaa;
+    border: 0px solid transparent;
+    outline: none;
+}
+.dropDiv .selectedFile,
+.sendEmailModal .selectedFile,
+.importCsvModal .selectedFile{
+    display: none;
+}
+.sendEmailModal .selectedFileShown{
+    display: block;
+    margin: 30px auto;
+    width: 150px;
+    height: 60px;
+    background: #fad4a1;
+    color: #000000;
+    text-align: center;
+    border: 0px solid transparent;
+    outline: none;
+}
+
+.sendEmailModal input[type="submit"]{
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    height: 60px;
+    background: #f99b1c;
+    color: #ffffff;
+    text-align: center;
+    border: 0px solid transparent;
+    outline: none;
+    border-radius: 50px  ;
+}
+
+.importCsvModal input[type="submit"]{
+    padding: 10px 25px;
+    font-size: 18px;
+    background: #f99b1c;
+    color: #ffffff;
+    text-align: center;
+    border: 0px solid transparent;
+    outline: none;
+    border-radius: 50px  ;
+}
+.grey{
+    color: #cccccc;
+}
+
+
