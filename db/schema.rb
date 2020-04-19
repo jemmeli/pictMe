@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200413223048) do
+ActiveRecord::Schema.define(version: 20200416001002) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,6 +104,8 @@ ActiveRecord::Schema.define(version: 20200413223048) do
     t.string   "country"
     t.string   "adress"
     t.boolean  "pictme",           default: false
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_events_on_user_id", using: :btree
   end
 
   create_table "oauth_access_grants", force: :cascade do |t|
@@ -272,6 +274,7 @@ ActiveRecord::Schema.define(version: 20200413223048) do
   end
 
   add_foreign_key "contacts", "editions"
+  add_foreign_key "events", "users"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
   add_foreign_key "photos", "races"

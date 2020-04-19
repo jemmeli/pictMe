@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  before_action :authenticate_user!
   layout "picto", only: [:list_picto, :home_picto]
   require 'csv'
   before_action :set_event, only: [:show, :edit, :update, :destroy, :home_picto]
@@ -68,7 +69,9 @@ class EventsController < ApplicationController
   #Events for Picto
   #=================
   def list_picto
-    @events = Event.order('created_at desc').limit(5)
+    #show only the events related to the current user
+    #@events = Event.order('created_at desc').limit(5)
+    @events = current_user.events
   end
 
   def home_picto

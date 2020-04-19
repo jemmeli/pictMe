@@ -32,6 +32,7 @@ class Event < ApplicationRecord
   has_many :races, through: :editions
   belongs_to :challenge
   has_many :runners, through: :editions
+  belongs_to :user
 
   validates :name, presence: true, length: { in: 2..50 }
 
