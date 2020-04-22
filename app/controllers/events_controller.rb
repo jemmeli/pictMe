@@ -77,6 +77,10 @@ class EventsController < ApplicationController
   def home_picto
   end
 
+  def search_events
+    @events = Event.serach( params[:q] )
+  end
+
   private
   def set_event
     @event = Event.find(params[:id])

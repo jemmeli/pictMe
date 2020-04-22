@@ -197,8 +197,10 @@ body.picto-page .editionControl .btn{
 }
 
 body.picto-page .searchEvent {
-    margin-top: 10px;
-    min-width: 300px;
+    margin-top: 8px;
+    min-width: 500px;
+    height: 44px;
+    border-radius: 0;
 }
 
 body.picto-page .inner-addon {
@@ -207,7 +209,7 @@ body.picto-page .inner-addon {
 
 body.picto-page .inner-addon .glyphicon {
     position: absolute;
-    padding: 10px;
+    padding: 13px;
     pointer-events: none;
 }
 
@@ -508,4 +510,30 @@ sendEmailModal + importCsvModal
     color: #cccccc;
 }
 
+/*========================
+Search events freshstart
+ ========================*/
+#eventsList{
+    position: absolute;
+    background: white;
+    left: 75px;
+    top: 59px;
+    color: black;
+
+    -webkit-box-shadow: 0px 14px 13px 6px rgba(0,0,0,0.21);
+    -moz-box-shadow: 0px 14px 13px 6px rgba(0,0,0,0.21);
+    box-shadow: 0px 14px 13px 6px rgba(0,0,0,0.21);
+}
+#eventsList li.eventItemSearch{
+    font-size: 16px;
+    padding: 10px 15px;
+    width: 500px;
+    line-height: 30px;
+}
+#eventsList li.eventItemSearch:hover{
+    background: #eeeeee;
+}
+#eventsList li.eventItemSearch img{
+    vertical-align: -2px;
+}
 

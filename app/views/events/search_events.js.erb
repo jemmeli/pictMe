@@ -1,0 +1,7 @@
+$('#eventsList').remove();
+$('.navbar-header').append("<ul id='eventsList' class='list-unstyled'></ul>");
+<% @events.each do |event| %>
+  //$('#eventsList').append("<#%= j content_tag :p, event.name, class: "eventItemSearch" %>")
+  $('#eventsList').append("<li class='eventItemSearch'><img src='<%= asset_path('icon-time.png') %>' width='15' height='15' > <%= event.name %>  <a href='#' class='pull-right' data-id='<%= event.id %>'> <img src='<%= asset_path('add-event-search.png') %>' width='35' height='35' >  </a> </li>");
+
+<% end %>

@@ -129,7 +129,7 @@
   <%# end %>
 
   <%= form_for @edition, url: { action: "process_csv_picto" }, method: :post, :html => { class: "processCsv" }, remote: true, data: { type: :html } do |f| %>
-    <%= f.file_field :description, id: "processCsv", class: "selectedFile", id: "selectedFileProcessCsv"  %>
+    <%= f.file_field :description, class: "selectedFile", id: "selectedFileProcessCsv"  %>
     <a class="btn btn-import" id="process" onclick="document.getElementById('selectedFileProcessCsv').click();">Sélectionnez le fichier a importer</a>
     <%= f.submit "Process Csv", class: "selectedFile" %>
   <% end %>

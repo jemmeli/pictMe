@@ -32,16 +32,13 @@ $(function () {
     $('.bootstrap-switch').bootstrapSwitch();
 
     //Import CSV
+    /*
     $("#selectedFileCsv").on('change',function () {
-        //$("#importCsvModal").modal('show');
-        //read this
-        //https://www.sitepoint.com/guide-ruby-csv-library-part/
     });
+     */
 
-    //Process
+    //open csv modal
     $(".someClass").on('click', function(){
-        //document.getElementById('processCsv').click();
-        //document.getElementById('selectedFileCsv').click();
         $("#importCsvModal").modal('show');
     });
 
@@ -52,10 +49,9 @@ $(function () {
             console.log("selectedFileProcessCsv");
             $("form.processCsv").submit();
         }, 1000);
-
-
     });
 
+    //show the first row csv
     $(".processCsv").bind("ajax:success", function(){
         firstRowarr = [];
         gon.firstRowCsv.map(row => firstRowarr[row[0]] = row[1] );
@@ -68,8 +64,15 @@ $(function () {
         $("#prenomFirst").html( firstRowarr["Prenom"] );
 
         $("#importCsvModal").modal('show');
-
     });
+
+    //Search events in  freshtart
+    /*
+    $(".searchEvent").bind("ajax:success", function(e, data, status, xhr){
+        console.log(data);
+    });
+    */
+
 
 
 });

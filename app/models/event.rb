@@ -102,4 +102,14 @@ class Event < ApplicationRecord
     c << Client.find(client_3) unless client_3.blank?
     c.compact
   end
+
+  #pictMe
+  def self.serach( pattern )
+    if pattern.blank?
+      last(5)
+    else
+      where('name LIKE ?', "%#{pattern}%")
+    end
+  end
+
 end
