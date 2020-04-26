@@ -74,6 +74,7 @@ Rails.application.routes.draw do
   root :to => 'events#list_picto'
   get 'events', to: 'events#index'
   get 'event/:id', to: 'events#home_picto', as: 'home_picto_event'
+  post 'event/:id', to: 'events#update_event_picto', as: 'update_event_picto'
   post 'events/search_events', to: 'events#search_events' , as: 'searchEvents_events'
 
 

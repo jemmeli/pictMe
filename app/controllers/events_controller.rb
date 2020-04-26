@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   before_action :authenticate_user!
   layout "picto", only: [:list_picto, :home_picto]
   require 'csv'
-  before_action :set_event, only: [:show, :edit, :update, :destroy, :home_picto]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :home_picto, :update_event_picto]
 
   # disable the filter for for all actions in this controller
   before_filter :disable_filter_pict_home!
@@ -75,6 +75,17 @@ class EventsController < ApplicationController
   end
 
   def home_picto
+
+  end
+
+  def update_event_picto
+
+    if @event.update(event_params)
+      redirect_to home_picto_event_path, notice: "Evènement mis à jour."
+    else
+      render home_picto_event_path , notice: "Evènement n'est pas enregister."
+    end
+
   end
 
   def search_events
@@ -106,7 +117,9 @@ class EventsController < ApplicationController
         :global_challenge,
         :country,
         :adress,
-        :pictme
+        :pictme,
+        :f_name,
+        :l_name
     )
   end
 end
