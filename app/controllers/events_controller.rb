@@ -130,8 +130,8 @@ class EventsController < ApplicationController
         :adress,
         :pictme,
         :user_id,
-        :f_name,
-        :l_name
+        :fname,
+        :lname
     )
   end
 end
