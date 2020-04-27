@@ -1,10 +1,10 @@
 <div class="container">
 
   <div class="row filterRow">
-    <div class="col-md-4">
+    <div class="col-md-3">
       <h1> Evénements </h1>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-6">
       <form class="form-inline filtreForm">
         <span>Filtrer par </span>
         <div class="form-group">
@@ -22,8 +22,11 @@
             <option>Sport</option>
           </select>
         </div>
-        <button type="submit" class="btn btn-orange">+</button>
+            <!-- <button type="submit" class="btn btn-orange">+</button>-->
       </form>
+    </div>
+    <div class="col-md-3">
+      <%= link_to "Nouveau Evénement", new_event_picto_path, class: "btn btn-orange" %>
     </div>
   </div>
 

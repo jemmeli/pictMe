@@ -49,13 +49,23 @@ body.picto-page .filtreForm {
     text-align: center;
 }
 
-body.picto-page .filtreForm button.btn-orange {
+.btn-orange {
     font-size: 19px;
     border-radius: 150px;
     background: #f99b1c;
     color: white;
     outline: none;
     font-weight: bold;
+    display: inline-block;
+    margin-top: 18px;
+}
+
+.btn-orange:hover,
+.btn-orange:visited,
+.btn-orange:focus,
+.btn-orange:active {
+    background: #ef8e0c;
+    color: white;
 }
 
 body.picto-page .filtreForm span {
@@ -66,6 +76,10 @@ body.picto-page .filtreForm span {
 body.picto-page .filtreForm select, body.picto-page .filtreForm input {
     border-radius: 100px;
     background: #e7e7e7;
+}
+
+body.picto-page .filtreForm  .input-lg{
+    padding: 10px 13px;
 }
 
 body.picto-page .eventRow {

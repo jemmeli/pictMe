@@ -1,0 +1,101 @@
+<h4> Nouvel événement  </h4>
+<p>Vous pourrez modifier ces informations a tout moment</p>
+<p>
+  user ID : <%= current_user.id %>
+</p>
+
+<div class="editEventTabs" style="margin:20px;">
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#sectionA">INFORMATIONS GENERALES</a></li>
+    <li><a data-toggle="tab" href="#sectionB">SUPPORTS WEB</a></li>
+    <li><a data-toggle="tab" href="#sectionC">CONTACT</a></li>
+  </ul>
+  <div class="tab-content">
+    <div id="sectionA" class="tab-pane fade in active">
+
+      <%= form_for(@event, url: {action: "create_event_picto"}, method: :post , :html => { role: "form", method: "post" }) do |f| %>
+        <div class="row">
+          <div class="col-xs-12">
+            <%= f.text_field :name , placeholder: "Nom de l'evenement", class: "form-control input-lg" %>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-xs-6">
+            <%= f.text_field :place , placeholder: "Ville", class: "form-control input-lg" %>
+          </div>
+          <div class="col-xs-6">
+            <%= f.select(:country, options_for_select(Event::COUNTRIES.collect{|dep| ["#{dep}", dep] },
+                                                      selected: @event.country || nil), { include_blank: "Pays" },
+                         { class: 'form-control input-lg'}) %>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-xs-12">
+            <%= f.text_field :adress , placeholder: "Adresse", class: "form-control input-lg" %>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-xs-6">
+            <%= f.select(:department, options_for_select(Event::DEPARTMENTS.collect{|dep| ["#{dep}", dep] },
+                                                         selected: @event.department || nil), { include_blank: "Département" },
+                         { class: 'form-control input-lg'}) %>
+          </div>
+        </div>
+
+
+        </div>
+        <div id="sectionB" class="tab-pane fade">
+          <div class="row">
+            <div class="col-xs-12">
+              <%= f.text_field :website , placeholder: "Site internet", class: "form-control input-lg" %>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-xs-12">
+              <%= f.text_field :facebook , placeholder: "facebook", class: "form-control input-lg" %>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-xs-12">
+              <%= f.text_field :instagram , placeholder: "instagram", class: "form-control input-lg" %>
+            </div>
+          </div>
+        </div>
+        <div id="sectionC" class="tab-pane fade">
+          <h3> CONTACT </h3>
+          <div class="row">
+            <div class="col-xs-6">
+              <%= f.text_field :f_name , placeholder: "Nom", class: "form-control input-lg" %>
+            </div>
+            <div class="col-xs-6">
+              <%= f.text_field :l_name , placeholder: "Prénom", class: "form-control input-lg" %>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-xs-12">
+              <%= f.text_field :email , placeholder: "Email", type: "email", class: "form-control input-lg" %>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-xs-12">
+              <%= f.text_field :phone , placeholder: "Télephone", type: "tel", class: "form-control input-lg" %>
+              <%= f.hidden_field :user_id , value: current_user.id %>
+            </div>
+          </div>
+        </div>
+
+        <br>
+        <p>
+          <button type="submit" class="btn btn-default btn-lg">Enregistrer</button>
+        </p>
+      <% end %>
+
+      </div>
+</div>
