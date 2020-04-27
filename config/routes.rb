@@ -72,10 +72,12 @@ Rails.application.routes.draw do
   #############################
   #root :to => 'events#index'
   root :to => 'events#list_picto'
-  get 'events', to: 'events#index'
+  #get 'events', to: 'events#index'
   get 'event/:id', to: 'events#home_picto', as: 'home_picto_event'
   post 'event/:id', to: 'events#update_event_picto', as: 'update_event_picto'
   post 'events/search_events', to: 'events#search_events' , as: 'searchEvents_events'
+  post 'events/create_event_picto', to: 'events#create_event_picto' , as: 'createEventPicto'
+  get 'new_event_picto', to: 'events#new_event_picto'
 
 
   resources :events do

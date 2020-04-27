@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
-  layout "picto", only: [:list_picto, :home_picto]
+  layout "picto", only: [:list_picto, :home_picto, :new_event_picto]
   require 'csv'
   before_action :set_event, only: [:show, :edit, :update, :destroy, :home_picto, :update_event_picto]
 
@@ -70,7 +70,6 @@ class EventsController < ApplicationController
   #=================
   def list_picto
     #show only the events related to the current user
-    #@events = Event.order('created_at desc').limit(5)
     @events = current_user.events
   end
 
@@ -79,7 +78,6 @@ class EventsController < ApplicationController
   end
 
   def update_event_picto
-
     if @event.update(event_params)
       redirect_to home_picto_event_path, notice: "Evènement mis à jour."
     else
@@ -90,6 +88,19 @@ class EventsController < ApplicationController
 
   def search_events
     @events = Event.serach( params[:q] )
+  end
+
+  def new_event_picto
+    @event = Event.new
+  end
+
+  def create_event_picto
+    @event = Event.new(event_params)
+    if @event.save
+      redirect_to home_picto_event_path( @event.id ), notice: "Evènement créé !"
+    else
+      redirect_to new_event_picto_path, notice: "Evènement n'est pas créé !"
+    end
   end
 
   private
@@ -118,6 +129,7 @@ class EventsController < ApplicationController
         :country,
         :adress,
         :pictme,
+        :user_id,
         :f_name,
         :l_name
     )
