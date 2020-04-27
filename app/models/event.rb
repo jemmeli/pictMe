@@ -112,4 +112,8 @@ class Event < ApplicationRecord
     end
   end
 
+  scope :pictme, -> { where pictme: true }
+
+  #end pictMe
+
 end

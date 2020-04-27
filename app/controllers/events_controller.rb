@@ -70,7 +70,7 @@ class EventsController < ApplicationController
   #=================
   def list_picto
     #show only the events related to the current user
-    @events = current_user.events
+    @events = current_user.events.pictme
   end
 
   def home_picto
@@ -96,6 +96,8 @@ class EventsController < ApplicationController
 
   def create_event_picto
     @event = Event.new(event_params)
+    @event.pictme = true
+    @event.user_id = current_user.id
     if @event.save
       redirect_to home_picto_event_path( @event.id ), notice: "Evènement créé !"
     else
