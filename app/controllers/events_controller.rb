@@ -70,6 +70,7 @@ class EventsController < ApplicationController
   #=================
   def list_picto
     #show only the events related to the current user
+    #@events = Event.all.limit(5)
     @events = current_user.events.pictme
   end
 
@@ -78,10 +79,22 @@ class EventsController < ApplicationController
   end
 
   def update_event_picto
-    if @event.update(event_params)
-      redirect_to home_picto_event_path, notice: "Evènement mis à jour."
-    else
-      render home_picto_event_path , notice: "Evènement n'est pas enregister."
+
+    if eventUpdated?
+      if @event.update(event_params)
+        redirect_to home_picto_event_path, notice: "Evènement mis à jour."
+      else
+        render home_picto_event_path , notice: "Evènement n'est pas enregister."
+      end
+    end
+
+    if eventDeleted?
+      if @event.editions.any?
+        @event.editions.each { |edition| edition.destroy }
+      end
+      if @event.destroy
+        redirect_to root_path, notice: "Evènement supprimer"
+      end
     end
 
   end
@@ -136,4 +149,14 @@ class EventsController < ApplicationController
         :l_name
     )
   end
+
+  #PictMe
+  def eventDeleted?
+    params[:commit] == "Supprimer l'événement"
+  end
+
+  def eventUpdated?
+    params[:commit] == "Enregistrer"
+  end
+
 end

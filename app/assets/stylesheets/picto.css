@@ -58,6 +58,8 @@ body.picto-page .filtreForm {
     font-weight: bold;
     display: inline-block;
     margin-top: 18px;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 .btn-orange:hover,
@@ -68,9 +70,34 @@ body.picto-page .filtreForm {
     color: white;
 }
 
+.btn-grey {
+    font-size: 19px;
+    border-radius: 150px;
+    background: #808080;
+    color: white;
+    outline: none;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 18px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.btn-grey:hover,
+.btn-grey:visited,
+.btn-grey:focus,
+.btn-grey:active {
+    background: #736e6e;
+    color: white;
+}
+
 body.picto-page .filtreForm span {
     color: #aaaaaa;
     font-size: 22px;
+}
+
+p.eventTabsActions{
+    overflow: hidden;
 }
 
 body.picto-page .filtreForm select, body.picto-page .filtreForm input {
