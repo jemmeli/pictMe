@@ -12,7 +12,7 @@
           <!--<i class="glyphicon glyphicon-search"></i>
           <input type="text" placeholder="Chercher un événement" class="form-control searchEvent">-->
             <%#= form_tag @event, url: {controller: "events", action: "search_events"}, method: :post, remote: true, data: { type: :html } do |f| %>
-            <%= form_tag("/events/search_events",  :remote => true, :method => :post, :class => 'navbar-form navbar-left searchEvent') do %>
+            <%= form_tag("/events/search_events",  :remote => true, :method => :post, :class => 'navbar-form navbar-left searchEvent', autocomplete: 'off') do %>
               <div class="form-group inner-addon left-addon">
               <i class="glyphicon glyphicon-search"></i>
               <%= text_field_tag 'q', nil , class: 'form-control searchEvent', placeholder: 'Chercher un événement' %>
