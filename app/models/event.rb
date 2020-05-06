@@ -106,9 +106,9 @@ class Event < ApplicationRecord
   #pictMe
   def self.serach( pattern )
     if pattern.blank?
-      last(5)
+      where('pictme != ? ', true).last(5)
     else
-      where('name LIKE ?', "%#{pattern}%")
+      where('name LIKE ? AND pictme != ? ', "%#{pattern}%", true)
     end
   end
 
