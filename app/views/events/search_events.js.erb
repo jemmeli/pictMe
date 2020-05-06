@@ -2,6 +2,6 @@ $('#eventsList').remove();
 $('.navbar-header').append("<ul id='eventsList' class='list-unstyled'></ul>");
 <% @events.each do |event| %>
   //$('#eventsList').append("<#%= j content_tag :p, event.name, class: "eventItemSearch" %>")
-  $('#eventsList').append("<li class='eventItemSearch'><img src='<%= asset_path('icon-time.png') %>' width='15' height='15' > <%= event.name %>  <%= j link_to( image_tag('add-event-search.png' , size: "30x30" ), '#' , :class => 'pull-right' , :remote => true )  %>  </li>");
+  $('#eventsList').append("<li class='eventItemSearch'><img src='<%= asset_path('icon-time.png') %>' width='15' height='15' > <%= event.name %>  <%= j link_to( image_tag('add-event-search.png' , size: "30x30" ), add_fresh_event_path(pickedEventID: event.id), method: :post , :class => 'pull-right' , :remote => true )  %>  </li>");
 
 <% end %>
