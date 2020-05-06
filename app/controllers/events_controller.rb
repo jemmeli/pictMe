@@ -111,7 +111,7 @@ class EventsController < ApplicationController
     if @event.save
       #we have to change the pictme type to take the id of freshstart ID
       @event.name = eventFresh.name + " Cloned "
-      @event.pictme = true# eventFresh.id
+      @event.pictme = true # eventFresh.id
     end
       #binding.pry
   end
