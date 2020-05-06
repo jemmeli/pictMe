@@ -109,9 +109,13 @@ class EventsController < ApplicationController
     # @editionsFresh = @eventFresh.editions
     @event = eventFresh.dup
     #we have to change the pictme type to take the id of freshstart ID
-    @event.name = eventFresh.name + " Cloned "
-    @event.pictme = true # eventFresh.id
-    @event.save
+    if @event.save
+      @event.update_attributes(:name => eventFresh.name + " Cloned " , :pictme => true)
+    end
+
+    #@event.name = eventFresh.name + " Cloned "
+    #@event.pictme = true # eventFresh.id
+
     #binding.pry
   end
 
