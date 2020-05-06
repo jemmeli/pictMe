@@ -108,12 +108,11 @@ class EventsController < ApplicationController
     #here we can extract the freshstart editions with
     # @editionsFresh = @eventFresh.editions
     @event = eventFresh.dup
-    if @event.save
-      #we have to change the pictme type to take the id of freshstart ID
-      @event.name = eventFresh.name + " Cloned "
-      @event.pictme = true # eventFresh.id
-    end
-      #binding.pry
+    #we have to change the pictme type to take the id of freshstart ID
+    @event.name = eventFresh.name + " Cloned "
+    @event.pictme = true # eventFresh.id
+    @event.save
+    #binding.pry
   end
 
   def new_event_picto
