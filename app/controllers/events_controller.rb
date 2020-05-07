@@ -109,6 +109,7 @@ class EventsController < ApplicationController
     #here we can extract the freshstart editions with
     # @editionsFresh = @eventFresh.editions
     @event = eventFresh.dup
+    @event.user = current_user#belongs_to
     @event.name = eventFresh.name + " Cloned "
     @event.pictme = eventFresh.id
     @event.save
