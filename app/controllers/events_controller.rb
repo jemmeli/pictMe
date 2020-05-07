@@ -72,7 +72,7 @@ class EventsController < ApplicationController
     #show only the events related to the current user
     #@events = Event.all.limit(5)
     @events = current_user.events.pictme
-    @eventsfreshAdded = current_user.events.freshAdded1.freshAdded2
+    @eventsfreshAdded = current_user.events.freshAdded
   end
 
   def home_picto
