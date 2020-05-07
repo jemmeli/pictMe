@@ -106,13 +106,13 @@ class Event < ApplicationRecord
   #pictMe
   def self.serach( pattern )
     if pattern.blank?
-      where(pictme: nil).limit(5)
+      where(pictme: "false").limit(5)
     else
       where( ' name LIKE ? ', "%#{pattern}%" ).fresh
     end
   end
 
-  scope :fresh, -> { where( pictme: nil )   }
+  scope :fresh, -> { where( pictme: "false" )   }
   scope :freshAdded, -> { where.not( 'pictme = ? AND pictme = ? ', "true", nil )   }
   scope :pictme, -> { where( pictme: "true" ) }
 
