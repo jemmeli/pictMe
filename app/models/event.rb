@@ -113,7 +113,7 @@ class Event < ApplicationRecord
   end
 
   scope :fresh, -> { where( pictme: "false" )   }
-  scope :freshAdded, -> { where.not( 'pictme = ? AND pictme = ? ', "true", nil )   }
+  scope :freshAdded, -> { where.not( 'pictme = ? AND pictme = ? ', "true", "false" )   }
   scope :pictme, -> { where( pictme: "true" ) }
 
   #end pictMe
