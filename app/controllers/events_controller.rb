@@ -72,6 +72,7 @@ class EventsController < ApplicationController
     #show only the events related to the current user
     #@events = Event.all.limit(5)
     @events = current_user.events.pictme
+    @eventsfreshAdded = current_user.events.freshAdded
   end
 
   def home_picto
@@ -108,14 +109,9 @@ class EventsController < ApplicationController
     #here we can extract the freshstart editions with
     # @editionsFresh = @eventFresh.editions
     @event = eventFresh.dup
-    #we have to change the pictme type to take the id of freshstart ID
-    if @event.save
-      @event.update_attributes(:name => eventFresh.name + " Cloned " , :pictme => true)
-    end
-
-    #@event.name = eventFresh.name + " Cloned "
-    #@event.pictme = true # eventFresh.id
-
+    @event.name = eventFresh.name + " Cloned "
+    @event.pictme = eventFresh.id
+    @event.save
     #binding.pry
   end
 
@@ -125,7 +121,7 @@ class EventsController < ApplicationController
 
   def create_event_picto
     @event = Event.new(event_params)
-    @event.pictme = true
+    @event.pictme = "true"
     @event.user_id = current_user.id
     if @event.save
       redirect_to home_picto_event_path( @event.id ), notice: "Evènement créé !"

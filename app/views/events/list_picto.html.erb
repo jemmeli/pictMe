@@ -5,6 +5,9 @@
   <div id="freshstartEvent">
 
     <h3> Evénement Freshstart  </h3>
+    <% @eventsfreshAdded.each do |event| %>
+      <%= render partial: "event_card", locals: {event: event} %>
+    <% end %>
 
   </div>
 
