@@ -463,7 +463,8 @@ sendEmailModal + importCsvModal
     border-top: 0px solid transparent;
 }
 .sendEmailModal .modal-header,
-.importCsvModal .modal-header{
+.importCsvModal .modal-header,
+.eventDeleteModal .modal-header{
     text-align: center;
     border-bottom: 0px solid transparent;
 }
@@ -471,7 +472,8 @@ sendEmailModal + importCsvModal
     border-radius: 30px;
 }
 .sendEmailModal .modal-header button,
-.importCsvModal .modal-header button{
+.importCsvModal .modal-header button,
+.eventDeleteModal .modal-header button{
     background: #e7e7e7;
     width: 35px;
     height: 35px;
@@ -551,9 +553,47 @@ sendEmailModal + importCsvModal
     color: #cccccc;
 }
 
-/*========================
-Search events freshstart
- ========================*/
+/*===================
+modal delete event
+=================== */
+.eventDeleteModal .modal-body{
+    text-align: center;
+}
+.eventDeleteModal .modal-footer {
+    border-top: 0px solid transparent;
+}
+.eventDeleteModal .modal-footer input[type="submit"] {
+    font-size: 25px;
+    display: block;
+    margin: 10px auto;
+    width: 300px;
+    height: 60px;
+    background: #f99b1c;
+    color: #ffffff;
+    text-align: center;
+    border: 0px solid transparent;
+    outline: none;
+    border-radius: 50px;
+}
+
+.eventDeleteModal .modal-footer a {
+    font-size: 25px;
+    display: block;
+    margin: 0 auto !important;
+    width: 200px;
+    height: 60px;
+    background: #333333;
+    color: #ffffff;
+    text-align: center;
+    border: 0px solid transparent;
+    outline: none;
+    border-radius: 50px;
+    line-height: 50px;
+}
+
+    /*========================
+    Search events freshstart
+     ========================*/
 #eventsList{
     position: absolute;
     background: white;

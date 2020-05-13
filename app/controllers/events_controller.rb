@@ -90,11 +90,17 @@ class EventsController < ApplicationController
     end
 
     if eventDeleted?
-      if @event.editions.any?
-        @event.editions.each { |edition| edition.destroy }
-      end
-      if @event.destroy
+      #binding.pry
+      if params[:xxx] == "SUPPRIMER"
+        if @event.editions.any?
+          @event.editions.each { |edition| edition.destroy }
+        end
+        if @event.destroy
+        end
+
         redirect_to root_path, notice: "Evènement supprimer"
+      else
+        redirect_to home_picto_event_path( @event.id ), alert: "Evènement n'est pas supprimer , merci d'ecrire 'supprimer'"
       end
     end
 

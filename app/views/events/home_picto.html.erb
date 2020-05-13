@@ -139,7 +139,31 @@
         <br>
         <p class="eventTabsActions">
           <%= f.submit "Enregistrer", class: "btn btn-default btn-lg pull-right btn-orange" %>
-          <%= f.submit "Supprimer l'événement", class: "btn btn-default btn-lg pull-right btn-grey" %>
+          <a href="#eventDeleteModal" role="button" class="btn btn-default btn-lg pull-right btn-grey" data-toggle="modal">Supprimer l'événement</a>
+          <%#= f.submit "Supprimer l'événement", class: "btn btn-default btn-lg pull-right btn-grey" %>
+          <!--  modal delete event  -->
+          <div id="eventDeleteModal" class="modal fade eventDeleteModal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                  <h2>Vous souhaitez supprimer <br> définitivement cet événement ?</h2>
+                  <p>Pour confirmer la suppression de l'événement, <br> merci d'ecrire "SUPPRIMER" dans la zone ci-dessous</p>
+                  <%#= f.text_field :xxx , placeholder: "xxx", class: "form-control" %>
+                  <input type="text" name="xxx" placeholder="xxx" class="form-control">
+                </div>
+                <div class="modal-footer">
+                  <!-- <button type="button" class="btn btn-default" > Supprimer l'événement </button>-->
+                  <%= f.submit "Supprimer l'événement", class: "btn btn-default" %>
+                  <a class="btn" data-dismiss="modal"> Annuler </a>
+                </div>
+              </div>
+            </div>
+        </div>
+        <!--  END modal delete event  -->
+
         </p>
       <% end %>
 
