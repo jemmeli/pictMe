@@ -35,6 +35,7 @@ gem 'devise-bootstrap-views', '~> 1.0'
 git_source(:github){ |repo_name| "https://github.com/#{repo_name}.git" }
 gem 'remotipart', github: 'jbox-web/remotipart', tag: '1.6.0'
 gem 'gon'
+gem 'mailjet'
 
 gem 'rack-cors', :require => 'rack/cors'
 gem 'rollbar' # reporting des erreurs

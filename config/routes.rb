@@ -79,6 +79,8 @@ Rails.application.routes.draw do
   post 'events/create_event_picto', to: 'events#create_event_picto' , as: 'createEventPicto'
   get 'new_event_picto', to: 'events#new_event_picto'
   post 'events/add_fresh_event', to: 'events#add_fresh_event', as: 'add_fresh_event'
+  post 'add_edition_picto', to: 'editions#add_edition_picto', as: 'add_edition_picto'
+  
 
 
   resources :events do

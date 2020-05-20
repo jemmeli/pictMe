@@ -76,7 +76,7 @@ class EventsController < ApplicationController
   end
 
   def home_picto
-
+    @months = ["janvier" ,"février" ,"mars" ,"avril" ,"mai" ,"juin" ,"juillet" ,"août" ,"septembre" ,"octobre" ,"novembre" ,"décembre"]
   end
 
   def update_event_picto

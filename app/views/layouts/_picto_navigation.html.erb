@@ -6,7 +6,8 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="#"> <img src="<%= asset_path('logoEventList.png') %>" alt="logo"> </a>
+    <!-- <a class="navbar-brand" href="#"> <img src="<%= asset_path('logoEventList.png') %>" alt="logo"> </a> -->
+    <%= link_to( image_tag('logoEventList.png'), root_path, :class => 'navbar-brand' , :alt => "logo" )  %>
     <% if has_filter_pict_home? %>
 
           <!--<i class="glyphicon glyphicon-search"></i>

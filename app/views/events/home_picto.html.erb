@@ -49,7 +49,44 @@
   <% end %>
 </div>
 
+<!-- nouveau edition -->
+<div class="row">
+  <div class="NewEdition">
+    <h2>Nouvel edition</h2>
+    <p>Rentrer la date</p>
+    <%= form_for(@event.editions.new, url: {controller: "editions" , action: "add_edition_picto", id: @event.id}, method: :post , :html => { role: "form", method: "post" }) do |f| %>
 
+      <select name="year" id="year" class="form-control">
+        <%= (1..10).each do |i| %>
+          <option value="<%= Time.current.year + i %>"> <%= Time.current.year + i %> </option>
+        <% end %>
+      </select>
+
+      <select name="month" id="month" class="form-control">
+        <%= @months.each_with_index do |month , index| %>
+          <option value="<%= index %>"> <%= month %> </option>
+        <% end %>
+      </select>
+
+      <select name="day" id="day" class="form-control">
+        <%= (1..31).each do |i| %>
+          <option value="<%= i %>"> <%= i %> </option>
+        <% end %>
+      </select>
+
+      <div class="NewEditionAction">
+        <%= f.submit "Enregistrer", class: "btn-orange-small" %>
+        <a href="#" class="btn-grey-small">Annuler</a>
+      </div>
+
+    <% end %>
+
+  </div>
+</div>
+
+<br><br>
+
+<!-- edit event -->
 <div class="editEventTabs" style="margin:20px;">
   <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#sectionA">INFORMATIONS GENERALES</a></li>

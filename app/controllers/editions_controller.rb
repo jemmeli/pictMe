@@ -201,6 +201,19 @@ class EditionsController < ApplicationController
     end
   end
 
+  def add_edition_picto
+
+    @event = Event.find(params[:id])
+    @edition = @event.editions.create( date: DateTime.now.to_date, description: "description edition"  )
+
+    if @edition.save
+      redirect_to home_picto_event_path( @event.id ), notice: "Edition créée !"
+    else
+      redirect_to home_picto_event_path( @event.id ), alert: "Edition n'est pas créée !"
+    end
+
+  end
+
   #=================
   # END for Picto
   #=================

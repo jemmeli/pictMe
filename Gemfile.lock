@@ -280,6 +280,10 @@ GEM
     lumberjack (1.0.13)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
+    mailjet (1.5.4)
+      activesupport (>= 3.1.0)
+      rack (>= 1.4.0)
+      rest-client
     memoist (0.16.0)
     method_source (0.9.2)
     mime-types (3.2.2)
@@ -600,6 +604,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   letter_opener_web
+  mailjet
   minitest-rails
   minitest-rails-capybara
   money-rails

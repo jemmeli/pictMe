@@ -2,7 +2,7 @@ body.picto-page {
     font-family: 'PT Sans', sans-serif;
     padding-top: 90px;
     padding-bottom: 20px;
-    background: #e7e7e7;
+    background: #ffffff;
     /* enable absolute positioning */
     /* style icon */
     /* align icon */
@@ -60,6 +60,7 @@ body.picto-page .filtreForm {
     margin-top: 18px;
     padding-left: 30px;
     padding-right: 30px;
+    border: 0px solid transparent;
 }
 
 .btn-orange:hover,
@@ -68,6 +69,20 @@ body.picto-page .filtreForm {
 .btn-orange:active {
     background: #ef8e0c;
     color: white;
+}
+
+.btn-orange-small{
+    font-size: 15px;
+    border-radius: 150px;
+    background: #f99b1c;
+    color: white;
+    outline: none;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 18px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border: 0px solid transparent;
 }
 
 .btn-grey {
@@ -89,6 +104,27 @@ body.picto-page .filtreForm {
 .btn-grey:active {
     background: #736e6e;
     color: white;
+}
+
+.btn-grey-small {
+    font-size: 15px;
+    border-radius: 150px;
+    background: #808080;
+    color: white;
+    outline: none;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 18px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border: 0px solid transparent;
+}
+a.btn-grey-small:hover,
+a.btn-grey-small:visited,
+a.btn-grey-small:focus,
+a.btn-grey-small:active {
+    text-decoration: none;
+    color: #ffffff;
 }
 
 body.picto-page .filtreForm span {
@@ -224,7 +260,7 @@ body.picto-page .breadcrumb a{
 
 
 body.picto-page .eventRowHome{
-    background: transparent;
+    background: #f2f2f2;
 }
 
 body.picto-page .editionControl{
@@ -284,6 +320,35 @@ body.picto-page .editEventTabs .nav-tabs {
 body.picto-page .editEventTabs .tab-content{
     background: #ffffff;
     padding: 25px 50px;
+}
+
+body.picto-page .NewEdition{
+    width: 310px;
+    padding: 15px;
+    -webkit-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.3);
+    box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.3);
+}
+body.picto-page .NewEdition h2{
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+body.picto-page .NewEdition p{
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 18px;
+}
+body.picto-page .NewEdition select{
+    font-size: 14px;
+    display: inline-block;
+    width: 31%;
+    min-width: 90px;
+    color: #cccccc;
+    font-weight: 400;
+}
+body.picto-page .NewEdition .NewEditionAction{
+    text-align: center;
 }
 
 /*=========================

@@ -16,13 +16,14 @@ class Edition < ApplicationRecord
 
   # Validations
   validates :event_id, presence: true
-  validates_attachment_content_type :raw_results, :content_type => ["text/plain", "text/csv", "application/vnd.ms-excel", "text/comma-separated-values",  Paperclip::ContentTypeDetector::SENSIBLE_DEFAULT]
-  validates_attachment_content_type :background_image, content_type: /\Aimage\/.*\z/
-  validates_presence_of :date, :template, :description
-  validates :sendable_at_home_price, numericality: { greater_than: 0, if: :sendable_at_home? }
-  validates :download_chargeable_price, numericality: { greater_than: 0, if: :download_chargeable? }
-  validates :sendable_at_home_price, numericality: { equal_to: 0, unless: :sendable_at_home? }
-  validates :download_chargeable_price, numericality: { equal_to: 0, unless: :download_chargeable? }
+  #validates_attachment_content_type :raw_results, :content_type => ["text/plain", "text/csv", "application/vnd.ms-excel", "text/comma-separated-values",  Paperclip::ContentTypeDetector::SENSIBLE_DEFAULT]
+  #validates_attachment_content_type :background_image, content_type: /\Aimage\/.*\z/
+  validates_presence_of :date, :description
+  #validates_presence_of :date, :template, :description
+  #validates :sendable_at_home_price, numericality: { greater_than: 0, if: :sendable_at_home? }
+  #validates :download_chargeable_price, numericality: { greater_than: 0, if: :download_chargeable? }
+  #validates :sendable_at_home_price, numericality: { equal_to: 0, unless: :sendable_at_home? }
+  #validates :download_chargeable_price, numericality: { equal_to: 0, unless: :download_chargeable? }
 
   def self.with_lastest_results(limit = 3)
     return [] unless limit > 0
