@@ -130,8 +130,26 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.pictme = "true"
     @event.user_id = current_user.id
+    
+    eventName = params["event"]["name"].present?
+    eventPlace = params["event"]["place"].present?
+    eventCountry = params["event"]["country"].present?
+    eventAdress = params["event"]["adress"].present?
+    eventDepartment = params["event"]["department"].present?
+    eventWebsite = params["event"]["website"].present?
+    eventFacebook = params["event"]["facebook"].present?
+    eventInstagram = params["event"]["instagram"].present?
+    eventFname = params["event"]["f_name"].present?
+    eventLname = params["event"]["l_name"].present?
+    eventEmail = params["event"]["email"].present?
+    eventPhone = params["event"]["phone"].present?
+
     if @event.save
-      redirect_to home_picto_event_path( @event.id ), notice: "Evènement créé !"
+      if eventName && eventPlace && eventCountry && eventAdress && eventDepartment && eventWebsite && eventFacebook && eventInstagram && eventFname && eventLname && eventEmail && eventPhone
+        redirect_to home_picto_event_path( @event.id ), notice: "Evènement créé !"
+      else
+        redirect_to home_picto_event_path( @event.id ), notice: "Evènement créé ! Merci de Completer Vos Informations"
+      end
     else
       redirect_to new_event_picto_path, notice: "Evènement n'est pas créé !"
     end
