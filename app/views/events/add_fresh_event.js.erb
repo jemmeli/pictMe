@@ -1,1 +1,10 @@
 $('#freshstartEvent').append("<%= j render(partial: 'event_card', locals: {event: @event} ) %>")
+$('#eventsList').remove();
+
+var content = "";
+content += "<div class='alert alert-success fade in'>";
+content += "<a href='#' class='close' data-dismiss='alert'>&times;</a>";
+content += "<p>Evènement ajouter !</p>";
+content += "</div>";
+
+$('#freshstartEvent').prepend( content );

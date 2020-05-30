@@ -1,7 +1,25 @@
-$('#eventsList').remove();
-$('.navbar-header').append("<ul id='eventsList' class='list-unstyled'></ul>");
-<% @events.each do |event| %>
-  //$('#eventsList').append("<#%= j content_tag :p, event.name, class: "eventItemSearch" %>")
-  $('#eventsList').append("<li class='eventItemSearch'><img src='<%= asset_path('icon-time.png') %>' width='15' height='15' > <%= event.name %>  <%= j link_to( image_tag('add-event-search.png' , size: "30x30" ), add_fresh_event_path(pickedEventID: event.id), method: :post , :class => 'pull-right' , :remote => true )  %>  </li>");
 
-<% end %>
+var timer = 0;
+$('input.searchEvent').keyup(function () {
+  clearTimeout( timer );
+  if ($(this).val().length > 0) {
+
+      timer = setTimeout(function () {
+
+      $('#eventsList').remove();
+      $('.navbar-header').append("<ul id='eventsList' class='list-unstyled'></ul>");
+      <% @events.each do |event| %>
+        if( (jQuery.inArray( <%= event.id %>, <%= @freshAddedIndex %> )) > -1 ) {
+          $('#eventsList').append("<li class='eventItemSearch'><img src='<%= asset_path('icon-time.png') %>' width='15' height='15' > <%= event.name %>  <%= j image_tag('add-event-tick.png' , size: "30x30" , class: 'pull-right' )  %>  </li>");
+        }else{
+          $('#eventsList').append("<li class='eventItemSearch'><img src='<%= asset_path('icon-time.png') %>' width='15' height='15' > <%= event.name %>  <%= j link_to( image_tag('add-event-search.png' , size: "30x30" ), add_fresh_event_path(pickedEventID: event.id), method: :post , :class => 'pull-right' , :remote => true )  %>  </li>");
+        }
+      <% end %>
+
+      $('form.searchEvent').submit();
+
+      }, 30);
+  } else {
+    $('#eventsList').remove();
+  }
+});

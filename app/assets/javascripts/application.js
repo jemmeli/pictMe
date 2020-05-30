@@ -24,8 +24,9 @@ $(function () {
 
 	$(document).on('click', '#results_table th a', function(){
 		$.getScript(this.href);
-    return false;
-	});
+        return false;
+    });
+
 	$(document).on('keyup', '#results_search input', function(){
 		$.get($('#results_search').attr('action'), $('#results_search').serialize(), null, 'script');
 	});
@@ -36,6 +37,9 @@ $(function () {
     $("#selectedFileCsv").on('change',function () {
     });
      */
+
+    //permet le formulaire de rechrche Events de faire submit
+    $('form.searchEvent').submit();
 
     //open csv modal
     $(".someClass").on('click', function(){
