@@ -108,7 +108,7 @@ class Event < ApplicationRecord
     if pattern.blank?
       where(pictme: "false").limit( 0 )
     else
-      where( ' name LIKE ? ', "%#{pattern}%" ).fresh
+      where( ' name LIKE ? LIMIT 10 ', "%#{/pattern/i}%" ).fresh
     end
   end
 
