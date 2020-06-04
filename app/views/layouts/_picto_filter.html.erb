@@ -4,29 +4,27 @@
     <div class="col-md-3">
       <h1> Evénements </h1>
     </div>
-    <div class="col-md-6">
-      <form class="form-inline filtreForm">
-        <span>Filtrer par </span>
+    <div class="col-md-7">
+
+      <%= form_tag("/events/filter_events", :method => :post, :class => 'form-inline filtreForm', autocomplete: 'off') do %>
+        <%# <span>Filtrer par </span> %>
         <div class="form-group">
-          <select class="form-control input-lg">
-            <option>Du 12/01 au 23/02</option>
-          </select>
+          <%= text_field_tag 'date', nil , class: 'form-control input-lg filterDateEvent', id: 'filterDateEvent' , placeholder: 'Choisir date' %>
         </div>
         <div class="form-group">
-          <select class="form-control input-lg">
-            <option>Lieu (départ)</option>
-          </select>
+          <%= select_tag( 'departement', options_for_select( Event::DEPARTMENTS.collect{ |dep| ["#{dep}", dep] } ), {:class => 'form-control input-lg'} ) %>
         </div>
         <div class="form-group">
-          <select class="form-control input-lg">
-            <option>Sport</option>
-          </select>
+          <%= select_tag( 'course', options_for_select( @courcesType.collect{ |course| ["#{course}", course] } ), {:class => 'form-control input-lg'} ) %>
         </div>
-            <!-- <button type="submit" class="btn btn-orange">+</button>-->
-      </form>
+        <%= submit_tag("Filtre" , { :class => 'btn btn-orange' }) %>
+      <% end %>
+
+
+
     </div>
-    <div class="col-md-3">
-      <%= link_to "Nouveau Evénement", new_event_picto_path, class: "btn btn-orange" %>
+    <div class="col-md-2">
+      <%= link_to "Ajouter +", new_event_picto_path, class: "btn btn-orange pull-right" %>
     </div>
   </div>
 

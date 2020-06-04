@@ -11,6 +11,8 @@
 // about supported directives.
 //
 //= require jquery2
+//= require moment.min.js
+//= require jquery.daterangepicker.js
 //= require jquery_ujs
 //= require jquery.remotipart
 //= require retina.js
@@ -40,6 +42,22 @@ $(function () {
 
     //permet le formulaire de rechrche Events de faire submit
     $('form.searchEvent').submit();
+
+    //if click outside of #eventsList close it
+    $('body').click(function(){
+        $('#eventsList').remove();
+    })
+
+    //dateRangePicker
+    $('#filterDateEvent').dateRangePicker({
+        startOfWeek: 'monday',
+        separator : ' ~ ',
+        format: 'DD/MM/YYYY',
+        autoClose: true,
+        time: {
+            enabled: false
+        }
+    });
 
     //open csv modal
     $(".someClass").on('click', function(){

@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
-  layout "picto", only: [:list_picto, :home_picto, :new_event_picto]
+  layout "picto", only: [:list_picto, :home_picto, :new_event_picto, :filter_events]
   require 'csv'
   before_action :set_event, only: [:show, :edit, :update, :destroy, :home_picto, :update_event_picto]
 
@@ -69,10 +69,14 @@ class EventsController < ApplicationController
   #Events for Picto
   #=================
   def list_picto
+    #get the list of all races type
+    @courcesType = Race.all.distinct.pluck(:race_type)
+
     #show only the events related to the current user
     #@events = Event.all.limit(5)
     @events = current_user.events.pictme
     @eventsfreshAdded = current_user.events.freshAdded
+    
   end
 
   def home_picto
@@ -113,6 +117,37 @@ class EventsController < ApplicationController
     @freshAddedIndex = @freshAddedIndex.to_json.html_safe
     #search events
     @events = Event.serach( params[:q] )
+  end
+
+  def filter_events
+
+    @courcesType = Race.all.distinct.pluck(:race_type)
+    @eventsfreshAdded = current_user.events.freshAdded
+
+
+    date = params[:date]
+    dateArray = date.split(' ~ ')
+    filterHash = {}
+
+    dateArray[ 0 ].nil? ? dateStart = "01/01/1970" : dateStart = dateArray[ 0 ]
+    dateArray[ 1 ].nil? ? dateEnd = "01/01/2222" : dateEnd = dateArray[ 1 ]
+
+    departement = params[:departement]
+    course = params[:course]
+
+    filterHash[:dateStart] = dateStart
+    filterHash[:dateEnd] = dateEnd
+    filterHash[:departement] = departement
+    filterHash[:course] = course
+
+    @events = Event.filterEvents( filterHash )
+    
+    if @events.present? 
+      flash.now[:notice] = 'Filtre effectuer'
+    else
+      flash.now[:alert] = 'Pas de evénement personnel trouver'
+    end
+    #binding.pry
   end
 
   def add_fresh_event

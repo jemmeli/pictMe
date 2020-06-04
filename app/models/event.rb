@@ -112,6 +112,17 @@ class Event < ApplicationRecord
     end
   end
 
+  def self.filterEvents( parameters )
+    #editions = e.races.where(["distance = :distance and race_type = :race_type", { distance: 15.0 , race_type: "trail" }])
+
+    dateStart = parameters[:dateStart]
+    dateEnd = parameters[:dateEnd]
+    departement = parameters[:departement]
+    
+    Event.where( department: departement ).joins( :editions ).where( ["date >= :dateStart AND date <= :dateEnd", { dateStart: Date.parse( dateStart ) ,dateEnd: Date.parse( dateEnd ) }] )
+
+  end
+
   scope :fresh, -> { where( pictme: "false" )   }
   scope :freshAdded, -> { where( 'pictme != ? AND pictme != ? ', "true", "false" )   }
   scope :pictme, -> { where( pictme: "true" ) }

@@ -76,6 +76,7 @@ Rails.application.routes.draw do
   get 'event/:id', to: 'events#home_picto', as: 'home_picto_event'
   post 'event/:id', to: 'events#update_event_picto', as: 'update_event_picto'
   post 'events/search_events', to: 'events#search_events' , as: 'searchEvents_events'
+  post 'events/filter_events', to: 'events#filter_events' , as: 'filterEvents_events'
   post 'events/create_event_picto', to: 'events#create_event_picto' , as: 'createEventPicto'
   get 'new_event_picto', to: 'events#new_event_picto'
   post 'events/add_fresh_event', to: 'events#add_fresh_event', as: 'add_fresh_event'
