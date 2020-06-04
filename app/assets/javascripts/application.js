@@ -19,7 +19,7 @@
 //= require s3_direct_upload
 //= require bootstrap-sprockets
 //= require bootstrap-switch
-//= require_tree .
+/*//= require_tree .*/
 
 
 $(function () {
