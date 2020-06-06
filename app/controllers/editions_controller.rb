@@ -204,12 +204,25 @@ class EditionsController < ApplicationController
   def add_edition_picto
 
     @event = Event.find(params[:id])
-    @edition = @event.editions.create( date: DateTime.now.to_date, description: "description edition"  )
 
-    if @edition.save
-      redirect_to home_picto_event_path( @event.id ), notice: "Edition créée !"
+    day = params[:day]
+    month = params[:month]
+    year = params[:year]
+    dateFrenchFormat = day + "/" + month + "/" + year
+
+    if Date.valid_date?( year.to_i, month.to_i, day.to_i )
+      #date existe
+      date = DateTime.parse( dateFrenchFormat )
+      @edition = @event.editions.create( date: date.to_date, description: "description edition"  )
+    
+      if @edition.save
+        redirect_to home_picto_event_path( @event.id ), notice: "Edition créée !"
+      else
+        redirect_to home_picto_event_path( @event.id ), alert: "Edition n'est pas créée !"
+      end
     else
-      redirect_to home_picto_event_path( @event.id ), alert: "Edition n'est pas créée !"
+      #date n'existe pas
+      redirect_to home_picto_event_path( @event.id ), alert: "corriger la date "+ dateFrenchFormat +" n'esxiste pas "
     end
 
   end

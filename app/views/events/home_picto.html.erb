@@ -22,7 +22,12 @@
         <span class="courseName"> <%= edition.races.pluck(:name).join(', ') %> </span>
 
 
-        <div class="courseStatus inProgress">EN COURS DE TRAITEMENT</div>
+        <% if edition.date >= Date.current %>
+          <div class="courseStatus inProgress">EN COURS DE TRAITEMENT</div>
+        <% else %>
+          <div class="courseStatus finishProgress">TRAITER</div>
+        <% end %>
+        
         <ul class="list-inline statisticsCourse">
           <li>
             <span class="coursePhotos">1245</span> <br>
@@ -58,13 +63,13 @@
 
       <select name="year" id="year" class="form-control">
         <%= (1..10).each do |i| %>
-          <option value="<%= Time.current.year + i %>"> <%= Time.current.year + i %> </option>
+          <option value="<%= Time.current.year + (i-1) %>"> <%= Time.current.year + (i-1) %> </option>
         <% end %>
       </select>
 
       <select name="month" id="month" class="form-control">
         <%= @months.each_with_index do |month , index| %>
-          <option value="<%= index %>"> <%= month %> </option>
+          <option value="<%= (index+1) %>"> <%= month %> </option>
         <% end %>
       </select>
 
