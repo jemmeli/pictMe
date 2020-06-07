@@ -26,8 +26,11 @@
           <span class="courseType"><%= @edition.races.pluck(:race_type).join(', ') %> </span> <br>
           <span class="courseName"> <%= @edition.races.pluck(:name).join(', ') %> </span>
 
-
-          <div class="courseStatus inProgress">EN COURS DE TRAITEMENT</div>
+          <% if @edition.date >= Date.current %>
+            <div class="courseStatus inProgress">EN COURS DE TRAITEMENT</div>
+          <% else %>
+            <div class="courseStatus finishProgress">TRAITER</div>
+          <% end %>
 
         </div>
     <% end %>
