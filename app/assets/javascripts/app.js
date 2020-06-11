@@ -26,7 +26,7 @@ app.factory( 'dataService',function($http,$q) {
     
     function sendGetContactsError( reponse ){
         return $q.reject('Error retreiving contacts(s). (HTTP status: ' + reponse.id + ')' );
-    }
+    } 
 
 } )
 
