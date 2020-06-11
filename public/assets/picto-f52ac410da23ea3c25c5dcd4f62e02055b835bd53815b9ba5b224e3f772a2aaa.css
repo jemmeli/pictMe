@@ -1,5 +1,5 @@
 body.picto-page {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'PT Sans', sans-serif;
     padding-top: 90px;
     padding-bottom: 20px;
     background: #ffffff;
@@ -154,30 +154,6 @@ a.btn-grey-small:active {
 .btn-white-small:visited,
 .btn-white-small:focus,
 .btn-white-small:active {
-    background: #ffffff;
-    color: #cccccc;
-    text-decoration: none;
-}
-
-
-.btn-campagne-small{
-    font-size: 15px;
-    border-radius: 150px;
-    background: #ffffff;
-    color: #cccccc;
-    outline: none;
-    font-weight: bold;
-    display: inline-block;
-    margin-top: 0px;
-    padding-left: 15px;
-    padding-right: 15px;
-    border: 1px solid #cccccc;
-}
-
-.btn-campagne-small:hover,
-.btn-campagne-small:visited,
-.btn-campagne-small:focus,
-.btn-campagne-small:active {
     background: #ffffff;
     color: #cccccc;
     text-decoration: none;
@@ -626,12 +602,6 @@ body.picto-page .contactsRow .searchContact{
     border: 1px solid #cccccc;
     padding: 3px;
     outline: none;
-}
-body.picto-page .contactsRow table.table thead th {
-    background-color: #FFFFFF;
-    color: #333;
-    font-family: 'Open Sans', sans-serif;
-    vertical-align: middle;
 }
 
 /*================================

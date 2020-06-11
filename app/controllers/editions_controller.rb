@@ -183,7 +183,7 @@ class EditionsController < ApplicationController
     #byebug
     counter = 0
     CSV.foreach(session[:pathCsv],  headers: true) do |row|
-      contact = Contact.where( email: row["Email"] ).first_or_initialize
+      contact = Contact.where( email: row["Email"], edition_id: params[:id] ).first_or_initialize
       contact.assign_attributes(
           telephone: row["Telephone"],
           email: row["Email"],
@@ -199,6 +199,7 @@ class EditionsController < ApplicationController
         puts "#{email} - #{user.errors.full_messages.join(",")}" if user.errors.any?
       end
     end
+    #after import redirect to Contact page throu .js.erb page
   end
 
   def add_edition_picto

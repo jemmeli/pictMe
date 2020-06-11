@@ -21,3 +21,16 @@
   <% end %>
 
 <% end %>
+
+<script>
+//dateRangePicker
+    $('#filterDateEvent').dateRangePicker({
+        startOfWeek: 'monday',
+        separator : ' ~ ',
+        format: 'DD/MM/YYYY',
+        autoClose: true,
+        time: {
+            enabled: false
+        }
+    });
+</script>

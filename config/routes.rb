@@ -81,7 +81,6 @@ Rails.application.routes.draw do
   get 'new_event_picto', to: 'events#new_event_picto'
   post 'events/add_fresh_event', to: 'events#add_fresh_event', as: 'add_fresh_event'
   post 'add_edition_picto', to: 'editions#add_edition_picto', as: 'add_edition_picto'
-  
 
 
   resources :events do
@@ -93,7 +92,10 @@ Rails.application.routes.draw do
         post 'send_email_modal'
         post 'upload_csv_picto'
         post 'process_csv_picto'
+        resources :contacts, only: [:index]
       end
+
+      
 
       #get 'events', to: 'events#index'
       #get 'event/:id', to: 'events#home_picto', as: 'home_picto_event'
@@ -154,6 +156,12 @@ Rails.application.routes.draw do
       resources :events do
         resources :editions, shallow: true
       end
+
+      #pictMe For Contacts
+      resources :editions do
+        resources :contacts, only: [:index]
+      end
+      
 
       resources :details, only: [:index]
 

@@ -1,0 +1,93 @@
+<div class="breadcrumb">
+  <span> <a href="<%= root_path%>"> Accueil </a> >
+  <%= @edition.event.name %> >
+  <%= @edition.date.strftime('%d/%m/%Y') %> >
+  Contact > 
+  Résultats
+  </span>
+  
+</div>
+
+<div class="row contactsRow">
+    <header>
+        <div class="row">
+            <div class="col-md-9">
+                <!-- <h1> {{ vm.name }} </h1> -->
+                <h2>Contact Enregistrer</h2> 
+            </div>
+            <div class="col-md-3 pull-right">
+                <input type="text" class="searchContact" ng-model="vm.searchContact" placeholder="Rechrcher un contact">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <a href="#" class="btn-orange-small" id="newCamp">Nouvel Campagne</a>
+                <a href="#" class="btn-white-small">Supprimer</a>
+            </div>
+            <div class="col-md-8 pull-right">
+                <ul class="list-inline">
+                    <li>
+                        <a href="#" class="btn-white-small">Importation CSV</a>
+                        <a href="#" class="btn-white-small">Nouvel campagne</a>
+                        <a href="#" class="btn-white-small">Exporter la Liste</a>
+                    </li>
+                    <li> <a href="#"> <%= image_tag("btn-email-envoyer.png", size: "22x16", alt: "Email envoyer") %> </a> </li>
+                    <li> <a href="#"> <%= image_tag("btn-deja-vu.png", size: "29x17", alt: "Deja vu") %> </a>  </li>
+                    <li> <a href="#"> <%= image_tag("btn-sms-email-fail.png", size: "26x22", alt: "erreur survenue") %> </a> </li>
+                    <li> <a href="#"> <%= image_tag("btn-sms-envoyer.png", size: "26x22", alt: "SMS envoyer") %> </a> </li>
+
+                </ul>
+                
+                
+            </div>
+        </div>
+
+    </header>
+    <!-- Table -->
+    <br/>
+    <table class="table">
+        <thead>
+            <tr>
+                <th> Nom & Prenom </th>
+                 <th>&nbsp;</th>
+                <th> Photo </th>
+                <th> Email </th>
+                <th> Numéro de Téléphone </th>
+                <th> Numéro de Dossrad </th>
+            </tr>
+        </thead>
+        <tbody ng-model="vm.id">
+            <tr ng-repeat="c in vm.allContacts | limitTo: vm.perPage : (vm.curentPage -1) * vm.perPage | filter:vm.searchContact">
+                <td> {{ c.nom }} {{ c.prenom }} </td>
+                <td> <a href="#" data-id="{{ c.id }}" data-editionID="{{c.edition_id}}" class="btn-campagne-small">Campagne</a> </td>
+                <td> Photo <span class="photoCount">18</span> </td>
+                <td> {{ c.email }} <span class="EmailStatus"></span> </td>
+                <td> {{ c.telephone }} <span class="smsStatus"></span> </td>
+                <td> {{ c.dossard }} </td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <ul class="list-inline">
+        <li>
+            <a href="#" class="btn btn-previous-pag" ng-click="vm.previousContacts()"> < </a> 
+                {{vm.curentPage}}/{{vm.numberPagination}}
+            <a href="#" class="btn btn-next-pag"  ng-click="vm.nextContacts()"> > </a> 
+        </li>
+        <li>
+            <select ng-model="vm.perPage"
+                ng-options="p for p in vm.perPageArr">
+            </select> 
+            <span>Contact par page</span>
+        </li>
+
+    </ul>
+
+</div>
+
+{{ vm.allContacts | json }}
+
+<%#= debug @contacts %>
+

@@ -67,8 +67,8 @@ class API::V2::EditionsController < API::V2::ApplicationController
   end
 
   def show
-    edition_id = params[:id]
-    edition    = Edition.available.find_by(id: edition_id)
+    id = params[:id]
+    edition    = Edition.available.find_by(id: id)
     return unless edition
 
     event      = edition.event

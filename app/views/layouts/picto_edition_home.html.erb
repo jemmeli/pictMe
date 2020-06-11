@@ -1,4 +1,4 @@
-<html>
+<html ng-app="myApp">
 <head>
   <%= Gon::Base.render_data %>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -10,58 +10,90 @@
     PictMe
   </title>
 
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag 'picto', media: 'all' , 'data-turbolinks-track' => true %>
+  <!-- <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"> -->
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <!-- <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script> -->
+  
 
 
   <%= csrf_meta_tags %>
 </head>
-<body class="picto-page picto-edition">
+<body class="picto-page picto-edition" ng-controller="mainCtrl as vm" ng-init="vm.id = <%= params[:id] %>">
 
 <%= render 'layouts/picto_navigation' %>
 
 <div class="container-fluid mainContainer">
 
+  <div class="alert alert-warning alert-dismissible show" ng-show="vm.length == 0">
+      <strong>Attention!</strong> Merci <%= link_to "d'uploder des contacts", contacts_picto_edition_event_edition_path( params[:event_id], params[:id] ) %> a fin de crée des Campagnes
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+  </div>
+
   <div class="row">
     <div class="col-xs-1 leftNavBar">
       <ul class="list-unstyled">
         <li>
-          <a href="<%= root_path %>">
+          <a href="<%= home_picto_edition_event_edition_path( params[:event_id], params[:id] ) %>" class="<%= active_btn_class( home_picto_edition_event_edition_path( params[:event_id], params[:id] ) ) %> <%= active_btn_class( home_picto_edition_event_edition_path( params[:event_id], params[:id] ) ) %>" >
+            <!--
             <span class="helper"></span>
             <img src="<%= asset_path('icon-home-pictme.png') %>" alt="home">
+            -->
+            Descriptif
           </a>
+          <% if current_page?( home_picto_edition_event_edition_path( params[:event_id], params[:id] ) ) %>
+            <ul class="list-unstyled">
+              <li><%= link_to "Détails", home_picto_edition_event_edition_path( params[:event_id], params[:id] ), class: active_btn_class( home_picto_edition_event_edition_path( params[:event_id], params[:id] ) ) %></li>
+            </ul>
+          <% end %>
         </li>
         <li>
           <a href="#">
+            <!--
             <span class="helper"></span>
             <img src="<%= asset_path('icon-map-pictme.png') %>" alt="map">
+            -->
+            Photos
           </a>
         </li>
 
         <li>
-          <a href="<%= home_picto_edition_event_edition_path %>" class="<%= active_btn_class( home_picto_edition_event_edition_path ) %> <%= active_btn_class( contacts_picto_edition_event_edition_path ) %>" >
+          <a href="<%= contacts_picto_edition_event_edition_path( params[:event_id], params[:id] ) %>" class="<%= active_btn_class( contacts_picto_edition_event_edition_path( params[:event_id], params[:id] ) ) %> <%= active_btn_class( event_contacts_path( params[:event_id], params[:id] ) ) %>" >
+            <!--
             <span class="helper"></span>
             <img src="<%= asset_path('icon-list-pictme.png') %>" alt="list">
+            -->
+            Contacts
           </a>
-          <ul class="list-unstyled">
-            <li><%= link_to "Contacts", contacts_picto_edition_event_edition_path, class: active_btn_class( contacts_picto_edition_event_edition_path ) %></li>
-            <li><a href="#">Résultats</a></li>
-          </ul>
+          <% if current_page?( contacts_picto_edition_event_edition_path( params[:event_id], params[:id] ) ) ||
+                current_page?( event_contacts_path( params[:event_id], params[:id] ) ) %>
+            <ul class="list-unstyled">
+              <li><%= link_to "Contacts", contacts_picto_edition_event_edition_path( params[:event_id], params[:id] ), class: active_btn_class( contacts_picto_edition_event_edition_path( params[:event_id], params[:id] ) ) %></li>
+              <li><%= link_to "Listes", event_contacts_path( params[:event_id], params[:id] ), class: active_btn_class( event_contacts_path( params[:event_id], params[:id] ) ) %></li>
+            </ul>
+          <% end %>
         </li>
 
         <li>
           <a href="#">
+            <!--
             <span class="helper"></span>
             <img src="<%= asset_path('icon-guage-pictme.png') %>" alt="guage">
+            -->
+            Campagnes
           </a>
         </li>
 
         <li>
           <a href="#">
+            <!--
             <span class="helper"></span>
             <img src="<%= asset_path('icon-settings-pictme.png') %>" alt="guage">
+            -->
+            Paraméters
           </a>
         </li>
 

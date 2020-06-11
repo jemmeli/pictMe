@@ -12,10 +12,11 @@
 //
 //= require jquery2
 //= require moment.min.js
-//= require jquery.daterangepicker.js
 //= require jquery_ujs
 //= require jquery.remotipart
 //= require retina.js
+//= require angular.min.js
+//= require app.js
 //= require s3_direct_upload
 //= require bootstrap-sprockets
 //= require bootstrap-switch
@@ -23,6 +24,9 @@
 
 
 $(function () {
+
+    //call datatables
+    //$('#example').DataTable();
 
 	$(document).on('click', '#results_table th a', function(){
 		$.getScript(this.href);
@@ -48,16 +52,7 @@ $(function () {
         $('#eventsList').remove();
     })
 
-    //dateRangePicker
-    $('#filterDateEvent').dateRangePicker({
-        startOfWeek: 'monday',
-        separator : ' ~ ',
-        format: 'DD/MM/YYYY',
-        autoClose: true,
-        time: {
-            enabled: false
-        }
-    });
+    
 
     //open csv modal
     $(".someClass").on('click', function(){
@@ -88,12 +83,33 @@ $(function () {
         $("#importCsvModal").modal('show');
     });
 
+    $(".btnUploadCsv").click(function(){
+        $("#importCsvModal").modal('hide');
+    })
+
     //Search events in  freshtart
     /*
     $(".searchEvent").bind("ajax:success", function(e, data, status, xhr){
         console.log(data);
     });
     */
+
+    //test ajax CONRACTS
+    $("#newCamp").click(function(e){
+        e.preventDefault();
+        $.ajax({
+            url: "/api/v1/editions/7/contacts",
+            type: "get",
+            data: "",
+            success: function(data) {
+                console.log( data );
+            },
+            error: function(data) {}
+        });
+    })
+    
+      
+
 
 
 
