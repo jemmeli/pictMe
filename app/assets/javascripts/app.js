@@ -296,6 +296,8 @@ app.controller("mainCtrl", function( dataService, $scope ){
             vm.numberPaginationCampaignsArr.push( i );
         }
     }
+
+    console.log( vm.firstStep );
     
 
 
