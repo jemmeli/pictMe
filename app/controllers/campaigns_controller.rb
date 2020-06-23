@@ -1,14 +1,17 @@
-require 'mailjet_module'
 class CampaignsController < ApplicationController
     layout "picto_edition_home", only: [:index, :new]
     #before_action :campaign_params, only: [:update]
-    include MailjetModule
-    
 
     def index 
-        #@edition = Edition.find( params[:id] )
-        #@campaigns = Campaign.all
-        @campaigns = get_all_campaigns
+        #binding.pry
+        Mailjet.configure do |config|
+            config.api_key = ENV['MJ_APIKEY_PUBLIC']
+            config.secret_key = ENV['MJ_APIKEY_PRIVATE']
+            config.api_version = "v3"
+        end
+        @campaigns = Mailjet::Campaign.all({From: current_user.email})
+
+        #@campaigns = get_all_campaigns
         #get_all_campaigns[0].attributes["created_at"]
         #@campaigns[0].attributes["custom_value"]
         #binding.pry
