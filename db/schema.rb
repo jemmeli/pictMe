@@ -10,13 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200506172140) do
+ActiveRecord::Schema.define(version: 20200613181202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
   enable_extension "unaccent"
   enable_extension "uuid-ossp"
+
+  create_table "campaigns", force: :cascade do |t|
+    t.string  "name"
+    t.string  "type_campaign"
+    t.string  "sender_email"
+    t.string  "subject"
+    t.string  "msg"
+    t.integer "edition_id"
+    t.index ["edition_id"], name: "index_campaigns_on_edition_id", using: :btree
+  end
 
   create_table "challenges", force: :cascade do |t|
     t.string   "name"
@@ -275,6 +285,7 @@ ActiveRecord::Schema.define(version: 20200506172140) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "campaigns", "editions"
   add_foreign_key "contacts", "editions"
   add_foreign_key "events", "users"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"

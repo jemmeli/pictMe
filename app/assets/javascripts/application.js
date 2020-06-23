@@ -95,6 +95,7 @@ $(function () {
     */
 
     //test ajax CONRACTS
+    /*
     $("#newCamp").click(function(e){
         e.preventDefault();
         $.ajax({
@@ -107,6 +108,23 @@ $(function () {
             error: function(data) {}
         });
     })
+    */
+
+
+    /* $("#testing").click(function(e){
+        e.preventDefault();
+        $.ajax({
+            url: "https://api.mailjet.com/v3/REST/campaignoverview" ,
+            dataType: "json",
+            type: "GET",
+            success: function(data) {
+                console.log( data );
+            },
+            error: function(data) {}
+        });
+    }) */
+    
+
     
       
 

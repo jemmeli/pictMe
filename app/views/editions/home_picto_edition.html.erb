@@ -74,15 +74,15 @@
       <br>
       <ul class="list-inline statisticsCourse">
         <li  class="rightList">
-          <span class="coursePhotos">845</span> <br>
+          <span class="coursePhotos"><%= @totalContacts %></span> <br>
           CONTACTS <br> IMPORTES
         </li>
         <li class="rightList">
-          <span class="courseContacts">780</span> <br>
+          <span class="courseContacts"><%= @totalContactsWithEmail %></span> <br>
           CONTACTS <br> AVEC EMAIL
         </li>
         <li class="rightList">
-          <span class="courseCampagnes">635</span> <br>
+          <span class="courseCampagnes"><%= @totalContactsWithSMS %></span> <br>
           CONTACTS <br> AVEC SMS
         </li>
         <li>
@@ -99,6 +99,8 @@
           <%= link_to(image_tag("editIcon.png", width: 15, height: 15), "#" ) %>
         </a>
       </h2>
+      <!-- ----------------------------------- -->
+      <!--
       <ul class="list-unstyled statisticsCourse">
         <li>
           <h3>Campagne envoi email</h3>
@@ -113,6 +115,45 @@
           <span class="campagneDate">21 JUILLET 2020 - 20h20 </span>
         </li>
       </ul>
+      -->
+      <!-- ------------------------------------------- -->
+      <div class="row contactsRow">
+          <!-- Table -->
+          <br/>
+          <table class="table">
+              <thead>
+                  <tr>
+                      <th> Nom des campagnes </th>
+                      <th> Date </th>
+                      <th> Statue </th>
+                  </tr>
+              </thead>
+              <tbody ng-model="vm.id">
+                  <tr ng-repeat="c in vm.allCampaigns | orderBy:'attributes.created_at':true | limitTo: vm.perPage : (vm.curentPage -1) * vm.perPage | filter:vm.searchCampaign">
+                      <td> {{ c.attributes.custom_value }}  </td>
+                      <td> {{ c.attributes.created_at  | date:"dd/MM/yyyy"  }} </span> </td>
+                      <td> traité </span> </td>
+                  </tr>
+
+              </tbody>
+          </table>
+
+          <ul class="list-inline">
+              <li>
+                  <a href="#" class="btn btn-previous-pag" ng-click="vm.previousCampaign()"> < </a> 
+                      {{vm.curentPage}}/{{vm.numberCampaignPagination}}
+                  <a href="#" class="btn btn-next-pag"  ng-click="vm.nextCampaign()"> > </a> 
+              </li>
+              <li>
+                  <select ng-model="vm.perPage"
+                      ng-options="p for p in vm.perPageArr">
+                  </select> 
+                  <span> Campagne par page </span>
+              </li>
+
+          </ul>
+
+      </div>
     </div>
 
   </div>

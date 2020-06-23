@@ -1,0 +1,25 @@
+console.log("demmarer.js.erb");
+<% if( @status == "success" ) %>
+    $( '.notifCampaign' ).html("");
+    $( '.notifCampaign' ).html( "<div class='alert alert-success fade in'><strong>Bravo</strong> Le Campaign est Bien envoyer<a href='#' class='close' data-dismiss='alert'>&times;</a></div>" );
+<% else %>
+    $( '.notifCampaign' ).html("");
+    $( '.notifCampaign' ).html( "<div class='alert alert-danger fade in'><strong>Erreur</strong>  est survenue<a href='#' class='close' data-dismiss='alert'>&times;</a></div>" );
+<% end %>
+
+/*
+//response
+[{"Status"=>"success",
+  "CustomID"=>"",
+  "To"=>
+   [{"Email"=>"jemmeli666@gmail.com",
+     "MessageUUID"=>"714bb948-1af9-4d1b-8083-ed059bb7c8b9",
+     "MessageID"=>1152921508365577431,
+     "MessageHref"=>"https://api.mailjet.com/v3/REST/message/1152921508365577431"},
+    {"Email"=>"selfskillsimprove@gmail.com",
+     "MessageUUID"=>"535436db-079c-4a67-b06b-f5885ae318e6",
+     "MessageID"=>1152921508365577432,
+     "MessageHref"=>"https://api.mailjet.com/v3/REST/message/1152921508365577432"}],
+  "Cc"=>[],
+  "Bcc"=>[]}]
+  */

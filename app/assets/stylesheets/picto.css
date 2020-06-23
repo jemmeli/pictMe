@@ -635,7 +635,7 @@ body.picto-page .contactsRow table.table thead th {
 }
 
 /*================================
-sendEmailModal + importCsvModal
+sendEmailModal + importCsvModal + secondStepCampaign
  ================================*/
 .sendEmailModal{
     /*max-width: 500px;*/
@@ -660,6 +660,7 @@ sendEmailModal + importCsvModal
 }
 .sendEmailModal .modal-header button,
 .importCsvModal .modal-header button,
+.secondStepCampaign .modal-header button,
 .eventDeleteModal .modal-header button{
     background: #e7e7e7;
     width: 35px;
@@ -736,6 +737,87 @@ sendEmailModal + importCsvModal
     outline: none;
     border-radius: 50px  ;
 }
+
+.secondStepCampaign .modal-dialog{
+    width: 80%;
+    margin: 30px auto;
+}
+
+.secondStepCampaign .titleSecondModal{
+    margin-left: 15px;
+    line-height: 35px;
+    display: block;
+    float: left;
+}
+
+.secondStepCampaign .notifsCode{
+    margin-left: 15px;
+    line-height: 17px;
+    display: block;
+    float: left;
+}
+
+.secondStepCampaign .selectedfilterCampaign{
+    float: left;
+}
+
+.secondStepCampaign .close {
+    opacity: 0.7;
+    left: 58px;
+    position: relative;
+}
+
+/*=================================
+= Transform checkbox to button
+==================================*/
+#ck-button {
+    border:1px solid #D0D0D0;
+    margin-top:14px;
+    border-radius:50px;
+    overflow:auto;
+    float:left;
+    background: #ffffff;
+    color: #cccccc;
+    text-decoration: none;
+    float:left;
+}
+
+#ck-button:hover {
+    margin-top:14px;
+    border-radius:50px;
+    overflow:auto;
+    float:left;
+    background: #ffffff;
+    color: #cccccc;
+    text-decoration: none;
+}
+
+#ck-button label {
+    float:left;
+    width:9em;
+}
+
+#ck-button label span {
+    text-align:center;
+    padding:3px 0px;
+    display:block;
+    padding-top: 7px;
+}
+
+#ck-button label input {
+    position:absolute;
+    display: none;
+    top:-20px;
+}
+
+#ck-button input:checked + span {
+    background: #ffffff;
+    color: #cccccc;
+    text-decoration: none;
+    padding-top: 7px;
+}
+
+
 .grey{
     color: #cccccc;
 }

@@ -81,6 +81,7 @@ Rails.application.routes.draw do
   get 'new_event_picto', to: 'events#new_event_picto'
   post 'events/add_fresh_event', to: 'events#add_fresh_event', as: 'add_fresh_event'
   post 'add_edition_picto', to: 'editions#add_edition_picto', as: 'add_edition_picto'
+  post 'demmarrer' , to: 'campaigns#demmarrer'
 
 
   resources :events do
@@ -93,6 +94,7 @@ Rails.application.routes.draw do
         post 'upload_csv_picto'
         post 'process_csv_picto'
         resources :contacts, only: [:index]
+        resources :campaigns, only: [:index, :new, :create]
       end
 
       
@@ -160,6 +162,7 @@ Rails.application.routes.draw do
       #pictMe For Contacts
       resources :editions do
         resources :contacts, only: [:index]
+        get 'getCampaigns', to: 'contacts#getCampaigns'
       end
       
 

@@ -1,0 +1,262 @@
+<div>
+
+    <div class="breadcrumb">
+    <span> <a href="<%= root_path%>"> Accueil </a> >
+    <%= @edition.event.name %> >
+    <%= @edition.date.strftime('%d/%m/%Y') %> >
+    Campagne
+    </span>
+    </div>
+
+    <div class="campagneRow">
+
+        <h5 id="xxx">Etape</h5>
+        <p class='campagneBread' >
+            <span>Contenu</span> > message
+        </p>
+
+        <%= form_tag event_campaigns_path( params[:event_id], params[:id] ) , remote: true ,:method => 'post' , html: {class: "createCampaign"} do %>
+        <%#= form_with scope: :campaign, url: event_campaigns_path( params[:event_id], params[:id] ) do |f| %>
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                <%= label_tag(:name, "Name") %>
+                <%= text_field_tag :name , nil, class: 'form-control' , :required => true , ng_model: "vm.campaign.name"  %>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                <%= label_tag(:type_campaign, "Type") %>
+                <%= text_field_tag :type_campaign , nil, class: 'form-control', :required => true, ng_model: "vm.campaign.type_campaign" %>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                <%= label_tag(:sender_email, "Email") %>
+                <%= text_field_tag :sender_email , nil, class: 'form-control', :required => true, ng_model: "vm.campaign.sender_email" %>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+            <div class="form-group">
+            <%= label_tag(:subject, "subject") %>
+            <%= text_field_tag :subject , nil, class: 'form-control', :required => true, ng_model: "vm.campaign.subject" %> 
+            </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+            <div class="form-group">
+            <%= label_tag(:msg, "Message") %>
+            <%= text_area_tag :msg , nil, class: 'form-control', size: "25x10", :required => true, ng_model: "vm.campaign.msg" %>
+            </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-9">
+            <h4>Insérer une variable</h4>
+            <p class="varsCamp">
+                il suffit de copier #variable dans le message ci-dessus pour qu'il s'affiche au destinataire <br>
+                date : #date , nom : #nom , prenom :  #prenom
+            </p>
+            </div>
+        </div>
+        
+
+        <div class="row">
+            <div class="col-md-9">
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="addLink">
+                <label class="form-check-label" for="addLink">Insérer un lien d’abonnement dans le mail</label>
+            </div>
+            </div>
+        </div>
+
+        <!-- Modal emails -->
+        <div id="secondStepCampaign" class="modal fade secondStepCampaign" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <div class="row">
+                            <ul class="list-inline pull-left">
+                                <li><h4 class="modal-title titleSecondModal">Sélectionner</h4></li>
+                                <li>
+                                <div id="ck-button">
+                                    <label>
+                                        <input type="checkbox" class="form-check-input" id="selectAllEmailsCheckHidden"  ng-model="vm.selectAll" ng-click="vm.checkAll()">
+                                        <span>Tout sélectionner</span>
+                                    </label>
+                                </div>
+                                </li>
+                                <li>
+                                    <select ng-model="vm.selectedfilterCampaign" ng-options="p.id as p.name for p in vm.filterCampaign  track by p.id"  class="form-control selectedfilterCampaign">
+                                </select> 
+                                </li>
+                                <li ng-if="selectedEmails.length == 0"> <p class="notifsCode"><code>Merci de Choisir un Contact Pour afficher le Boutton</code></p> </li>
+                            </ul>
+                            <div class="pull-right"><a href="#" id="importerCampaign" ng-click="vm.goSecondStep()" ng-if="selectedEmails.length != 0" class="btn btn-orange-small plull-right">Importer</a></div>
+
+                        </div>
+                        
+                    </div>
+                    <div class="modal-body">
+                        
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th> &nbsp; </th>
+                                    <th> Nom & Prenom </th>
+                                    <th> Photo </th>
+                                    <th> Email </th>
+                                    <th> Numéro de Téléphone </th>
+                                    <th> Numéro de Dossrad </th>
+                                </tr>
+                            </thead>
+
+                            <tbody ng-model="vm.id">
+                                <tr ng-repeat="c in vm.allContacts | limitTo: vm.perPage : (vm.curentPage -1) * vm.perPage">
+                                    <td> <input type="checkbox" ng-model="selectedEmails" ng-checked="vm.exist( c )" ng-click="vm.toggleSelection( c )" > </td>
+                                    <td> {{ c.nom }} {{ c.prenom }} </td>
+                                    <td> Photo <span class="photoCount">18</span> </td>
+                                    <td> {{ c.email }} <span class="EmailStatus"></span> </td>
+                                    <td> {{ c.telephone }} <span class="smsStatus"></span> </td>
+                                    <td> {{ c.dossard }} </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                        <ul class="list-inline">
+                            <li>
+                                <a href="#" class="btn btn-previous-pag" ng-click="vm.previousContacts()"> < </a> 
+                                    {{vm.curentPage}}/{{vm.numberPagination}}
+                                <a href="#" class="btn btn-next-pag"  ng-click="vm.nextContacts()"> > </a> 
+                            </li>
+                            <li>
+                                <select ng-model="vm.perPage"
+                                    ng-options="p for p in vm.perPageArr">
+                                </select> 
+                                <span>Contact par page</span>
+                            </li>
+
+                        </ul>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end Modals emails -->
+
+
+        <!-- Modal previsualisation emails -->
+        <div id="thirdStepCampaign" class="modal fade secondStepCampaign" data-backdrop="static" data-keyboard="false" >
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="vm.goFirstStep()">&times;</button>
+                    <div class="row">
+                        <div class="pull-left" ng-if="selectedEmails.length == 0"> <p class="notifsCode"><code>Merci de Choisir un Contact par <a href="#" ng-click="vm.secondStepCampaignModal()"> ici </a> </code></p> </div>             
+                        <div class="pull-right" ng-if="selectedEmails.length != 0"><a href="#" id="visualCampaign" class="btn btn-orange-small plull-right"> Etape Suivant</a></div>
+                    </div>
+                    
+                </div>
+
+                    <div class="modal-body">
+                        
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th> &nbsp; </th>
+                                    <th> Nom & Prenom </th>
+                                    <th> Photo </th>
+                                    <th> Email </th>
+                                    <th> Numéro de Téléphone </th>
+                                    <th> Numéro de Dossrad </th>
+                                </tr>
+                            </thead>
+
+                            <tbody ng-model="vm.id">
+                                <tr ng-repeat="c in selectedEmails | limitTo: vm.perPage : (vm.curentPage -1) * vm.perPage ">
+                                    <td> <input type="checkbox" ng-model="selectedEmails" ng-checked="vm.exist( c )" ng-click="vm.toggleSelection( c )" > </td>
+                                    <td> {{ c.nom }} {{ c.prenom }} </td>
+                                    <td> Photo <span class="photoCount">18</span> </td>
+                                    <td> {{ c.email }} <span class="EmailStatus"></span> </td>
+                                    <td> {{ c.telephone }} <span class="smsStatus"></span> </td>
+                                    <td> {{ c.dossard }} </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                        <!---->
+                        <ul class="list-inline">
+                            <li>
+                                <a href="#" class="btn btn-previous-pag" ng-click="vm.previousContacts()"> < </a> 
+                                    {{vm.curentPage}}/{{vm.numberPagination}}
+                                <a href="#" class="btn btn-next-pag"  ng-click="vm.nextContacts()"> > </a> 
+                            </li>
+                            <li>
+                                <select ng-model="vm.perPage"
+                                    ng-options="p for p in vm.perPageArr">
+                                </select> 
+                                <span>Contact par page</span>
+                            </li>
+
+                        </ul>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end Modals previsualisation emails -->
+
+        <div class="row">
+            <div class="col-md-6">
+                <a href="#" class="btn-white-small"  ng-if="vm.secondStep" ng-click="vm.goFirstStep()">Retour</a>
+                <a href="#" class="btn-white-small"  ng-if="vm.secondStep" ng-click="vm.goSecondStep()">Liste Contacts</a>
+                <%= submit_tag "Étape suivante (1/3)", class: 'btn-orange-small' , ng_if: "vm.firstStep" %> 
+                <!-- <a href="#" class="btn-orange-small" ng-if="vm.thirdStep" >Démarre la campgne  (3/3)</a> -->
+
+                <a href="#" class="btn-orange-small" ng-if="vm.secondStep" ng-click="vm.goThirdStep()" >Étape suivante (2/3)</a>
+                <a href="#" class="btn-white-small"  ng-if="vm.firstStep">Tester le mail</a>
+            </div>
+        </div>
+
+       
+
+        {{selectedEmails}}
+
+
+        <% end %> 
+
+        <!-- <a href="#" class="btn" ng-click="vm.test()">TEST</a> -->
+
+        <%= form_tag( "/demmarrer", :method => :post , remote: true ) do %>
+            <input type="hidden" id="selectedEmails" name="selectedEmails" value="{{selectedEmails}}">
+            <input type="hidden" id="subjectEmails" name="subjectEmails" value="{{vm.campaign.subject}}">
+            <input type="hidden" id="msgEmails" name="msgEmails" value="{{vm.campaign.msg}}">
+            <input type="hidden" id="sender_email" name="sender_email" value="{{vm.campaign.sender_email}}">
+            <input type="hidden" id="nameCampaign" name="nameCampaign" value="{{vm.campaign.name}}">
+            <input type="hidden" id="edition_id" name="editionId" value="<%= params[:id] %>">
+            <%= submit_tag("Démarre la campgne  (3/3)" , { :class => 'btn-orange-small', ng_model: "selectedEmails", ng_if: "vm.thirdStep" }) %>
+        <% end %>
+
+        <div class="notifCampaign"></div>
+
+        <a href="#" id="testing">TEST</a>
+
+
+    </div>
+
+</div>

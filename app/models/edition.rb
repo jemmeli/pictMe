@@ -7,6 +7,7 @@ class Edition < ApplicationRecord
   has_many :diplomas
   has_many :runners, through: :results
   has_many :contacts
+  has_many :campaigns
 
   has_attached_file :raw_results
   has_attached_file :background_image, styles: { medium: "300x300", standard: "1024x1024" }

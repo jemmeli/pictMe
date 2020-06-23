@@ -7,6 +7,18 @@ class API::V1::ContactsController < API::V1::ApplicationController
         @contacts = @edition.contacts
         render json: @contacts
     end
+    #http://localhost:3000/api/v1/editions/{edition_id : 7}/getCampaigns
+    def getCampaigns
+        Mailjet.configure do |config|
+            config.api_key = ENV['MJ_APIKEY_PUBLIC']
+            config.secret_key = ENV['MJ_APIKEY_PRIVATE']
+            config.api_version = "v3" 
+        end
+        #Get All Campaign belong to current user
+        variable = Mailjet::Campaign.all({From: current_user.email})
+        #binding.pry
+        render json:  variable 
+    end
 
 
     private

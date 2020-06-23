@@ -22,7 +22,7 @@
 
         <div class="row">
             <div class="col-md-4">
-                <a href="#" class="btn-orange-small" id="newCamp">Nouvel Campagne</a>
+                <%= link_to 'Nouvel Campagne', new_event_campaign_path( params[:event_id], params[:id] ), class: 'btn-orange-small',  id: 'newCamp' %>
                 <a href="#" class="btn-white-small">Supprimer</a>
             </div>
             <div class="col-md-8 pull-right">

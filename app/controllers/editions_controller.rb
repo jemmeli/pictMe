@@ -143,6 +143,11 @@ class EditionsController < ApplicationController
   #=================
   def home_picto_edition
     @has_filter_pict_home = false
+    @totalContacts = Contact.where( edition_id: params[:id] ).count || 0
+    @totalContactsWithEmail = Contact.where("(edition_id = "+params[:id]+") AND (email IS NOT NULL)").count || 0
+    @totalContactsWithSMS = Contact.where("(edition_id = "+params[:id]+") AND (telephone IS NOT NULL)").count || 0
+    
+    #binding.pry
   end
 
   def contacts_picto_edition

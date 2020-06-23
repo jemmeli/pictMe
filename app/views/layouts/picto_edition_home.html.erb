@@ -78,13 +78,21 @@
         </li>
 
         <li>
-          <a href="#">
+          <a href="<%= new_event_campaign_path( params[:event_id], params[:id] ) %>" class="<%= active_btn_class( new_event_campaign_path( params[:event_id], params[:id] ) ) %> <%= active_btn_class( event_campaigns_path( params[:event_id], params[:id] ) ) %>" >
             <!--
             <span class="helper"></span>
             <img src="<%= asset_path('icon-guage-pictme.png') %>" alt="guage">
             -->
             Campagnes
           </a>
+          <% if current_page?( new_event_campaign_path( params[:event_id], params[:id] ) ) ||
+                current_page?( event_contacts_path( params[:event_id], params[:id] ) ) ||
+                current_page?( event_campaigns_path( params[:event_id], params[:id] ) ) %>
+            <ul class="list-unstyled">
+              <li><%= link_to "Campagnes", new_event_campaign_path( params[:event_id], params[:id] ), class: active_btn_class( new_event_campaign_path( params[:event_id], params[:id] ) ) %></li>
+              <li><%= link_to "Listes", event_campaigns_path( params[:event_id], params[:id] ), class: active_btn_class( event_campaigns_path( params[:event_id], params[:id] ) ) %></li>
+            </ul>
+          <% end %>
         </li>
 
         <li>
