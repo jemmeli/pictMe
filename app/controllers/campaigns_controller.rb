@@ -60,7 +60,7 @@ class CampaignsController < ApplicationController
         campaign_name = params[:nameCampaign] + "-" + emailsParsed[0]["edition_id"].to_s
         get_edition_id_from_campaign_name( "name-of-campaign-7845658" )
 
-        binding.pry
+        #binding.pry
 
         #contact@kapp10.com
         #Create a Campaign
