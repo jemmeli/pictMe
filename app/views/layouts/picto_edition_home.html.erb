@@ -86,7 +86,6 @@
             Campagnes
           </a>
           <% if current_page?( new_event_campaign_path( params[:event_id], params[:id] ) ) ||
-                current_page?( event_contacts_path( params[:event_id], params[:id] ) ) ||
                 current_page?( event_campaigns_path( params[:event_id], params[:id] ) ) %>
             <ul class="list-unstyled">
               <li><%= link_to "Campagnes", new_event_campaign_path( params[:event_id], params[:id] ), class: active_btn_class( new_event_campaign_path( params[:event_id], params[:id] ) ) %></li>
