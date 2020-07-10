@@ -75,6 +75,13 @@ app.controller("mainCtrl", function( dataService, $scope ){
 
     //Campains
     vm.allCampaigns = null; 
+
+    /*=======================
+    ===get contacts details per campaign==
+    =========================*/
+    vm.showContactsDetails = function( campaignId ){
+        console.log( campaignId );
+    }
     
 
     
@@ -238,20 +245,24 @@ app.controller("mainCtrl", function( dataService, $scope ){
         vm.goFirstStep();
     }
 
+    
+
 
 
 
     //Watchers
 
     $scope.$watch("vm.id", function( newID ){
-        theID = newID;
-        //get all Contacts
-        dataService.getAllContacts( theID )
-            .then( getContactsSuccess, getContactsError );
-        dataService.getAllCampaigns( theID )
-            .then( getCampaignsSuccess, getCampaignsError );
-        calculatePagination();
-        calculatePaginationCampaign();
+        if( newID ){
+            theID = newID;
+            //get all Contacts
+            dataService.getAllContacts( theID )
+                .then( getContactsSuccess, getContactsError );
+            dataService.getAllCampaigns( theID )
+                .then( getCampaignsSuccess, getCampaignsError );
+            calculatePagination();
+            calculatePaginationCampaign();
+        }
     });
 
     $scope.$watch("vm.perPage", function(){
@@ -267,16 +278,23 @@ app.controller("mainCtrl", function( dataService, $scope ){
 
     /* $scope.$watch("vm.allContacts", function( newAllContracts ){
         vm.allContacts = newAllContracts;
-    });
-     */
+    }); */
+    
     
 
 
     //Campaign Watchers
     $scope.$watch("vm.campaign", function( newCampaign ){
-        vm.campaign = newCampaign;
-        console.log(vm.campaign);
+        if(newCampaign){
+            vm.campaign = newCampaign;
+            console.log(vm.campaign);
+        }
     });
+
+    
+
+    
+    
     
 
 
@@ -296,6 +314,9 @@ app.controller("mainCtrl", function( dataService, $scope ){
             vm.numberPaginationCampaignsArr.push( i );
         }
     }
+    
+
+    
 
     console.log( vm.firstStep );
     
@@ -304,6 +325,88 @@ app.controller("mainCtrl", function( dataService, $scope ){
     
     
 
+
+});
+
+
+app.controller("contactDetailsCtrl", function( dataService, $scope, $filter ){
+
+    var vm = this
+
+    theID = null;
+    vm.length = 0;
+    vm.lengthCampaigns = 0;
+    vm.perPageArr = [1, 3, 5, 10, 20, 50];
+    vm.curentPage = 1;
+    vm.perPage = vm.perPage | 5 ;
+    vm.numberPaginationArr = [];
+    vm.numberPagination = 3;
+    vm.deepCopy = vm.emailsArrays;
+
+    //navigation events
+    navigation = function( mode ){
+        switch (mode) {
+            case 'prev':
+                if( vm.curentPage > 1 ){ vm.curentPage =  vm.curentPage - 1; }
+                break;
+            case 'next':
+                if( vm.curentPage < vm.numberPagination ){ vm.curentPage =  vm.curentPage + 1; }
+                break;
+            
+        }
+
+    }
+
+    vm.previousContacts = function(){
+        navigation('prev');
+        calculatePagination();
+    }
+    vm.nextContacts = function(){
+        navigation('next');
+        calculatePagination();
+    }
+
+    //
+    $scope.$watch("vm.emailsArrays", function( newEmailsArrays ){
+        if( newEmailsArrays ){
+            vm.emailsArrays = newEmailsArrays;
+            console.log( vm.emailsArrays );
+            vm.length = vm.emailsArrays.length;
+            calculatePagination();
+            
+        }
+    });
+    
+
+    $scope.$watch("vm.perPage", function( newPerPage ){
+        if( newPerPage ){
+            vm.curentPage = 1;
+            calculatePagination();
+        }
+        
+    });
+
+    
+
+    //
+    /* $scope.$watch("vm.numberPagination", function( newNumberPagination ){
+        if( newNumberPagination ){
+            vm.numberPagination = newNumberPagination;
+        }
+    }); */
+
+    //private
+    calculatePagination = function(){
+        vm.numberPagination =  Math.ceil( vm.length / vm.perPage );
+        console.log("vm.numberPagination : " + vm.numberPagination);
+        console.log("vm.length : " + vm.length);
+        console.log("vm.perPage : " + vm.perPage);
+        vm.numberPaginationArr = [];
+        for(i=0; vm.numberPagination > i ; i++){
+            vm.numberPaginationArr.push( i );
+        }
+        //debugger
+    }
 
 });
 

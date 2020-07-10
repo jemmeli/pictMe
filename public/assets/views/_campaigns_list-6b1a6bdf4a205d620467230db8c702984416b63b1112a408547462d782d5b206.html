@@ -1,0 +1,62 @@
+<div class="row contactsRow">
+    <header>
+        <div class="row">
+            <div class="col-md-9">
+                <!-- <h1> {{ vm.name }} </h1> -->
+                <h2>Campagne</h2> 
+            </div>
+            <div class="col-md-3 pull-right">
+                <input type="text" class="searchContact" ng-model="vm.searchCampaign" placeholder="Rechrcher une Campagne">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <!-- <%= link_to 'Nouvel Campagne', new_event_campaign_path( params[:event_id], params[:id] ), class: 'btn-orange-small',  id: 'newCamp' %> -->
+                <a href="#" class="btn-orange-small" id="newCamp">Nouvel Campagne</a>
+            </div>
+            <div class="col-md-8 pull-right">  
+            </div>
+        </div>
+
+    </header>
+    <!-- Table -->
+    <br/>
+    <table class="table">
+        <thead>
+            <tr>
+                <th> Nom de la campagne </th>
+                <th> Statue </th>
+                <th> Date </th>
+            </tr>
+        </thead>
+        <tbody ng-model="vm.id">
+            <tr ng-repeat="c in vm.allCampaigns | orderBy:'attributes.created_at':true | limitTo: vm.perPage : (vm.curentPage -1) * vm.perPage | filter:vm.searchCampaign">
+                <td> {{ c.attributes.custom_value }}  </td>
+                <td> traité </span> </td>
+                <td> {{ c.attributes.created_at  | date:"dd/MM/yyyy"  }} </span> </td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <ul class="list-inline">
+        <li>
+            <a href="#" class="btn btn-previous-pag" ng-click="vm.previousCampaign()"> < </a> 
+                {{vm.curentPage}}/{{vm.numberCampaignPagination}}
+            <a href="#" class="btn btn-next-pag"  ng-click="vm.nextCampaign()"> > </a> 
+        </li>
+        <li>
+            <select ng-model="vm.perPage"
+                ng-options="p for p in vm.perPageArr">
+            </select> 
+            <span> Campagne par page </span>
+        </li>
+
+    </ul>
+
+</div>
+
+{{ vm.allCampaigns | json }}
+
+<%#= debug @contacts %>

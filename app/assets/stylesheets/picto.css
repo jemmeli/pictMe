@@ -888,6 +888,20 @@ modal delete event
 }
 
 
+.opened{
+    background:url('btn-deja-vu.png') right 60px center no-repeat;
+    background-size: 29px 17px; 
+}
+.sent{
+    background:url('btn-email-envoyer.png') right 60px center no-repeat;
+    background-size: 22px 16px; 
+}
+.blocked{
+    background:url('/assets/btn-sms-email-fail.png') right 60px center no-repeat;
+    background-size: 26px 22px; 
+}
+
+
 
 
 

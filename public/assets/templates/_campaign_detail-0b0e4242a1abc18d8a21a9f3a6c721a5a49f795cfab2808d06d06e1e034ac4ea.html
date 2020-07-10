@@ -1,14 +1,4 @@
-<div class="breadcrumb">
-  <span> <a href="<%= root_path%>"> Accueil </a> >
-  <%= @edition.event.name %> >
-  <%= @edition.date.strftime('%d/%m/%Y') %> >
-  Contact > 
-  Résultats
-  </span>
-  
-</div>
-
-<div class="row contactsRow">
+<div class="row contactsRow" ng-controller="detailCampaignCtrl as vm">
     <header>
         <div class="row">
             <div class="col-md-9">
@@ -22,19 +12,21 @@
 
         <div class="row">
             <div class="col-md-4">
-                <%= link_to 'Nouvel Campagne', new_event_campaign_path( params[:event_id], params[:id] ), class: 'btn-orange-small',  id: 'newCamp' %>
-                <!--<a href="#" class="btn-white-small">Supprimer</a>-->
+                <!--  -->
+                <a href="#" class="btn-orange-small" id="newCamp">Nouvel Campagne</a>
+                <a href="#" class="btn-white-small">Supprimer</a>
             </div>
             <div class="col-md-8 pull-right">
                 <ul class="list-inline">
                     <li>
                         <a href="#" class="btn-white-small">Importation CSV</a>
+                        <a href="#" class="btn-white-small">Nouvel campagne</a>
                         <a href="#" class="btn-white-small">Exporter la Liste</a>
                     </li>
-                    <li> <a href="#"> <%= image_tag("btn-email-envoyer.png", size: "22x16", alt: "Email envoyer") %> </a> </li>
-                    <li> <a href="#"> <%= image_tag("btn-deja-vu.png", size: "29x17", alt: "Deja vu") %> </a>  </li>
-                    <li> <a href="#"> <%= image_tag("btn-sms-email-fail.png", size: "26x22", alt: "erreur survenue") %> </a> </li>
-                    <li> <a href="#"> <%= image_tag("btn-sms-envoyer.png", size: "26x22", alt: "SMS envoyer") %> </a> </li>
+                    <li> <a href="#"> <img alt="Email envoyer" src="/assets/btn-email-envoyer-14b063f49b20cd4d6d19d165765b19b34fa2c1efc230c4143f538346a781bc5d.png" width="22" height="16" /> </a> </li>
+                    <li> <a href="#"> <img alt="Deja vu" src="/assets/btn-deja-vu-e7d4c5e130adbafe795cf9cb82f5105866ccbef0e931642c701fdaf47cf07b10.png" width="29" height="17" /> </a>  </li>
+                    <li> <a href="#"> <img alt="erreur survenue" src="/assets/btn-sms-email-fail-b57222f6a36b225fd76fefe613461cdf081c801942c30f13475c6f2681e49b08.png" width="26" height="22" /> </a> </li>
+                    <li> <a href="#"> <img alt="SMS envoyer" src="/assets/btn-sms-envoyer-ea7e7c2b875fa9cb3ac426d2663ea77e0e726f1fbb07cfb421393924982467b8.png" width="26" height="22" /> </a> </li>
 
                 </ul>
                 
@@ -49,6 +41,7 @@
         <thead>
             <tr>
                 <th> Nom & Prenom </th>
+                 <th>&nbsp;</th>
                 <th> Photo </th>
                 <th> Email </th>
                 <th> Numéro de Téléphone </th>
@@ -58,6 +51,7 @@
         <tbody ng-model="vm.id">
             <tr ng-repeat="c in vm.allContacts | limitTo: vm.perPage : (vm.curentPage -1) * vm.perPage | filter:vm.searchContact">
                 <td> {{ c.nom }} {{ c.prenom }} </td>
+                <td> <a href="#" data-id="{{ c.id }}" data-editionID="{{c.edition_id}}" class="btn-campagne-small">Campagne</a> </td>
                 <td> Photo <span class="photoCount">18</span> </td>
                 <td> {{ c.email }} <span class="EmailStatus"></span> </td>
                 <td> {{ c.telephone }} <span class="smsStatus"></span> </td>
@@ -85,6 +79,4 @@
 </div>
 
 {{ vm.allContacts | json }}
-
-<%#= debug @contacts %>
 

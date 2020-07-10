@@ -8,7 +8,9 @@
   
 </div>
 
-<div class="row contactsRow">
+<%#= params[:campaign_id] %>
+
+<div class="row contactsRow" ng-controller="contactDetailsCtrl as vm">
     <header>
         <div class="row">
             <div class="col-md-9">
@@ -31,10 +33,11 @@
                         <a href="#" class="btn-white-small">Importation CSV</a>
                         <a href="#" class="btn-white-small">Exporter la Liste</a>
                     </li>
-                    <li> <a href="#"> <%= image_tag("btn-email-envoyer.png", size: "22x16", alt: "Email envoyer") %> </a> </li>
-                    <li> <a href="#"> <%= image_tag("btn-deja-vu.png", size: "29x17", alt: "Deja vu") %> </a>  </li>
-                    <li> <a href="#"> <%= image_tag("btn-sms-email-fail.png", size: "26x22", alt: "erreur survenue") %> </a> </li>
+                    <li> <a href="#" ng-click="vm.myFilter = {status: 'sent'}"> <%= image_tag("btn-email-envoyer.png", size: "22x16", alt: "Email envoyer") %> </a> </li>
+                    <li> <a href="#" ng-click="vm.myFilter = {status: 'opened'}"> <%= image_tag("btn-deja-vu.png", size: "29x17", alt: "Deja vu") %> </a>  </li>
+                    <li> <a href="#" ng-click="vm.myFilter = {status: 'blocked'}" > <%= image_tag("btn-sms-email-fail.png", size: "26x22", alt: "erreur survenue") %> </a> </li>
                     <li> <a href="#"> <%= image_tag("btn-sms-envoyer.png", size: "26x22", alt: "SMS envoyer") %> </a> </li>
+                    <li> <a href="#" ng-click="vm.myFilter = {status: ''}" > ClearX </a> </li>
 
                 </ul>
                 
@@ -55,11 +58,11 @@
                 <th> Numéro de Dossrad </th>
             </tr>
         </thead>
-        <tbody ng-model="vm.id">
-            <tr ng-repeat="c in vm.allContacts | limitTo: vm.perPage : (vm.curentPage -1) * vm.perPage | filter:vm.searchContact">
-                <td> {{ c.nom }} {{ c.prenom }} </td>
+        <tbody ng-model="vm.id" ng-init=" vm.emailsArrays = <%= @emailsArrays %>"> <!-- vm.allContacts -->
+            <tr ng-repeat="c in vm.emailsArrays | limitTo: vm.perPage : (vm.curentPage -1) * vm.perPage | filter:vm.searchContact | filter:vm.myFilter">
+                <td> {{ c.nom + ' ' + c.prenom }} </td>
                 <td> Photo <span class="photoCount">18</span> </td>
-                <td> {{ c.email }} <span class="EmailStatus"></span> </td>
+                <td class="{{c.status}}"> {{ c.email }} <span class="EmailStatus"></span> </td>
                 <td> {{ c.telephone }} <span class="smsStatus"></span> </td>
                 <td> {{ c.dossard }} </td>
             </tr>
@@ -70,7 +73,7 @@
     <ul class="list-inline">
         <li>
             <a href="#" class="btn btn-previous-pag" ng-click="vm.previousContacts()"> < </a> 
-                {{vm.curentPage}}/{{vm.numberPagination}}
+                {{ vm.curentPage }} / {{ vm.numberPagination }}
             <a href="#" class="btn btn-next-pag"  ng-click="vm.nextContacts()"> > </a> 
         </li>
         <li>
@@ -84,7 +87,7 @@
 
 </div>
 
-{{ vm.allContacts | json }}
+{{ vm.emailsArrays | json }}
 
 <%#= debug @contacts %>
 

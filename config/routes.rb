@@ -90,6 +90,7 @@ Rails.application.routes.draw do
       member do
         get 'home_picto_edition'
         get 'contacts_picto_edition', as: 'contacts_picto_edition'
+        get 'get_campaign_detail', as: 'get_campaign_detail'
         post 'send_email_modal'
         post 'upload_csv_picto'
         post 'process_csv_picto'
@@ -163,6 +164,11 @@ Rails.application.routes.draw do
       resources :editions do
         resources :contacts, only: [:index]
         get 'getCampaigns', to: 'contacts#getCampaigns'
+        get 'getCampaignInfoByID', to: 'contacts#getCampaignInfoByID'
+        get 'getAllContactByCampaign', to: 'contacts#getAllContactByCampaign'
+        get 'getContactStatus', to: 'contacts#getContactStatus'
+        
+        
       end
       
 

@@ -1,11 +1,14 @@
 class EditionsController < ApplicationController
-  layout "picto_edition_home", only: [:home_picto_edition, :contacts_picto_edition, :upload_csv_picto]
+  layout "picto_edition_home", only: [:home_picto_edition, :contacts_picto_edition, :upload_csv_picto, :get_campaign_detail]
   before_action :set_edition, only: [:show, :edit, :update, :destroy, :results, :delete_results, :generate_widget, :generate_photos_widget,
-  :generate_diplomas_widget, :generate_diplomas, :delete_diplomas, :send_results, :home_picto_edition, :contacts_picto_edition]
+  :generate_diplomas_widget, :generate_diplomas, :delete_diplomas, :send_results, :home_picto_edition, :contacts_picto_edition, :get_campaign_detail]
   helper_method :sort_column, :sort_direction
   #skip_before_filter :verify_authenticity_token, :only => :upload_csv_picto
   #http_basic_authenticate_with name: ENV['ADMIN_LOGIN'], password: ENV['ADMIN_PASSWORD'], except: :widget
   #respond_to :js, only: :process_csv_picto
+
+  # disable the filter for for all actions in this controller
+  before_filter :disable_filter_pict_home!
 
   def new
     @event = Event.find(params[:event_id])
@@ -231,6 +234,50 @@ class EditionsController < ApplicationController
       redirect_to home_picto_event_path( @event.id ), alert: "corriger la date "+ dateFrenchFormat +" n'esxiste pas "
     end
 
+  end
+
+
+  def get_campaign_detail
+    campaign_id = params[:campaign_id]
+    @emailsArrays = []
+    statusArrays = []
+    n = 0
+
+    Mailjet.configure do |config|
+      config.api_key = ENV['MJ_APIKEY_PUBLIC']
+      config.secret_key = ENV['MJ_APIKEY_PRIVATE']
+      config.api_version = "v3"
+    end
+    contactsArrays = Mailjet::Contact.all({  campaign: campaign_id, status: true })
+
+    contactsArrays.each do |item| 
+      @emailsArrays.push( { "contact_id".to_sym => item.id, "email".to_sym => item.email } )
+    end
+
+    #[{:contact_id=>3198875369, :email=>"jemmeli666@gmail.com"}, 
+    #{:contact_id=>3198875370, :email=>"selfskillsimprove@gmail.com"}]
+
+    @emailsArrays.each_with_index do |item, index| 
+      Mailjet.configure do |config|
+        config.api_key = ENV['MJ_APIKEY_PUBLIC']
+        config.secret_key = ENV['MJ_APIKEY_PRIVATE']
+        config.api_version = "v3"
+      end
+      status = Mailjet::Message.all({  campaign: campaign_id.to_i, contact: item[:contact_id] })
+      #binding.pry
+
+      status.each do |st|
+        @emailsArrays[ index ][:status] = st.status
+        pictmeContact = Contact.where(email: item[:email], edition_id: params[:id])
+        @emailsArrays[ index ][:nom] = pictmeContact.first.nom
+        @emailsArrays[ index ][:telephone] = pictmeContact.first.telephone
+        @emailsArrays[ index ][:dossard] = pictmeContact.first.dossard
+        @emailsArrays[ index ][:prenom] = pictmeContact.first.prenom
+      end
+    end
+
+    #binding.pry
+    @emailsArrays = @emailsArrays.to_json
   end
 
   #=================

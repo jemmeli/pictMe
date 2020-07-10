@@ -17,6 +17,7 @@
 //= require retina.js
 //= require angular.min.js
 //= require app.js
+//= require underscore.js
 //= require s3_direct_upload
 //= require bootstrap-sprockets
 //= require bootstrap-switch
