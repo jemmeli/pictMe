@@ -128,11 +128,12 @@ class EventsController < ApplicationController
 
   def search_events
     #add freshstart indexes already cloned in pictme and convert the array to integers
-    @freshAddedIndex = Event.distinct.freshAdded.pluck(:pictme)
+    @freshAddedIndex = current_user.events.all.distinct.freshAdded.pluck(:pictme)
     @freshAddedIndex = @freshAddedIndex.map!{|e| e.to_i}
     @freshAddedIndex = @freshAddedIndex.to_json.html_safe
     #search events
     @events = Event.serach( params[:q] )
+    #binding.pry
   end
 
   def filter_events

@@ -15,7 +15,7 @@
 //= require jquery_ujs
 //= require jquery.remotipart
 //= require retina.js
-//= require angular.min.js
+//= require angular
 //= require app.js
 //= require underscore.js
 //= require s3_direct_upload
