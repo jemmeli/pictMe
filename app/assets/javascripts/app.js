@@ -329,7 +329,7 @@ app.controller("mainCtrl", function( dataService, $scope ){
 });
 
 
-app.controller("contactDetailsCtrl", function( dataService, $scope, $filter ){
+app.controller("contactDetailsCtrl", function( $scope ){
 
     var vm = this
 

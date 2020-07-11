@@ -2,6 +2,9 @@ class CampaignsController < ApplicationController
     layout "picto_edition_home", only: [:index, :new]
     #before_action :campaign_params, only: [:update]
 
+    #disable search events Freshstart
+    before_filter :disable_filter_pict_home! , only: [:index]
+
     def index 
         #binding.pry
         Mailjet.configure do |config|
