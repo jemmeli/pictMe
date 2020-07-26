@@ -15,13 +15,12 @@
 //= require jquery_ujs
 //= require jquery.remotipart
 //= require retina.js
-//= require angular
-//= require app.js
 //= require underscore.js
 //= require jquery-fileupload/vendor/jquery.ui.widget
 //= require jquery-fileupload/jquery.iframe-transport
 //= require jquery-fileupload/jquery.fileupload
 //= require percentageChart.js
+//= require angular
 //= require bootstrap-sprockets
 //= require bootstrap-switch
 //= require_tree .
