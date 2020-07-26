@@ -69,7 +69,7 @@ gem 'geocoder'
 gem 'enumerize'
 gem 'rebrandly'
 
-gem 'doorkeeper', '~> 4.2.6'
+gem 'doorkeeper', '~> 4.4.0'
 gem 'active_model_serializers', '~> 0.10.7'
 
 gem 'blueprinter'
