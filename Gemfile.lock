@@ -547,9 +547,6 @@ GEM
     timecop (0.9.1)
     trollop (2.9.10)
     tty-which (0.4.2)
-    turbolinks (5.2.1)
-      turbolinks-source (~> 5.2)
-    turbolinks-source (5.2.0)
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
     uglifier (4.2.0)
@@ -652,7 +649,6 @@ DEPENDENCIES
   slim
   stripe
   timecop
-  turbolinks
   uglifier (>= 1.3.0)
   will_paginate-bootstrap
   wkhtmltoimage-binary (~> 0.12.2)

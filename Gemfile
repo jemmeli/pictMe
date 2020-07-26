@@ -10,7 +10,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails'
 gem 'pg', '~> 0.18.4' # Postgres SQL
 gem 'jquery-rails'
-gem 'turbolinks'
+#gem 'turbolinks'
 gem 'jbuilder', '~> 2.5'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'redis', '~> 3.3.3'
