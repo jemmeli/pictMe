@@ -11,7 +11,6 @@
 // about supported directives.
 //
 //= require jquery2
-//= require turbolinks
 //= require moment.min.js
 //= require jquery_ujs
 //= require jquery.remotipart
