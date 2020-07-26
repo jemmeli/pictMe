@@ -4,6 +4,7 @@ class Edition < ApplicationRecord
   has_many :races
   has_many :results, dependent: :destroy
   has_many :photos
+  has_many :pictures
   has_many :diplomas
   has_many :runners, through: :results
   has_many :contacts

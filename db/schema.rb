@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200613181202) do
+ActiveRecord::Schema.define(version: 20200726110306) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -171,7 +171,16 @@ ActiveRecord::Schema.define(version: 20200613181202) do
     t.integer  "edition_id"
     t.string   "direct_image_url"
     t.boolean  "processed",          default: false
+    t.text     "image_data"
     t.index ["race_id"], name: "index_photos_on_race_id", using: :btree
+  end
+
+  create_table "pictures", force: :cascade do |t|
+    t.text     "image_data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "edition_id"
+    t.index ["edition_id"], name: "index_pictures_on_edition_id", using: :btree
   end
 
   create_table "races", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -291,5 +300,6 @@ ActiveRecord::Schema.define(version: 20200613181202) do
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
   add_foreign_key "photos", "races"
+  add_foreign_key "pictures", "editions"
   add_foreign_key "results", "races"
 end

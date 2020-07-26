@@ -1,0 +1,6 @@
+<h1>Editing Picture</h1>
+
+<%= render 'form', picture: @picture %>
+
+<%= link_to 'Show', event_picture_path(params[:event_id], params[:id], params[:picture_id] ) %> |
+<%= link_to 'Back', event_pictures_path(params[:event_id], params[:id]) %>

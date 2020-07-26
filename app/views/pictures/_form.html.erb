@@ -1,0 +1,25 @@
+<%#= form_for( event_pictures_path( params[:event_id], params[:id] ) ) do |f| %>
+<%= form_for([@edition, @picture], url: {action: "create"}, method: :post ) do |f| %>
+  <% if picture.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(picture.errors.count, "error") %> prohibited this picture from being saved:</h2>
+
+      <ul>
+      <% picture.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%#= f.label :image %>
+    <%= f.file_field :image, multiple: true, name: "picture[image]" , id: "selectedPhotos", style: "display:none" %>
+    <a class="btn btn-import" id="process" onclick="document.getElementById('selectedPhotos').click();">Sélectionnez vos photos a importer</a>
+  </div>
+
+  <div class="actions">
+    <%#= f.submit %>
+  </div>
+<% end %>
+

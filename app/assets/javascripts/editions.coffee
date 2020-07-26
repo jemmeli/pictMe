@@ -1,4 +1,4 @@
-$ ->
+### $ ->
   uploadedFilesCount = 0
   $('#s3_uploader').S3Uploader
     remove_completed_progress_bar: false
@@ -18,3 +18,4 @@ $ ->
       $alertSelector.empty()
     ), 3000
     uploadedFilesCount = 0
+ ###

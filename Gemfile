@@ -30,12 +30,25 @@ gem 'simple_form'
 gem 'stripe'
 gem "paperclip", "~> 5.0.0"
 
+
+
 gem 'devise'
 gem 'devise-bootstrap-views', '~> 1.0'
 git_source(:github){ |repo_name| "https://github.com/#{repo_name}.git" }
 gem 'remotipart', github: 'jbox-web/remotipart', tag: '1.6.0'
 gem 'gon'
 gem 'mailjet'
+#
+gem "shrine", "~> 2.3.1"
+#gem 'aws-sdk', "~> 3"
+gem 'roda', "~> 2.29.0"
+gem 'jquery-fileupload-rails'
+#gem 'bootstrap-sass'
+gem 'hirb'
+#gem 'jquery-rails'
+
+
+
 
 gem 'rack-cors', :require => 'rack/cors'
 gem 'rollbar' # reporting des erreurs

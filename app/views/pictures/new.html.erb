@@ -1,0 +1,129 @@
+<!--notice-->
+<div>
+  <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>"><%= value %></div>
+  <% end %>
+</div>
+
+<div class="breadcrumb">
+  <span> <a href="<%= root_path%>"> Accueil </a> >
+    <%= @edition.event.name %> > <%= @edition.date.strftime('%d/%m/%Y') %> >
+  </span>
+  <b> Contacts </b>
+</div>
+
+<div class="dropDiv">
+  <p>Glissez vos photos ici <br> ou </p>
+  <%#= form_tag process_csv_picto_event_edition_path , multipart: true, class: "uploadCsv", remote: true do %>
+    <%#= file_field_tag 'contacts', id: "processCsv", class: "selectedFile" %>
+<!--    <button class="btn btn-import" id="process" >Sélectionnez le fichier a importer</button>-->
+    <%#= button_tag type: :submit, class: "btn btn-primary someClass" do %>
+      <%#= "Process Csv" %>
+    <%# end %>
+  <%# end %>
+
+  <%= render 'form', picture: @picture %>
+  <%#= link_to 'Back', pictures_path %>
+
+
+</div>
+
+<!-- #########################################""" -->
+
+<script type="text/javascript">
+$(document).on("turbolinks:load", function(){
+    console.log("turbo ...");
+
+    $("input[type=file]").fileupload({
+
+        add: function(e, data){
+            //presign
+            console.log("add : "+ data);
+            data.progressBar = $('<div class="progressWrapper"><ul class="list-inline dispalyTable"><li>Importation:<br> 34/60 photo </li><li><div class="my-progress-bar"></div></li></div>').appendTo(".dropDiv");
+            
+            var options = {
+                extention: data.files[0].name.match(/(\.\w+)?$/)[0],//set up the extention
+                _: Date.now() //prevent caching inside roda rack app
+            };
+
+            $.getJSON("/images/upload/cache/presign", options, function(result){
+                console.log("*******");
+                console.log(result);
+                console.log("*******");
+
+                data.formData = result['fields'];
+                data.url = result['url'];
+                data.paramName = "file";
+                data.submit();
+            });
+
+        },
+        progress: function(e, data){
+            console.log("progress : "+ data);
+            console.dir(data);
+            //calculate the progress
+            var progress = parseInt(data.loaded / data.total * 100, 10);
+            //var percentage = progress.toString() + '%';
+            
+            $(".my-progress-bar").gmpc({
+                line_width: 6,
+                color: "#f99b1c",
+                starting_position: 25,
+                percent: 25,
+                height: "80px",
+                width: "80px",
+                percentage: true,
+                text: ""
+            }).gmpc('animate', progress, 3000);
+            
+        },
+        done: function(e, data){
+            console.log("done : "+ data);
+            //data.progressBar.remove();
+
+            var image = {
+                id: data.formData.key.match(/cache\/(.+)/)[1],//we have to remove the prefix
+                storage: 'cache',
+                metadata: {
+                    size: data.files[0].size,
+                    filename: data.files[0].name.match(/[^\/\\]+$/)[0], //IE return full path
+                    mime_type: data.files[0].type,
+                }
+            }
+
+            //save to rails the foto
+            //firstable we need to create the form in memory
+            form = $(this).closest("form");
+            form_data = new FormData( form[0] );
+            form_data.append( $(this).attr("name"), JSON.stringify(image) );
+            //debugger;
+
+            //post through ajax
+            $.ajax(form.attr("action"), {
+                contentType: false,
+                processData: false,//we alreadu use FormData
+                data: form_data,
+                method: form.attr("method"),
+                dataType: "json", //json,js,script To continue processing
+                success: function(response){
+                    console.log(response);
+
+                    /*
+                    var $img = $("<img/>", {src: response.image_url, width: 400});
+                    var $div = $("<div/>").append($img);
+                    $("#photos").append($div);
+                    */
+                }
+            });
+
+           
+
+
+        }
+        
+    });
+
+})
+</script>
+
+

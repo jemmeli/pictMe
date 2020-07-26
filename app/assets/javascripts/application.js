@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery2
+//= require turbolinks
 //= require moment.min.js
 //= require jquery_ujs
 //= require jquery.remotipart
@@ -18,7 +19,10 @@
 //= require angular
 //= require app.js
 //= require underscore.js
-//= require s3_direct_upload
+//= require jquery-fileupload/vendor/jquery.ui.widget
+//= require jquery-fileupload/jquery.iframe-transport
+//= require jquery-fileupload/jquery.fileupload
+//= require percentageChart.js
 //= require bootstrap-sprockets
 //= require bootstrap-switch
 //= require_tree .

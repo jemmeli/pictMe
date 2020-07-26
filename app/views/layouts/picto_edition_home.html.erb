@@ -27,7 +27,7 @@
 <%= render 'layouts/picto_navigation' %>
 
 <div class="container-fluid mainContainer">
-
+  
   <div class="alert alert-warning alert-dismissible show" ng-show="vm.length == 0">
       <strong>Attention!</strong> Merci <%= link_to "d'uploder des contacts", contacts_picto_edition_event_edition_path( params[:event_id], params[:id] ) %> a fin de crée des Campagnes
       <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -51,13 +51,19 @@
           <% end %>
         </li>
         <li>
-          <a href="#">
+        
+          <a href="<%= new_event_picture_path( params[:event_id], params[:id] ) %>" class="<%= active_btn_class( new_event_picture_path( params[:event_id], params[:id] ) ) %> ">
             <!--
             <span class="helper"></span>
             <img src="<%= asset_path('icon-map-pictme.png') %>" alt="map">
             -->
             Photos
           </a>
+          <% if current_page?( new_event_picture_path( params[:event_id], params[:id] ) ) %>
+            <ul class="list-unstyled">
+              <li><%= link_to "Importation", new_event_picture_path( params[:event_id], params[:id] ), class: active_btn_class( new_event_picture_path( params[:event_id], params[:id] ) ) %></li>
+            </ul>
+          <% end %>
         </li>
 
         <li>

@@ -2,6 +2,10 @@ require 'sidekiq/web'
 require 'sidekiq-scheduler/web'
 
 Rails.application.routes.draw do
+
+  #PICTME
+  mount ImageUploader::UploadEndpoint => "/images/upload"
+  
   devise_for :users
   get 'widget', to: redirect('/widget3.js')
   get 'client_widget', to: redirect('/widget-client.js')
@@ -63,6 +67,7 @@ Rails.application.routes.draw do
           delete :destroy_all
         end
       end
+
     end
   end
 
@@ -84,6 +89,12 @@ Rails.application.routes.draw do
   post 'demmarrer' , to: 'campaigns#demmarrer'
 
 
+  #resources :photos
+
+
+  
+  
+
   resources :events do
     resources :editions do
 
@@ -96,8 +107,12 @@ Rails.application.routes.draw do
         post 'process_csv_picto'
         resources :contacts, only: [:index]
         resources :campaigns, only: [:index, :new, :create]
+        resources :pictures , param: :picture_id
       end
-
+      
+      #get 'photo_upload_pictme' , to: 'photos#photo_upload_pictme'
+      
+      
       
 
       #get 'events', to: 'events#index'
@@ -168,9 +183,15 @@ Rails.application.routes.draw do
         get 'getAllContactByCampaign', to: 'contacts#getAllContactByCampaign'
         get 'getContactStatus', to: 'contacts#getContactStatus'
         
-        
       end
-      
+      #pictMe
+      resources :events do
+        resources :editions do
+          member do
+            resources :pictures
+          end
+        end
+      end
 
       resources :details, only: [:index]
 
