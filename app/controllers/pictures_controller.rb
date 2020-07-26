@@ -1,7 +1,7 @@
 class PicturesController < ApplicationController
   layout "picto_edition_home", only: [:new, :show, :index, :edit]
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
-  before_action :set_edition, only: [:new, :index, :create, :update]
+  before_action :set_edition, only: [:new, :index, :create, :update, :destroy]
   before_filter :disable_filter_pict_home!
 
   # GET /pictures
@@ -68,7 +68,7 @@ class PicturesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_picture
-      @picture = @edition.pictures.find(params[:picture_id])
+      @picture = Picture.find(params[:picture_id])
     end
 
     def set_edition

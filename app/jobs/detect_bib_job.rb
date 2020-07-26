@@ -1,8 +1,8 @@
 class DetectBibJob < ActiveJob::Base
   queue_as :normal
 
-  def perform(photo_id)
-    photo = Photo.find(photo_id)
+  def perform(id)
+    photo = Picture.find(id)
 
     vision = ::Google::Cloud::Vision.new project: "kapp10-freshstart-ocr", keyfile: JSON.parse(ENV["GOOGLE_CLOUD_KEYFILE_JSON"])
     image = vision.image photo.image.url
@@ -11,9 +11,10 @@ class DetectBibJob < ActiveJob::Base
     return unless annotation.text.present?
     bib = annotation.text.words.select { |w| w.text.match(/^\d+$/) }.last.text
     photo.bib = bib
+    #binding.pry
     
-    result = photo.edition.results.find_by(bib: bib)
-    photo.race = result.race if result
+    ###result = photo.edition.results.find_by(bib: bib)
+    #photo.race = result.race if result
 
     photo.save!
   end

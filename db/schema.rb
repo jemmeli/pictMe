@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200726110306) do
+ActiveRecord::Schema.define(version: 20200726170833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -177,9 +177,12 @@ ActiveRecord::Schema.define(version: 20200726110306) do
 
   create_table "pictures", force: :cascade do |t|
     t.text     "image_data"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "edition_id"
+    t.string   "bib"
+    t.string   "image_content_type"
+    t.string   "direct_image_url"
     t.index ["edition_id"], name: "index_pictures_on_edition_id", using: :btree
   end
 
