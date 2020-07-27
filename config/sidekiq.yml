@@ -1,4 +1,4 @@
-:concurrency: 2
+:concurrency: 3
 :verbose: true
 :queues:
   - [expedited, 10]
