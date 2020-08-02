@@ -1,5 +1,5 @@
 class SendEmailModalMailer < ApplicationMailer
-  default from: "imenfakhri@gmail.com"
+  default from: "gr.projets@gmail.com"
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
@@ -11,6 +11,9 @@ class SendEmailModalMailer < ApplicationMailer
     filename = params[:contacts].original_filename
     attachments[filename] = File.read(path)
 
-    mail to: "jemmeli84@gmail.com"
+    #sender_email = ActiveSupport::JSON.decode( params[:sender_email] )
+
+    mail to: params[:sender_email]
+    #binding.pry
   end
 end

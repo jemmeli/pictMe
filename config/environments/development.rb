@@ -1,5 +1,5 @@
 Rails.application.configure do
-  config.action_mailer.default_url_options = { host: "http://192.168.1.170", port: ENV['PORT'] }
+  config.action_mailer.default_url_options = { host: "localhost:3000", port: ENV['PORT'] }
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -19,6 +19,7 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   # change mail delevry to either :smtp, :sendmail, :file, :test, :letter_opener_web
   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
   config.action_mailer.smtp_settings = {
       address: ENV['SMTP_ADDRESS'],
       port: ENV['SMTP_PORT'].to_i,
@@ -29,7 +30,7 @@ Rails.application.configure do
       enable_starttls_auto: true
   }
   # Specify what domain to use for mailer URLs
-  config.action_mailer.default_url_options = {host: "localhost:3000"}
+  #config.action_mailer.default_url_options = {host: "localhost:3000"}
 
   # Print deprecation notices to the Rails logger.
   # config.active_support.deprecation = :log
