@@ -3,7 +3,8 @@ var app = angular.module("myApp", []);
 app.factory( 'dataService',function($http,$q) {
     return{
         getAllContacts: getAllContacts,
-        getAllCampaigns: getAllCampaigns
+        getAllCampaigns: getAllCampaigns,
+        getAllPictures: getAllPictures
     };
 
     //get all Contacts
@@ -50,6 +51,29 @@ app.factory( 'dataService',function($http,$q) {
     function sendGetCampaignsError( reponse ){
         return $q.reject('Error retreiving Campaigns(s). (HTTP status: ' + reponse + ')' );
     } 
+
+    //get all pictures
+    function getAllPictures( event_id, id ){
+        /* var ID = $(this).attr("data-edition");
+        console.log(ID); */
+      
+        //abstract the call of https call
+        return $http({
+            method: 'GET',
+            url: '/api/v1/events/'+event_id+'/editions/'+id+'/pictures'
+        })
+        .then( sendResponsePicturesData )
+        .catch( sendGetPicturesError );
+    
+    }
+    function sendResponsePicturesData( reponse ){
+        return reponse.data;
+    }
+    
+    function sendGetPicturesError( reponse ){
+        return $q.reject('Error retreiving Pictures(s). (HTTP status: ' + reponse + ')' );
+    } 
+    
 
 } )
 
@@ -409,6 +433,77 @@ app.controller("contactDetailsCtrl", function( $scope ){
     }
 
 });
+
+
+//pictures
+app.controller("picturesDetailsCtrl", function( $scope ){
+
+    var vm = this;
+    vm.orderPictureArr = [{attr: 'Du récent au plus vieux' , val: 'created_at'}, {attr: 'Du vieux au plus récent' , val: '-created_at'}];
+
+    $scope.$watch("allPictures", function( newPictures ){
+        if( newPictures ){
+            $scope.allPictures = newPictures;
+        }   
+    });
+
+    $scope.getObject =  function(obj){
+        var myObj = JSON.parse( obj );
+        var myID = myObj.id;
+        return myID;
+    }
+
+    //
+    $scope.$watch("vm.orderPicture", function( newOrderPictures ){
+        if( newOrderPictures ){
+            vm.orderPicture = newOrderPictures;
+        }   
+    });
+    
+
+});
+
+/*==============================================================================
+===============================DIRECTIVES=======================================
+===============================================================================*/
+
+//pictures Directives
+app.directive('picturesDirective', function(){
+    return{
+      restrict: "E",
+      templateUrl: '/templates/pictures.html',
+      link: function(scope, element, attrs){
+
+      },
+      controller: function(dataService, $scope, $element, $attrs){
+        var vm = this;
+        var thevalueid = $element.attr("thevalueid");
+        var thevalueidevent = $element.attr("thevalueidevent");
+
+        dataService.getAllPictures( thevalueidevent, thevalueid )
+            .then( getPicturesSuccess, getPicturesError );
+
+        function getPicturesSuccess( Pictures ){
+            $scope.allPictures = Pictures;
+            console.log($scope.allPictures);
+        }
+        function getPicturesError( errorMsg ){
+            console.log('Error Message: ' + errorMsg );
+        }
+
+        $attrs.$observe('picturesDirective', function (newPictures) {
+            if (newPictures) {
+                console.log(newPictures);
+                // pass value to app controller
+                $scope.allPictures = newPictures;
+            }
+        });  
+
+      }
+    }
+ });
+
+
 
 
 

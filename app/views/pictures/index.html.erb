@@ -1,7 +1,19 @@
+<div class="breadcrumb">
+  <span> <a href="<%= root_path%>"> Accueil </a> >
+  <%= @edition.event.name %> >
+  <%= @edition.date.strftime('%d/%m/%Y') %> >
+  Liste photo
+  </span>
+  
+</div>
+
 <p id="notice"><%= notice %></p>
 
-<h1>Pictures</h1>
+<div  ng-controller="picturesDetailsCtrl as vm">
+  <pictures-directive thevalueid="<%= params[:id] %>" thevalueidevent="<%= params[:event_id] %>" ></pictures-directive>
+</div>
 
+<!--
 <table>
   <thead>
     <tr>
@@ -14,7 +26,8 @@
     <% @pictures.each do |picture| %>
       <tr>
         <% params[:picture_id] = picture.id %>
-        <td><%= picture.image_data %></td>
+        <td><%= picture.image_data %> | <%= picture.bib %> </td>
+        <td><%= image_tag picture.image.url( public: true ), width: 200  %></td>
         <td><%= link_to 'Show', event_picture_path(params[:event_id], params[:id], params[:picture_id] ) %></td>
         <td><%= link_to 'Edit', edit_event_picture_path(params[:event_id], params[:id], params[:picture_id]) %></td>
         <td><%= link_to 'Destroy', event_picture_path(params[:event_id], params[:id], params[:picture_id]), method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -26,3 +39,4 @@
 <br>
 
 <%= link_to 'New Picture', new_event_picture_path(params[:event_id], params[:id]) %>
+-->

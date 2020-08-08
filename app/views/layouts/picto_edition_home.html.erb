@@ -22,7 +22,7 @@
 
   <%= csrf_meta_tags %>
 </head>
-<body class="picto-page picto-edition" ng-controller="mainCtrl as vm" ng-init="vm.id = <%= params[:id] %>">
+<body class="picto-page picto-edition" ng-controller="mainCtrl as vm" ng-init="vm.id = <%= params[:id] %>" >
 
 <%= render 'layouts/picto_navigation' %>
 
@@ -52,16 +52,18 @@
         </li>
         <li>
         
-          <a href="<%= new_event_picture_path( params[:event_id], params[:id] ) %>" class="<%= active_btn_class( new_event_picture_path( params[:event_id], params[:id] ) ) %> ">
+          <a href="<%= new_event_picture_path( params[:event_id], params[:id] ) %>" class="<%= active_btn_class( new_event_picture_path( params[:event_id], params[:id] ) ) %> <%= active_btn_class( event_pictures_path( params[:event_id], params[:id] ) ) %> ">
             <!--
             <span class="helper"></span>
             <img src="<%= asset_path('icon-map-pictme.png') %>" alt="map">
             -->
             Photos
           </a>
-          <% if current_page?( new_event_picture_path( params[:event_id], params[:id] ) ) %>
+          <% if current_page?( new_event_picture_path( params[:event_id], params[:id] ) ) || 
+                current_page?( event_pictures_path( params[:event_id], params[:id] ) )  %>
             <ul class="list-unstyled">
               <li><%= link_to "Importation", new_event_picture_path( params[:event_id], params[:id] ), class: active_btn_class( new_event_picture_path( params[:event_id], params[:id] ) ) %></li>
+              <li><%= link_to "Voir photo", event_pictures_path( params[:event_id], params[:id] ), class: active_btn_class( event_pictures_path( params[:event_id], params[:id] ) ) %></li>
             </ul>
           <% end %>
         </li>

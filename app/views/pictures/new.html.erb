@@ -12,6 +12,23 @@
   <b> Contacts </b>
 </div>
 
+<% unless @picturesCount.blank? %>
+  <div class="picturesStats">
+    <div class="row">
+      <div class="col-sm-6">Nombre de photo : <%= @picturesCount %></div>
+      <div class="col-sm-6"> <a href="#" class="btn-orange pull-right">Voir les photos</a> </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">Photos identifiées : <%= @picturesIdentifierCount %></div>
+      <div class="col-sm-6"> <a href="#" class="btn-orange pull-right">Diffuser les photos</a> </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">Photos non reconnues : <%= @picturesNonIdentifierCount %></div>
+      <div class="col-sm-6">  </div>
+    </div>
+  </div>
+<% end %>
+
 <div class="dropDiv">
   <p>Glissez vos photos ici <br> ou </p>
   <%#= form_tag process_csv_picto_event_edition_path , multipart: true, class: "uploadCsv", remote: true do %>

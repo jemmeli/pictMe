@@ -534,11 +534,11 @@ body.picto-page .leftNavBar ul li ul{
     padding-left: 2px;
     padding-right: 2px;
     /* padding-top: 90px; */
-
+    
     -webkit-box-shadow: inset 7px 0px 5px -2px rgba(0,0,0,0.56);
     -moz-box-shadow: inset 7px 0px 5px -2px rgba(0,0,0,0.56);
     box-shadow: inset 7px 0px 5px -2px rgba(0,0,0,0.56);
-
+    
 }
 
 body.picto-page .leftNavBar li a{
@@ -637,7 +637,7 @@ body.picto-page .contactsRow table.table thead th {
 
 /*================================
 sendEmailModal + importCsvModal + secondStepCampaign
- ================================*/
+================================*/
 .sendEmailModal{
     /*max-width: 500px;*/
 }
@@ -861,16 +861,16 @@ modal delete event
     line-height: 50px;
 }
 
-    /*========================
-    Search events freshstart
-     ========================*/
+/*========================
+Search events freshstart
+========================*/
 #eventsList{
     position: absolute;
     background: white;
     left: 75px;
     top: 59px;
     color: black;
-
+    
     -webkit-box-shadow: 0px 14px 13px 6px rgba(0,0,0,0.21);
     -moz-box-shadow: 0px 14px 13px 6px rgba(0,0,0,0.21);
     box-shadow: 0px 14px 13px 6px rgba(0,0,0,0.21);
@@ -934,9 +934,9 @@ modal delete event
     position: relative;
     margin: 0 auto;
     transform: rotate(-90deg);
-  }
-  
-  .progress-percentage, .progress-text {
+}
+
+.progress-percentage, .progress-text {
     position: absolute;
     width: 100%;
     top: 50%;
@@ -944,22 +944,90 @@ modal delete event
     transform: translate(-50%, -50%) rotate(90deg);
     text-align: center;
     padding: 0px 60px;
-  }
-  
-  .progress-percentage {
+}
+
+.progress-percentage {
     /* font-size: 60px;
     left: 60%; */
     font-size: 14px;
     left: 50%;
     top: 28%;
     color: white;
-  }
-  
-  .progress-text {
+}
+
+.progress-text {
     left: 35%;
     color: #585858;
     font-size: 21px;
-  }
+}
+
+
+/*=======================================
+===pictures
+=======================================*/
+.picturesStats{
+    border:1px solid grey; padding:12px;margin-bottom:16px;
+}
+.picturesStats .btn-orange{
+    font-size: 14px;
+}
+.picturesStats .btn-orange:hover{
+    text-decoration: none;
+}
+.pictureLists{
+    width: 200px;
+    height: 133px;
+    display: block;
+    float: left;
+    margin: 0 10px 10px 0;
+}
+.searchCoureur{
+    margin-top: 25px;
+    width: 235px;
+    height: 35px;
+    border-radius: 50px;
+    border: 2px solid #cccccc;
+    padding: 3px;
+    outline: none;
+}
+body.picto-page .searchCoureur::placeholder {
+    color: #cccccc;
+    opacity: 1; 
+}
+
+body.picto-page .searchCoureur:-ms-input-placeholder { 
+    color: #cccccc;
+}
+
+body.picto-page .searchCoureur::-ms-input-placeholder { 
+    color: #cccccc;
+}
+.orderPictures{
+    margin-top: 25px;
+    width: 235px;
+    height: 35px;
+    border-radius: 50px;
+    border: 2px solid #cccccc;
+    color: #cccccc;
+    padding: 3px;
+    outline: none;
+    background-color: #FFFFFF;
+}
+.selctPicWrapper{
+    margin-top: 45px;
+    margin-bottom: 25px;
+}
+.selectionnerPictures{
+    display: inline-block;
+    line-height: 17px;
+    height: 35px;
+    border-radius: 50px;
+    border: 2px solid #cccccc;
+    padding: 8px 17px;
+    font-size: 18px;
+    color: #cccccc;
+
+}
 
 
 

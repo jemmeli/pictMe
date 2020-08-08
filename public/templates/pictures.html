@@ -1,0 +1,14 @@
+
+<div style="overflow: hidden;margin: 10px 0;">
+    <input type="text" class="searchCoureur" ng-model="searchCoureur" placeholder="Rechercher un coureur... ">
+
+    <select class="pull-right orderPictures" ng-model="vm.orderPicture" ng-options="p.val as p.attr for p in vm.orderPictureArr"></select>
+
+</div>
+<div class="selctPicWrapper">
+    <a href="#" class="selectionnerPictures">Sélectionner </a>
+</div>
+<div style="overflow: hidden;">
+    <img ng-repeat="pic in allPictures | orderBy : vm.orderPicture | filter : searchCoureur  " src='https://sportpics-photos.s3-eu-west-1.amazonaws.com/store/{{ getObject( pic.image_data ) }}' alt="{{pic.id}}" class='pictureLists' >
+</div>
+

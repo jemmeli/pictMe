@@ -18,6 +18,11 @@ class PicturesController < ApplicationController
   # GET /pictures/new
   def new
     @picture = Picture.new
+    @picturesCount = @edition.pictures.all.count
+
+    @picturesIdentifierCount = Edition.joins(:pictures).merge(Picture.photos_identifier).count
+    @picturesNonIdentifierCount = Edition.joins(:pictures).merge(Picture.photos_no_identifier).count
+
   end
 
   # GET /pictures/1/edit
