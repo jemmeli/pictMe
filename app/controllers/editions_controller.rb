@@ -280,6 +280,18 @@ class EditionsController < ApplicationController
     @emailsArrays = @emailsArrays.to_json
   end
 
+  def change_bib_contact
+      if params[:current_id_picture].present?
+        picture = Picture.find( params[:current_id_picture] )
+        picture.bib = params[:dossard]
+        #binding.pry
+        picture.save
+        redirect_to event_pictures_path( params[:event_id], params[:id] ), notice: "Dossard Ajouter !"
+      else
+        redirect_to event_pictures_path( params[:event_id], params[:id] ), alert: "Dossard n'est pas Ajouter !"
+      end
+  end
+
   #=================
   # END for Picto
   #=================

@@ -105,6 +105,7 @@ Rails.application.routes.draw do
         post 'send_email_modal'
         post 'upload_csv_picto'
         post 'process_csv_picto'
+        post 'change_bib_contact'
         resources :contacts, only: [:index]
         resources :campaigns, only: [:index, :new, :create]
         resources :pictures , param: :picture_id
@@ -187,9 +188,7 @@ Rails.application.routes.draw do
       #pictMe
       resources :events do
         resources :editions do
-          member do
-            resources :pictures
-          end
+            resources :pictures, as: 'picture_id'
         end
       end
 

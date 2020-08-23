@@ -21,6 +21,7 @@
 //= require jquery-fileupload/vendor/jquery.ui.widget
 //= require jquery-fileupload/jquery.iframe-transport
 //= require jquery-fileupload/jquery.fileupload
+//= require simplegallery.min.js
 //= require percentageChart.js
 //= require bootstrap-sprockets
 //= require bootstrap-switch
@@ -127,6 +128,24 @@ $(function () {
             error: function(data) {}
         });
     }) */
+
+
+
+    $('#gallery').simplegallery({
+        galltime : 400,
+        gallcontent: '.content',
+        gallthumbnail: '.thumbnail',
+        gallthumb: '.thumb'
+    });
+
+    
+    $("#modalPictures").on('show.bs.modal', function(){
+        $("#modalPictures div.content img:first").removeAttr("style");
+    });
+
+
+
+   
     
 
     

@@ -9,6 +9,6 @@
     <a href="#" class="selectionnerPictures">Sélectionner </a>
 </div>
 <div style="overflow: hidden;">
-    <img ng-repeat="pic in allPictures | orderBy : vm.orderPicture | filter : searchCoureur  " src='https://sportpics-photos.s3-eu-west-1.amazonaws.com/store/{{ getObject( pic.image_data ) }}' alt="{{pic.id}}" class='pictureLists' >
+    <img ng-repeat="pic in allPictures | orderBy : vm.orderPicture | filter : searchCoureur  " src='https://sportpics-photos.s3-eu-west-1.amazonaws.com/store/{{ getObject( pic.image_data ) }}' alt="{{pic.id}}" ng-click="getCurrentPictureInfo( pic, $event )" class='pictureLists' >
 </div>
 

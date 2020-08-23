@@ -1,3 +1,85 @@
+<!-- modal pictures -->
+<div id="modalPictures" modal-hidden class="modal fade" ng-controller="modalPictureCtrl as vm"  thevalueid="<%= params[:id] %>" thevalueidevent="<%= params[:event_id] %>" >
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            
+            <div class="modal-body">
+                <div class="clear"></div>
+                  <section id="gallery" class="simplegallery">
+
+                      <div class="col-sm-9 content">
+                          <img ng-repeat="pic in allPictures" src='https://sportpics-photos.s3-eu-west-1.amazonaws.com/store/{{ getObject( pic.image_data ) }}' class='class="image_{{$index+1}}"'  style="display:none" alt="" >
+                          <!--<img src="https://sportpics-photos.s3-eu-west-1.amazonaws.com/store/94712f04e1b4b5da2d11ea37b86de187.jpg" class="image_1" alt="" />
+                          <img src="https://sportpics-photos.s3-eu-west-1.amazonaws.com/store/728fc4d6c99389a3a51d30a7dd239072.jpg" class="image_2" style="display:none" alt="" />
+                          <img src="https://sportpics-photos.s3-eu-west-1.amazonaws.com/store/bf40d92144e53f597898682451f68f61.jpg" class="image_3" style="display:none" alt="" />
+                          <img src="https://sportpics-photos.s3-eu-west-1.amazonaws.com/store/94712f04e1b4b5da2d11ea37b86de187.jpg" class="image_4" style="display:none" alt="" />
+                          <img src="https://sportpics-photos.s3-eu-west-1.amazonaws.com/store/bf40d92144e53f597898682451f68f61.jpg" class="image_5" style="display:none" alt="" />-->
+                          <div class="galleryForm">
+                            <%= form_tag change_bib_contact_event_edition_path( params[:event_id], params[:id] ) ,:method => 'post' , html: {class: "formPictBibMod"} do %>
+                              <%= label_tag(:dossard, "Numéro de Dossard : ") %>
+                              <%= text_field_tag :dossard  %>
+                              <%= hidden_field_tag :current_id_picture, 153 %>
+                              <%= submit_tag "Enregistrer", class: "btn-orange-small pull-right" %>
+                            <% end %>
+
+                            <div class="row">
+                              <div class="col-xs-12">Nom : <span id="theName"></span></div>
+                            </div>
+                            <div class="row">
+                              <div class="col-xs-6">Prenom : <span id="theLastName"></span></div>
+                              <div class="col-xs-6"> 
+                                <a href="#" id="btnDeletepicture" class="btn-grey-small pull-right" delete-picture ng-click="deletePicture()" data-picture-id="" data-edition-id="<%= params[:id] %>" data-event-id="<%= params[:event_id] %>">Suprimer</a>
+                              </div>
+                            </div>
+
+                          </div>
+                      </div>
+
+                      <div class="col-sm-3 thumbnail">
+
+                          <div class="thumb" ng-repeat="pic in allPictures">
+                              <a href="#" rel="{{$index+1}}">
+                                  <img src='https://sportpics-photos.s3-eu-west-1.amazonaws.com/store/{{ getObject( pic.image_data ) }}' id="thumb_{{$index+1}}" ng-click="vm.showCurrentPicture(pic, $index+1, $event)" alt="" />
+                              </a>
+                          </div>
+
+                          <!--<div class="thumb">
+                              <a href="#" rel="1">
+                                  <img src="https://sportpics-photos.s3-eu-west-1.amazonaws.com/store/94712f04e1b4b5da2d11ea37b86de187.jpg" id="thumb_1" alt="" />
+                              </a>
+                          </div>
+                          <div class="thumb">
+                              <a href="#" rel="2">
+                                  <img src="https://sportpics-photos.s3-eu-west-1.amazonaws.com/store/728fc4d6c99389a3a51d30a7dd239072.jpg" id="thumb_2" alt="" />
+                              </a>
+                          </div>
+                          <div class="thumb">
+                              <a href="#" rel="3">
+                                  <img src="https://sportpics-photos.s3-eu-west-1.amazonaws.com/store/bf40d92144e53f597898682451f68f61.jpg" id="thumb_3" alt="" />
+                              </a>
+                          </div>
+                          <div class="thumb last">
+                              <a href="#" rel="4">
+                                  <img src="https://sportpics-photos.s3-eu-west-1.amazonaws.com/store/94712f04e1b4b5da2d11ea37b86de187.jpg" id="thumb_4" alt="" />
+                              </a>
+                          </div>
+                          <div class="thumb">
+                              <a href="#" rel="4">
+                                  <img src="https://sportpics-photos.s3-eu-west-1.amazonaws.com/store/bf40d92144e53f597898682451f68f61.jpg" id="thumb_3" alt="" />
+                              </a>
+                          </div>-->
+                      </div>
+
+                  </section>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<!-- end modal pictures -->
+
+
+
 <div class="breadcrumb">
   <span> <a href="<%= root_path%>"> Accueil </a> >
   <%= @edition.event.name %> >
@@ -7,13 +89,23 @@
   
 </div>
 
-<p id="notice"><%= notice %></p>
+<!--<p id="notice"><%= notice %></p>-->
+<!--notice-->
+<div>
+  <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>"><%= value %></div>
+  <% end %>
+</div>
 
 <div  ng-controller="picturesDetailsCtrl as vm">
   <pictures-directive thevalueid="<%= params[:id] %>" thevalueidevent="<%= params[:event_id] %>" ></pictures-directive>
 </div>
 
-<!--
+
+
+
+
+<!---->
 <table>
   <thead>
     <tr>
@@ -39,4 +131,5 @@
 <br>
 
 <%= link_to 'New Picture', new_event_picture_path(params[:event_id], params[:id]) %>
--->
+
+

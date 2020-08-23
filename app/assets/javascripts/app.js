@@ -4,7 +4,8 @@ app.factory( 'dataService',function($http,$q) {
     return{
         getAllContacts: getAllContacts,
         getAllCampaigns: getAllCampaigns,
-        getAllPictures: getAllPictures
+        getAllPictures: getAllPictures,
+        deletePicture: deletePicture
     };
 
     //get all Contacts
@@ -73,6 +74,28 @@ app.factory( 'dataService',function($http,$q) {
     function sendGetPicturesError( reponse ){
         return $q.reject('Error retreiving Pictures(s). (HTTP status: ' + reponse + ')' );
     } 
+
+    //deletePicture
+    function deletePicture( event_id, edition_id, pictureID ){
+      
+        return $http({
+            method: 'DELETE',
+            url : '/api/v1/events/'+event_id+'/editions/'+edition_id+'/pictures/' + pictureID
+                   
+        })
+            .then( deletePictureSuccess )
+            .catch( deletePictureError );
+
+    }
+    function deletePictureSuccess( response ){
+        return 'picture deleted';
+    }
+    
+    function deletePictureError( reponse ){
+        return $q.reject('Error deleting picture(s). (HTTP status: ' + response.status + ')' );
+    }
+    
+    
     
 
 } )
@@ -315,6 +338,13 @@ app.controller("mainCtrl", function( dataService, $scope ){
         }
     });
 
+    /*======EVENTS======*/
+    $scope.$on('currentPicture', function(event, currentPicture){
+        console.log("===envent handler currentPicture===");
+        console.log(currentPicture);
+        console.log("===================================");
+    });
+
     
 
     
@@ -343,11 +373,6 @@ app.controller("mainCtrl", function( dataService, $scope ){
     
 
     console.log( vm.firstStep );
-    
-
-
-    
-    
 
 
 });
@@ -434,6 +459,73 @@ app.controller("contactDetailsCtrl", function( $scope ){
 
 });
 
+//pictures
+app.controller("modalPictureCtrl", function( dataService, $scope, $element, $attrs ){
+    var vm = this;
+
+    var thevalueid = $element.attr("thevalueid");
+    var thevalueidevent = $element.attr("thevalueidevent");
+    /* console.log( "-------------" );
+    console.log( thevalueid );
+    console.log( thevalueidevent );
+    console.log( "-------------" ); */
+
+    $scope.getObject =  function(obj){
+        var myObj = JSON.parse( obj );
+        var myID = myObj.id;
+        return myID;
+    }
+
+    dataService.getAllPictures( thevalueidevent, thevalueid )
+        .then( getPicturesSuccess, getPicturesError );
+
+    function getPicturesSuccess( Pictures ){
+        $scope.allPictures = Pictures;
+    }
+    function getPicturesError( errorMsg ){
+        console.log('Error Message: ' + errorMsg );
+    }
+
+    vm.showCurrentPicture = function( currentPicture, currentIndex, $event){
+        /*console.log( currentPicture );
+        console.log( currentIndex ); 
+        console.log( $element.find("div.thumbnail img") ); 
+        currentImageClickedLink = $event.currentTarget.src;
+        console.log( currentImageClickedLink );*/
+        currentImageClickedLink = $event.currentTarget.src;
+        $element.find("div.content img").attr("style", "display:none");
+        $element.find("div.content img:nth-child("+currentIndex+")").removeAttr( "style" );
+        $element.find("div.content img:nth-child("+currentIndex+")").attr( "src", currentImageClickedLink );
+        let current_id_picture = document.getElementById("current_id_picture");
+        let dossard = document.getElementById("dossard");
+        //set id picture
+        $("#btnDeletepicture").attr("data-picture-id", currentPicture.id );
+        let theName = $("#theName");
+        let theLastName = $("#theLastName");
+        //if current owner exist
+        if( currentPicture.id ){
+            current_id_picture.value = currentPicture.id;
+        }else{
+            current_id_picture.value = "";
+        }
+        dossard.value = currentPicture.bib;
+
+        if( currentPicture.owner_of_picture[0] ){
+            console.log("owner existe 1");
+            theName.html( currentPicture.owner_of_picture[0].nom );
+            theLastName.html( currentPicture.owner_of_picture[0].prenom );
+        }else{
+            console.log("owner n'existe pas 1");
+            theName.html( "pas de propriétaire" ).css("color", "#ef8e0c");
+            theLastName.html( "pas de propriétaire" ).css("color", "#ef8e0c");
+        }
+
+        
+    }
+
+
+});
+
 
 //pictures
 app.controller("picturesDetailsCtrl", function( $scope ){
@@ -459,6 +551,8 @@ app.controller("picturesDetailsCtrl", function( $scope ){
             vm.orderPicture = newOrderPictures;
         }   
     });
+
+    
     
 
 });
@@ -485,15 +579,52 @@ app.directive('picturesDirective', function(){
 
         function getPicturesSuccess( Pictures ){
             $scope.allPictures = Pictures;
-            console.log($scope.allPictures);
         }
         function getPicturesError( errorMsg ){
             console.log('Error Message: ' + errorMsg );
         }
 
+        $scope.getCurrentPictureInfo = function( currentPicture, $event ){
+            currentImageClickedLink = $event.currentTarget.src;
+            jQuery("#modalPictures").modal("show");
+            $("#modalPictures").on('shown.bs.modal', function(){
+                let content = document.getElementsByClassName("content")[0].children[0];
+                jQuery(".content img").each(function( index ) {
+                    jQuery( this ).attr('style', "display:none");
+                });
+                document.getElementsByClassName("content")[0].children[0].style = "";
+                let current_id_picture = document.getElementById("current_id_picture");
+                let dossard = document.getElementById("dossard");
+                //set id picture
+                $("#btnDeletepicture").attr("data-picture-id", currentPicture.id );
+                let theName = $("#theName");
+                let theLastName = $("#theLastName");
+                //get the id of the owner
+                if( currentPicture.id ){
+                    current_id_picture.value = currentPicture.id;
+                }else{
+                    current_id_picture.value = "";
+                }
+                dossard.value = currentPicture.bib;
+                content.src = currentImageClickedLink;
+                if( currentPicture.owner_of_picture[0] ){
+                    console.log("owner existe 1");
+                    theName.html( currentPicture.owner_of_picture[0].nom );
+                    theLastName.html( currentPicture.owner_of_picture[0].prenom );
+                }else{
+                    console.log("owner n'existe pas 1");
+                    theName.html( "pas de propriétaire" ).css("color", "#ef8e0c");
+                    theLastName.html( "pas de propriétaire" ).css("color", "#ef8e0c");
+                }
+                
+                /*======EVENTS======*/
+                $scope.$emit('currentPicture', currentPicture);
+            });
+            
+        }
+
         $attrs.$observe('picturesDirective', function (newPictures) {
             if (newPictures) {
-                console.log(newPictures);
                 // pass value to app controller
                 $scope.allPictures = newPictures;
             }
@@ -502,6 +633,82 @@ app.directive('picturesDirective', function(){
       }
     }
  });
+
+
+app.directive("modalHidden", function () {
+    return{
+        restrict : 'A',
+        link : function(scope, element, attrs){
+            $("#modalPictures").on('hidden.bs.modal', function(){
+                jQuery(".content img").each(function( index ) {
+                    jQuery( this ).attr('style', "display:none");
+                });
+                document.getElementsByClassName("content")[0].children[0].style = "";
+            });
+        }
+    }
+});
+
+app.directive("deletePicture", function ( dataService ) {
+    return{
+        restrict : 'A',
+        link : function(scope, element, attrs){
+            scope.deletePicture = function(){
+                event_id   = element.attr("data-event-id");
+                edition_id = element.attr("data-edition-id");
+                pictureID  = element.attr("data-picture-id");
+                console.log( event_id + "," + edition_id + "," + pictureID );
+
+                dataService.deletePicture( event_id, edition_id, pictureID )
+                .then( deletePictureSuccess, deletePictureError );
+
+                function deletePictureSuccess( msg ){
+                    console.log('success: ' + msg );
+                }
+                function deletePictureError( errorMsg ){
+                    console.log('Error Message: ' + errorMsg );
+                }
+
+
+            }
+        }
+    }
+});
+
+
+ //
+ /*
+app.directive("simplegallery", function () {
+    var res = {
+      restrict : 'C',
+      link     : function (scope, element, attrs) {
+            scope.$watch(attrs.simplegallery, function(){             
+                element.simplegallery({
+                    galltime : 400,
+                    gallcontent: '.content',
+                    gallthumbnail: '.thumbnail',
+                    gallthumb: '.thumb'
+                });
+                console.log("hi");
+            });
+        },
+        controller: function(dataService, $scope, $element, $attrs){
+            $attrs.$observe('simplegallery', function (newsimplegallery) {
+                if (newsimplegallery) {
+                    $element.simplegallery({
+                        galltime : 400,
+                        gallcontent: '.content',
+                        gallthumbnail: '.thumbnail',
+                        gallthumb: '.thumb'
+                    });
+                    console.log("hi");
+                }
+            });  
+        }
+    };
+   return res;
+ }); 
+ */
 
 
 
