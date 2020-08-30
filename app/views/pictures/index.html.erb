@@ -36,12 +36,13 @@
                       </div>
 
                       <div class="col-sm-3 thumbnail">
-
+                          <a href="#" class="arrowUp" ng-click="vm.goNextImg()"><span class="glyphicon glyphicon-chevron-up"></span></a>
                           <div class="thumb" ng-repeat="pic in allPictures">
                               <a href="#" rel="{{$index+1}}">
                                   <img src='https://sportpics-photos.s3-eu-west-1.amazonaws.com/store/{{ getObject( pic.image_data ) }}' id="thumb_{{$index+1}}" ng-click="vm.showCurrentPicture(pic, $index+1, $event)" alt="" />
                               </a>
                           </div>
+                          <a href="#" class="arrowDown" ng-click="vm.goPrevImg()"><span class="glyphicon glyphicon-chevron-down"></span></a>
 
                           <!--<div class="thumb">
                               <a href="#" rel="1">

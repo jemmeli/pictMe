@@ -1048,6 +1048,21 @@ body.picto-page .searchCoureur::-ms-input-placeholder {
 #modalPictures .thumbnail{
     height: 720px;
     overflow: hidden;
+    position: relative;
+}
+#modalPictures .thumbnail a.arrowUp{
+    z-index: 99;
+    position: absolute;
+    top: 0;
+    right: 51%;
+    font-size: 22px;
+}
+#modalPictures .thumbnail a.arrowDown{
+    z-index: 99;
+    position: absolute;
+    bottom: 0;
+    right: 51%;
+    font-size: 22px;
 }
 #modalPictures img.pictureListsModal{
     display: none;
@@ -1071,6 +1086,9 @@ body.picto-page .searchCoureur::-ms-input-placeholder {
 #modalPictures .galleryForm .btn-grey-small,
 #modalPictures .galleryForm .btn-orange-small{
     margin: 0;
+}
+.simplegallery .thumbnail .thumb{
+    position: relative;
 }
 @media (min-width: 1199px) {
     #modalPictures .modal-dialog {

@@ -486,6 +486,38 @@ app.controller("modalPictureCtrl", function( dataService, $scope, $element, $att
         console.log('Error Message: ' + errorMsg );
     }
 
+    vm.goNextImg = function(){
+        vm.offset = $(".thumbnail .thumb").position().top;
+        containerThumbTopPos = $(".thumbnail").position().top;
+        if( vm.offset < containerThumbTopPos ){
+            $(".thumbnail .thumb").css( "top", ( vm.offset + 180 ) );
+        }else{
+            return false;
+        }
+
+        /* firstThumbTopPosition = $(".thumbnail .thumb:first").position().top;
+        console.log("firstThumbTopPosition : " + firstThumbTopPosition);
+        lastThumbTopPosition = $(".thumbnail .thumb:last").position().top + 180;
+        console.log("lastThumbTopPosition : " + lastThumbTopPosition); */
+    }
+    vm.goPrevImg = function(){
+        vm.offset = $(".thumbnail .thumb").position().top;
+        containerThumbBottomPos = $(".thumbnail").position().top + (180*4);
+        lastThumbTopPosition = $(".thumbnail .thumb:last").position().top + 180;
+        console.log(vm.offset);
+        if( lastThumbTopPosition > containerThumbBottomPos ){
+            $(".thumbnail .thumb").css( "top", ( vm.offset - 180 ) );
+        }else{
+            return false;
+        }
+
+        /* firstThumbTopPosition = $(".thumbnail .thumb:first").position().top;
+        console.log("firstThumbTopPosition : " + firstThumbTopPosition);
+        lastThumbTopPosition = $(".thumbnail .thumb:last").position().top + 180;
+        console.log("lastThumbTopPosition : " + lastThumbTopPosition); */
+    }
+    
+
     vm.showCurrentPicture = function( currentPicture, currentIndex, $event){
         /*console.log( currentPicture );
         console.log( currentIndex ); 
