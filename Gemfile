@@ -39,7 +39,7 @@ gem 'remotipart', github: 'jbox-web/remotipart', tag: '1.6.0'
 gem 'gon'
 gem 'mailjet'
 #
-gem "shrine", "~> 2.3.1"
+gem "shrine", "~> 3.3.0"
 #gem 'aws-sdk', "~> 3"
 gem 'roda', "~> 2.29.0"
 gem 'jquery-fileupload-rails'
