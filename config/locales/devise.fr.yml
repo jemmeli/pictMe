@@ -21,8 +21,8 @@ fr:
   devise:
     shared:
       links:
-        sign_in: "Se connecter"
-        sign_up: "S'enregistrer"
+        sign_in: "Déjà membre ?  'Connectez-vous'"
+        sign_up: "S’inscrire"
         forgot_password: "Mot de passe oublié ?"
         forgot_your_password: "Mot de passe oublié ?"
         didnt_receive_confirmation_instructions?: "Vous n'avez pas reçu de courriel de confirmation ?"
@@ -32,15 +32,17 @@ fr:
       unauthenticated: "Vous devez vous connecter ou vous inscrire pour continuer."
       unconfirmed: "Vous devez confirmer votre compte pour continuer."
       locked: "Votre compte est verrouillé."
-      invalid: "Courriel ou mot de passe incorrect."
+      invalid: "Email ou mot de passe incorrect."
       invalid_token: "Jeton d'authentification incorrect."
       timeout: "Votre session est expirée, veuillez vous reconnecter pour continuer."
       inactive: "Votre compte n'est pas encore activé."
+      user:
+        not_found_in_database: "Pas de compte enregistré à cet email."
     sessions:
-      signed_in: "Connecté."
+      signed_in: "Bienvenue sur votre Espace Membre Sportpxl ! ."
       signed_out: "Déconnecté."
       new:
-        sign_in: "Se connecter"
+        sign_in: "Déjà membre ?  'Connectez-vous'"
     passwords:
       change_your_password: "Changez votre mot de passe"
       new_password: "Nouveau mot de passe"
@@ -70,7 +72,7 @@ fr:
       updated: 'Votre compte a été modifié avec succès.'
       destroyed: 'Au revoir! Votre compte a été annulé avec succès. Nous espérons vous revoir bientôt.'
       new:
-        sign_up: "S'enregistrer"
+        sign_up: "S’inscrire"
     unlocks:
       resend_instructions: "Ré-envoyer les instructions de débloquage"
       send_instructions: 'Vous allez recevoir contenant les instructions nécessaires au débloquage de votre compte dans quelques minutes'

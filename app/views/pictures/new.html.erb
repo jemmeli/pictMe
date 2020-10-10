@@ -51,13 +51,21 @@
 //$(document).on("turbolinks:load", function(){
 $( document ).ready(function() {
     console.log("turbo ...");
+    var currentCount = 1;
+    var totalImages = 0;
+
+    $("input[type=file]").change(function(e){
+        currentCount = 1;
+        totalImages = $(this).get(0).files.length;
+    });
 
     $("input[type=file]").fileupload({
 
         add: function(e, data){
             //presign
             console.log("add : "+ data);
-            data.progressBar = $('<div class="progressWrapper"><ul class="list-inline dispalyTable"><li>Importation:<br> 34/60 photo </li><li><div class="my-progress-bar"></div></li></div>').appendTo(".dropDiv");
+            data.progressBar = $('<div class="progressWrapper"><ul class="list-inline dispalyTable"><li>Importation:<br> <span id="currentCount"></span>/<span id="totalImages"></span> photos </li><li><div class="my-progress-bar"></div></li></div>').appendTo(".dropDiv");
+            
             
             var options = {
                 extention: data.files[0].name.match(/(\.\w+)?$/)[0],//set up the extention
@@ -68,6 +76,7 @@ $( document ).ready(function() {
                 console.log("*******");
                 console.log(result);
                 console.log("*******");
+                $("span#totalImages").empty().append(totalImages);
 
                 data.formData = result['fields'];
                 data.url = result['url'];
@@ -79,9 +88,13 @@ $( document ).ready(function() {
         progress: function(e, data){
             console.log("progress : "+ data);
             console.dir(data);
+
             //calculate the progress
             var progress = parseInt(data.loaded / data.total * 100, 10);
             //var percentage = progress.toString() + '%';
+            if( progress == 100 ){
+              $("span#currentCount").empty().append( currentCount++ );
+            }
             
             $(".my-progress-bar").gmpc({
                 line_width: 6,
@@ -97,7 +110,7 @@ $( document ).ready(function() {
         },
         done: function(e, data){
             console.log("done : "+ data);
-            //data.progressBar.remove();
+            data.progressBar.remove();
 
             var image = {
                 id: data.formData.key.match(/cache\/(.+)/)[1],//we have to remove the prefix
@@ -122,15 +135,17 @@ $( document ).ready(function() {
                 processData: false,//we alreadu use FormData
                 data: form_data,
                 method: form.attr("method"),
-                dataType: "json", //json,js,script To continue processing
+                dataType: "js", //json,js,script To continue processing
                 success: function(response){
                     console.log(response);
-
                     /*
                     var $img = $("<img/>", {src: response.image_url, width: 400});
                     var $div = $("<div/>").append($img);
                     $("#photos").append($div);
                     */
+                },
+                complete: function(){
+                    window.location.replace("<%= event_pictures_path( params[:event_id], params[:id] ) %>")
                 }
             });
 

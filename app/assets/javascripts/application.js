@@ -23,6 +23,7 @@
 //= require jquery-fileupload/jquery.fileupload
 //= require simplegallery.min.js
 //= require percentageChart.js
+//= require ui-bootstrap-tpls-2.5.0.min.js
 //= require bootstrap-sprockets
 //= require bootstrap-switch
 //= require_tree .

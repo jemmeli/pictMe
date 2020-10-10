@@ -1,4 +1,4 @@
-var app = angular.module("myApp", []);
+var app = angular.module("myApp", ['ui.bootstrap']);
 
 app.factory( 'dataService',function($http,$q) {
     return{
@@ -588,7 +588,16 @@ app.controller("picturesDetailsCtrl", function( $scope ){
     
 
 });
-
+/*==============================================================================
+===============================Filter=======================================
+===============================================================================*/
+app.filter('startFrom', function(){
+    return function(data, start){
+        if( data ){
+            return data.slice(start);
+        }
+    }
+});
 /*==============================================================================
 ===============================DIRECTIVES=======================================
 ===============================================================================*/
@@ -605,6 +614,9 @@ app.directive('picturesDirective', function(){
         var vm = this;
         var thevalueid = $element.attr("thevalueid");
         var thevalueidevent = $element.attr("thevalueidevent");
+        //pagination
+        $scope.pageSize = 10;
+        $scope.currentPage = 1;
 
         dataService.getAllPictures( thevalueidevent, thevalueid )
             .then( getPicturesSuccess, getPicturesError );
