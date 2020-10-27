@@ -1,0 +1,93 @@
+body.login-page{
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#fa8e3e+0,f9b44f+100 */
+    /*background: #fa8e3e;
+    background: -moz-linear-gradient(top, #fa8e3e 0%, #f9b44f 100%); 
+    background: -webkit-linear-gradient(top, #fa8e3e 0%,#f9b44f 100%); 
+    background: linear-gradient(to bottom, #fa8e3e 0%,#f9b44f 100%); 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fa8e3e', endColorstr='#f9b44f',GradientType=0 );*/  
+    text-align: center;
+    padding-top: 100px;
+    zoom: 70%;
+}
+
+a.blueCyan{
+    color: #008080 !important;
+    text-decoration: underline;
+}
+
+body.login-page a{
+    color: black;
+
+}
+
+.img-fluid{
+    max-width: 100%;
+    height: auto;
+}
+
+body.login-page form{
+    text-align: left;
+    margin: 0 auto;
+    max-width: 1000px;
+    background: white;
+    padding: 61px 80px;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow:0 0 0 50px #eeeeee inset; /* Change the color to your own background color */
+    -webkit-text-fill-color: #333;
+    font-size: 30px;
+}
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 50px #eeeeee inset,0 0 0 50px white inset;
+    -webkit-text-fill-color: #333;
+    font-size: 30px;
+}
+
+body.login-page form input[type=password],
+body.login-page form input[type=email]{
+    font-size: 30px;
+    border-radius: 0;
+    height: 120px;
+    background: #eeeeee;
+}
+
+.btn-primary{
+    height: 120px;
+    border-radius: 30px;
+    background: #F89D3D;
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    width: 100%;
+    display: inline-block;
+    outline: none;
+    border: 0 solid transparent;
+    transition: all 0.5s ease;
+}
+
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus,
+.btn-primary:active:focus, .btn-primary:active:hover{
+    background: #ea8111;
+    outline: none;
+    border: 0 solid transparent;
+}
+
+.form-group a{
+    color: white;
+    font-size: 33px;
+}
+.footerDevise{
+    font-size: 34px;
+    color: black;
+    border-top: 4px solid rgba(0,0,0, 0.8);
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 30px;
+    padding-top: 20px;
+}
+.footerDevise span{
+    border-bottom: 4px solid rgba(255,255,255, 0.8);
+}
