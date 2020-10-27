@@ -296,7 +296,7 @@ class EditionsController < ApplicationController
   # END for Picto
   #=================
 
-  private
+  private 
 
   def set_edition
     @edition = Edition.find(params[:id])
