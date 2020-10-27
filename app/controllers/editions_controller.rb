@@ -292,6 +292,27 @@ class EditionsController < ApplicationController
       end
   end
 
+  def duplicate_picto
+    event = Event.find( params[:event_id] )
+    editionToDuplicate = Edition.find( params[:id] )
+    @edition = editionToDuplicate.dup
+
+    if @edition.save
+      redirect_to home_picto_event_path( @edition.event.id ), notice: "Edition Dupliqué."
+    else
+      redirect_to root_path, alert: "Edition n'a pas Dupliqué."
+    end
+
+  end
+
+  def supprimer_picto
+    @edition = Edition.find(  params[:id]  )
+    @edition.destroy
+    respond_to do |format|
+      format.html { redirect_to home_picto_event_path(@edition.event.id), notice: "Edition effacée." }
+    end
+  end
+
   #=================
   # END for Picto
   #=================

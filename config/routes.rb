@@ -106,6 +106,8 @@ Rails.application.routes.draw do
         post 'upload_csv_picto'
         post 'process_csv_picto'
         post 'change_bib_contact'
+        post 'duplicate_picto'
+        delete 'supprimer_picto'
         resources :contacts, only: [:index]
         resources :campaigns, only: [:index, :new, :create]
         resources :pictures , param: :picture_id
