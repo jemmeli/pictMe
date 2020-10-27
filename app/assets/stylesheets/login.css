@@ -1,13 +1,23 @@
 body.login-page{
     /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#fa8e3e+0,f9b44f+100 */
-    background: #fa8e3e; /* Old browsers */
-    background: -moz-linear-gradient(top, #fa8e3e 0%, #f9b44f 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, #fa8e3e 0%,#f9b44f 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, #fa8e3e 0%,#f9b44f 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fa8e3e', endColorstr='#f9b44f',GradientType=0 ); /* IE6-9 */
+    /*background: #fa8e3e;
+    background: -moz-linear-gradient(top, #fa8e3e 0%, #f9b44f 100%); 
+    background: -webkit-linear-gradient(top, #fa8e3e 0%,#f9b44f 100%); 
+    background: linear-gradient(to bottom, #fa8e3e 0%,#f9b44f 100%); 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fa8e3e', endColorstr='#f9b44f',GradientType=0 );*/  
     text-align: center;
     padding-top: 100px;
     zoom: 70%;
+}
+
+a.blueCyan{
+    color: #008080 !important;
+    text-decoration: underline;
+}
+
+body.login-page a{
+    color: black;
+
 }
 
 .img-fluid{
@@ -71,8 +81,8 @@ body.login-page form input[type=email]{
 }
 .footerDevise{
     font-size: 34px;
-    color: white;
-    border-top: 4px solid rgba(255,255,255, 0.8);
+    color: black;
+    border-top: 4px solid rgba(0,0,0, 0.8);
     width: 80%;
     margin: 0 auto;
     margin-top: 30px;

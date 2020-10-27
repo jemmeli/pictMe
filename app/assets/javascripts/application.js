@@ -144,6 +144,22 @@ $(function () {
         $("#modalPictures div.content img:first").removeAttr("style");
     });
 
+    
+    $("#btnSuppEvent").click(function(e){
+        e.preventDefault();
+        if( $("input#theWordSupp").val() == "SUPPRIMER" ){
+            console.log("egale");
+            $("#alertSupp").css("display", "none");
+            // Prevent infinite loop
+            $(this).unbind('click');
+            // Execute default action
+            e.currentTarget.click();
+        }else{
+            console.log("no egale");
+            $("#alertSupp").css("display", "block");
+        }
+    })
+
 
 
    

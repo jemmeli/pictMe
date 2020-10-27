@@ -273,7 +273,7 @@ class EditionsController < ApplicationController
         @emailsArrays[ index ][:telephone] = pictmeContact.first.telephone
         @emailsArrays[ index ][:dossard] = pictmeContact.first.dossard
         @emailsArrays[ index ][:prenom] = pictmeContact.first.prenom
-      end
+      endr
     end
 
     #binding.pry

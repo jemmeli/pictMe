@@ -74,14 +74,13 @@ class EventsController < ApplicationController
 
     #show only the events related to the current user
     #@events = Event.all.limit(5)
-    @events = current_user.events.pictme
+    @events = current_user.events.pictme.order( created_at: :desc )
     @eventsfreshAdded = current_user.events.freshAdded
     
   end
 
   def home_picto
     @months = ["janvier" ,"février" ,"mars" ,"avril" ,"mai" ,"juin" ,"juillet" ,"août" ,"septembre" ,"octobre" ,"novembre" ,"décembre"]
-
 
     if params[:duplicate] == "duplicate"
 
@@ -204,11 +203,13 @@ class EventsController < ApplicationController
     if @event.save
       if eventName && eventPlace && eventCountry && eventAdress && eventDepartment && eventWebsite && eventFacebook && eventInstagram && eventFname && eventLname && eventEmail && eventPhone
         redirect_to home_picto_event_path( @event.id ), notice: "Evènement créé !"
+      elsif !eventName
+        redirect_to new_event_picto_path, alert: "Evènement n'est pas créé !"
       else
         redirect_to home_picto_event_path( @event.id ), notice: "Evènement créé ! Merci de Completer Vos Informations"
       end
     else
-      redirect_to new_event_picto_path, notice: "Evènement n'est pas créé !"
+      redirect_to new_event_picto_path, alert: "Le champs Nom de l'événement est obligatoire."
     end
   end
 

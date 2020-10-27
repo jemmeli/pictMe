@@ -9,24 +9,24 @@
   <% if @event.editions.blank? %>
     <p>Il n'y pas encore d'édition créée pour cet évènement</p>
   <% else %>
-    <% @event.editions.each do |edition| %>
+    <% @event.editions.order(date: :desc).each do |edition| %>
       <div class="col-md-4 editionBox">
         <h2 class="courseDate">
-          <%= edition.date.strftime('%d/%m/%Y') %>
-          <a href="#">
-            <%= link_to(image_tag("editIcon.png", width: 15, height: 15), edit_event_edition_path(edition.event.id, edition.id) ) %>
-          </a>
+          <%= link_to edition.date.strftime('%e %b %Y'), edit_event_edition_path(edition.event.id, edition.id) %>
+          <!--<a href="#">
+            <%#= link_to(image_tag("editIcon.png", width: 15, height: 15), edit_event_edition_path(edition.event.id, edition.id) ) %>
+          </a>-->
         </h2>
         <br>
         <span class="courseType"><%= edition.races.pluck(:race_type).join(', ') %> </span> <br>
         <span class="courseName"> <%= edition.races.pluck(:name).join(', ') %> </span>
 
 
-        <% if edition.date >= Date.current %>
-          <div class="courseStatus inProgress">EN COURS DE TRAITEMENT</div>
-        <% else %>
-          <div class="courseStatus finishProgress">TRAITER</div>
-        <% end %>
+        <%# if edition.date >= Date.current %>
+          <!--<div class="courseStatus inProgress">EN COURS DE TRAITEMENT</div>-->
+        <%# else %>
+          <!--<div class="courseStatus finishProgress">TRAITER</div>-->
+        <%# end %>
         
         <ul class="list-inline statisticsCourse">
           <li>
@@ -42,12 +42,14 @@
             CAMPAGNES
           </li>
         </ul>
+
         <div class="editionControl">
           <%#= link_to "Visualiser", event_edition_path(edition.event, edition), class: 'btn btn-default' %>
-          <%= link_to "Visualiser", home_picto_edition_event_edition_path(edition.event.id, edition.id), class: 'btn btn-default' %>
-          <%= link_to "Editer", edit_event_edition_path(edition.event.id, edition.id), class: 'btn btn-default' %>
+          <%#= link_to "Visualiser", home_picto_edition_event_edition_path(edition.event.id, edition.id), class: 'btn btn-default' %>
+          <%#= link_to "Editer", edit_event_edition_path(edition.event.id, edition.id), class: 'btn btn-default' %>
+          <%#= link_to 'Dupliquer', new_event_edition_path(edition.event, edition: edition.attributes), class: 'btn btn-default' %>
           <%= link_to 'Dupliquer', new_event_edition_path(edition.event, edition: edition.attributes), class: 'btn btn-default' %>
-          <%= link_to 'Supprimer', event_edition_path(edition.event.id, edition.id), class: 'btn btn-default' %>
+          <%= link_to 'Supprimer', event_edition_path(edition.event.id, edition.id), class: 'btn btn-default', method: 'delete' %>
         </div>
       </div>
     <% end %>
@@ -57,13 +59,13 @@
 <!-- nouveau edition -->
 <div class="row">
   <div class="NewEdition">
-    <h2>Nouvel edition</h2>
+    <h2> Ajouter une nouvelle édition </h2>
     <p>Rentrer la date</p>
     <%= form_for(@event.editions.new, url: {controller: "editions" , action: "add_edition_picto", id: @event.id}, method: :post , :html => { role: "form", method: "post" }) do |f| %>
 
-      <select name="year" id="year" class="form-control">
-        <%= (1..10).each do |i| %>
-          <option value="<%= Time.current.year + (i-1) %>"> <%= Time.current.year + (i-1) %> </option>
+      <select name="day" id="day" class="form-control">
+        <%= (1..31).each do |i| %>
+          <option value="<%= i %>"> <%= i %> </option>
         <% end %>
       </select>
 
@@ -73,14 +75,16 @@
         <% end %>
       </select>
 
-      <select name="day" id="day" class="form-control">
-        <%= (1..31).each do |i| %>
-          <option value="<%= i %>"> <%= i %> </option>
+      <select name="year" id="year" class="form-control">
+        <%= (1..10).each do |i| %>
+          <option value="<%= Time.current.year + (i-1) %>"> <%= Time.current.year + (i-1) %> </option>
         <% end %>
       </select>
 
+      
+
       <div class="NewEditionAction">
-        <%= f.submit "Enregistrer", class: "btn-orange-small" %>
+        <%= f.submit "Ajouter", class: "btn-orange-small" %>
         <a href="#" class="btn-grey-small">Annuler</a>
       </div>
 
@@ -104,7 +108,7 @@
       <%= form_for(@event, url: {action: "update_event_picto"}, method: :post , :html => { role: "form", method: "post" }) do |f| %>
         <div class="row">
           <div class="col-xs-12">
-            <%= f.text_field :name , placeholder: "Nom de l'evenement", class: "form-control input-lg" %>
+            <%= f.text_field :name , placeholder: "Nom de l'événement", class: "form-control input-lg" %>
           </div>
         </div>
         <br>
@@ -193,11 +197,12 @@
                   <h2>Vous souhaitez supprimer <br> définitivement cet événement ?</h2>
                   <p>Pour confirmer la suppression de l'événement, <br> merci d'ecrire "SUPPRIMER" dans la zone ci-dessous</p>
                   <%#= f.text_field :xxx , placeholder: "xxx", class: "form-control" %>
-                  <input type="text" name="xxx" placeholder="xxx" class="form-control">
+                  <input type="text" id="theWordSupp" name="xxx" placeholder="xxx" class="form-control">
+                  <p><span id='alertSupp'>Evènement n'est pas supprimer , merci d'ecrire 'supprimer'</span></p>
                 </div>
                 <div class="modal-footer">
                   <!-- <button type="button" class="btn btn-default" > Supprimer l'événement </button>-->
-                  <%= f.submit "Supprimer l'événement", class: "btn btn-default" %>
+                  <%= f.submit "Supprimer l'événement", class: "btn btn-default", id: "btnSuppEvent" %>
                   <a class="btn" data-dismiss="modal"> Annuler </a>
                 </div>
               </div>

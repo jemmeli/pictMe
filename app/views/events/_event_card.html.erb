@@ -3,13 +3,13 @@
   <div class="row eventControl">
     <div class="col-md-4">
       <h3 class="titleEvent">
-        <%= event.name %> <br> <span> <%= event.place %>  </span>
+        <%= link_to event.name, home_picto_event_path(event) %> <br> <span> <%= event.place %>  </span>
       </h3>
     </div>
     <div class="col-md-8">
       <%#= link_to 'Visualiser', event_path(event), class: 'btn btn-default' %>
-      <%= link_to 'Editer', home_picto_event_path(event), class: 'btn btn-default' %>
-      <%= link_to 'Dupliquer', home_picto_event_path(event, event: event.attributes, duplicate: "duplicate"), class: 'btn btn-default' %>
+      <%#= link_to 'Editer', home_picto_event_path(event), class: 'btn btn-default' %>
+      <%#= link_to 'Dupliquer', home_picto_event_path(event, event: event.attributes, duplicate: "duplicate"), class: 'btn btn-default' %>
     </div>
   </div>
 
@@ -19,20 +19,20 @@
     <% event.editions.each do |edition| %>
       <div class="col-md-4 editionBox">
         <h2 class="courseDate">
-          <%= edition.date.strftime('%d/%m/%Y') %>
-          <a href="#">
-            <%= link_to(image_tag("editIcon.png", width: 15, height: 15), edit_event_edition_path(edition.event.id, edition.id) ) %>
-          </a> <br>
+          <%= link_to edition.date.strftime('%e %b %Y') , edit_event_edition_path(edition.event.id, edition.id)  %>
+          <!--<a href="#">
+            <%#= link_to(image_tag("editIcon.png", width: 15, height: 15), edit_event_edition_path(edition.event.id, edition.id) ) %>
+          </a>--> <br>
           <span class="courseType"><%= edition.races.pluck(:race_type).join(', ') %> </span> <br>
           <span class="courseName"> <%= edition.races.pluck(:name).join(', ') %> </span>
 
         </h2>
-        <% if edition.date >= Date.current %>
-          <div class="courseStatus inProgress">EN COURS DE TRAITEMENT</div>
-        <% else %>
-          <div class="courseStatus finishProgress">TRAITER</div>
-        <% end %>
-        <ul class="list-inline statisticsCourse">
+        <%# if edition.date >= Date.current %>
+          <!--<div class="courseStatus inProgress">EN COURS DE TRAITEMENT</div>-->
+        <%# else %>
+          <!--<div class="courseStatus finishProgress">TRAITER</div>-->
+        <%# end %>
+        <!--<ul class="list-inline statisticsCourse">
           <li>
             <span class="coursePhotos">1245</span> <br>
             PHOTOS
@@ -45,7 +45,7 @@
             <span class="courseCampagnes">3</span> <br>
             CAMPAGNES
           </li>
-        </ul>
+        </ul>-->
       </div>
     <% end %>
   <% end %>

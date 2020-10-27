@@ -16,7 +16,7 @@
             <%= form_tag("/events/search_events",  :remote => true, :method => :post, :class => 'navbar-form navbar-left searchEvent', autocomplete: 'off') do %>
               <div class="form-group inner-addon left-addon">
               <i class="glyphicon glyphicon-search"></i>
-              <%= text_field_tag 'q', nil , class: 'form-control searchEvent', placeholder: 'Chercher un événement' %>
+              <%= text_field_tag 'q', nil , class: 'form-control searchEvent', placeholder: 'Ajouter un événement' %>
               <%#= submit_tag "Search" %>
               </div>
             <% end %>

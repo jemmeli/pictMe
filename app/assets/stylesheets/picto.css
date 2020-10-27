@@ -49,6 +49,11 @@ body.picto-page .filtreForm {
     text-align: center;
 }
 
+span#alertSupp{
+    display: none;
+    color: red;
+}
+
 .btn-orange {
     font-size: 19px;
     border-radius: 150px;
