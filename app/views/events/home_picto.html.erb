@@ -12,7 +12,7 @@
     <% @event.editions.order(date: :desc).each do |edition| %>
       <div class="col-md-4 editionBox">
         <h2 class="courseDate">
-          <%= link_to edition.date.strftime('%e %b %Y'), edit_event_edition_path(edition.event.id, edition.id) %>
+          <%= link_to edition.date.strftime('%e %b %Y'), home_picto_edition_event_edition_path(edition.event.id, edition.id) %>
           <!--<a href="#">
             <%#= link_to(image_tag("editIcon.png", width: 15, height: 15), edit_event_edition_path(edition.event.id, edition.id) ) %>
           </a>-->
