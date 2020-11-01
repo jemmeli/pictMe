@@ -161,6 +161,18 @@ $(function () {
     })
 
 
+    $("#filter_alphabetic").change(function(e){
+        $(this).closest("form").submit(); 
+    });
+
+    $("#filter_chronologic").change(function(e){
+        $(this).closest("form").submit(); 
+    });
+
+
+    
+
+
 
    
     

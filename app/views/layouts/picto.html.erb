@@ -25,7 +25,7 @@
 <%= render 'layouts/picto_navigation' %>
 
 <% if has_filter_pict_home? %>
-  <%= render 'layouts/picto_filter' %>
+  <%= render 'layouts/picto_filter', locals: {event: @event} %>
 <% end %>
 
 <div class="container mainContainer">

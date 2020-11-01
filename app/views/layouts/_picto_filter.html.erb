@@ -1,26 +1,54 @@
 <div class="container">
 
+  <% if @events.blank? %>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-warning">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+              <p>
+                Vous n'avez pas encore enregistré d'événement, cliquez sur <strong>Ajouter+</strong> pour créer un 
+                événement et importer vos photos ou recherchez un événement  dans notre liste
+              </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
   <div class="row filterRow">
     <div class="col-md-4">
       <h1> Mes événements </h1>
     </div>
     <div class="col-md-6">
 
-      <%= form_tag("/events/filter_events", :method => :post, :class => 'form-inline filtreForm', autocomplete: 'off') do %>
-        <%# <span>Filtrer par </span> %>
+      <!--<#%= form_tag("/events/filter_events", :method => :post, :class => 'form-inline filtreForm', autocomplete: 'off') do %>
         <div class="form-group">
-          <%= text_field_tag 'date', nil , class: 'form-control input-lg filterDateEvent', id: 'filterDateEvent' , placeholder: 'Choisir date' %>
+          <#%= text_field_tag 'date', nil , class: 'form-control input-lg filterDateEvent', id: 'filterDateEvent' , placeholder: 'Choisir date' %>
         </div>
         <div class="form-group">
-          <%= select_tag( 'departement', options_for_select( Event::DEPARTMENTS.collect{ |dep| ["#{dep}", dep] } ), {:class => 'form-control input-lg'} ) %>
+          <#%= select_tag( 'departement', options_for_select( Event::DEPARTMENTS.collect{ |dep| ["#{dep}", dep] } ), {:class => 'form-control input-lg'} ) %>
         </div>
         <div class="form-group">
-          <%= select_tag( 'course', options_for_select( @courcesType.collect{ |course| ["#{course}", course] } ), {:class => 'form-control input-lg'} ) %>
+          <#%= select_tag( 'course', options_for_select( @courcesType.collect{ |course| ["#{course}", course] } ), {:class => 'form-control input-lg'} ) %>
         </div>
-        <%= submit_tag("Filtre" , { :class => 'btn btn-orange' }) %>
+        <#%= submit_tag("Filtre" , { :class => 'btn btn-orange' }) %>
+      <#% end %>-->
+
+      <ul class="list-inline" style="margin-top:10px;">
+      <li>
+      <%= form_tag("/", :method => :get, :class => 'form-inline filtreForm', autocomplete: 'off') do %>
+        <div class="form-group">
+          <%= select_tag(:option, options_for_select([["Ordre A-Z","asc"],["Ordre Z-A","desc"]], params[:option] ), {:class => 'form-control input-lg', :id => 'filter_alphabetic'} ) %>
+        </div>
       <% end %>
-
-
+      </li>
+      <li>
+      <%= form_tag("/", :method => :get, :class => 'form-inline filtreForm', autocomplete: 'off') do %>
+        <div class="form-group">
+          <%= select_tag(:option, options_for_select([["Nouveaux en premier","newest"],["Anciens en premier","oldest"]], params[:option] ), {:class => 'form-control input-lg', :id => 'filter_chronologic'} ) %>
+        </div>
+      <% end %>
+      </li>
+      </ul>
 
     </div>
     <div class="col-md-2">

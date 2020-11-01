@@ -76,6 +76,21 @@ class EventsController < ApplicationController
     #@events = Event.all.limit(5)
     @events = current_user.events.pictme.order( created_at: :desc )
     @eventsfreshAdded = current_user.events.freshAdded
+
+    #For sorting
+    order = params[:option]
+    if ( order == "asc" )
+      @events = current_user.events.pictme.order( name: :asc )
+    end
+    if ( order == "desc" )
+      @events = current_user.events.pictme.order( name: :desc )
+    end
+    if ( order == "newest" )
+      @events = current_user.events.pictme.order( created_at: :asc )
+    end
+    if ( order == "oldest" )
+      @events = current_user.events.pictme.order( created_at: :desc )
+    end
     
   end
 

@@ -52,7 +52,7 @@ fr:
       send_instructions: 'Vous allez recevoir contenant les instructions de réinitialisation de mot de passe dans quelques minutes'
       updated: 'Votre mot de passe a été édité avec succès, vous êtes maintenant connectés'
       new:
-        send_me_reset_password_instructions: "Envoyez les instructions de réinitialisation du mot de passe"
+        send_me_reset_password_instructions: "Réinitialiser le mot de passe"
 
     confirmations:
       resend_instructions: 'Ré-envoyer les instructions de confirmation'
