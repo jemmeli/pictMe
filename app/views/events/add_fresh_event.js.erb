@@ -1,5 +1,5 @@
 $('#noEventNotic').hide();
-$('#freshstartEvent').append("<%= j render(partial: 'event_card', locals: {event: @event} ) %>")
+$('#allEvents').prepend("<%= j render(partial: 'event_card', locals: {event: @event} ) %>")
 $('#eventsList').remove();
 
 var content = "";
@@ -8,4 +8,4 @@ content += "<a href='#' class='close' data-dismiss='alert'>&times;</a>";
 content += "<p>Evènement ajouter !</p>";
 content += "</div>";
 
-$('#freshstartEvent').prepend( content );
+$('#allEvents').prepend( content );

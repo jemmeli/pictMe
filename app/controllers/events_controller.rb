@@ -74,8 +74,11 @@ class EventsController < ApplicationController
 
     #show only the events related to the current user
     #@events = Event.all.limit(5)
-    @events = current_user.events.pictme.order( created_at: :desc )
-    @eventsfreshAdded = current_user.events.freshAdded
+
+    #@events = current_user.events.pictme.order( created_at: :desc )
+    #@eventsfreshAdded = current_user.events.fresh
+    @events = current_user.events.order( created_at: :desc )
+    #binding.pry
 
     #For sorting
     order = params[:option]
@@ -141,12 +144,15 @@ class EventsController < ApplicationController
   end
 
   def search_events
-    #add freshstart indexes already cloned in pictme and convert the array to integers
-    @freshAddedIndex = current_user.events.all.distinct.freshAdded.pluck(:pictme)
+    #all events in pictme => user.events (replace freshAdded)
+    #all events in freshstart => Event.fresh.all
+
+    #@freshAddedIndex = current_user.events.all.distinct.freshAdded.pluck(:pictme)
+    @freshAddedIndex = current_user.events.all.distinct.pluck(:id)
     @freshAddedIndex = @freshAddedIndex.map!{|e| e.to_i}
     @freshAddedIndex = @freshAddedIndex.to_json.html_safe
     #search events
-    @events = Event.serach( params[:q] )
+    @events = Event.fresh.serach( params[:q] )
     #binding.pry
   end
 
@@ -182,14 +188,16 @@ class EventsController < ApplicationController
   end
 
   def add_fresh_event
-    eventFresh = Event.find( params[:pickedEventID] )
-    #here we can extract the freshstart editions with
-    # @editionsFresh = @eventFresh.editions
-    @event = eventFresh.dup
-    @event.user = current_user#belongs_to
-    @event.name = eventFresh.name + " Cloned "
-    @event.pictme = eventFresh.id
-    @event.save
+    
+    @event = Event.find( params[:pickedEventID] )
+    #many to many through
+    current_user.events << @event
+    #@event.users << current_user
+
+    #@event.user = current_user#belongs_to
+    #@event.name = eventFresh.name + " Cloned "
+    #@event.pictme = eventFresh.id
+    #@event.save
     #binding.pry
   end
 
@@ -201,6 +209,10 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.pictme = "true"
     @event.user_id = current_user.id
+
+    #many to many
+    #current_user.events << @event
+    #@event.users << current_user
     
     eventName = params["event"]["name"].present?
     eventPlace = params["event"]["place"].present?
@@ -215,7 +227,8 @@ class EventsController < ApplicationController
     eventEmail = params["event"]["email"].present?
     eventPhone = params["event"]["phone"].present?
 
-    if @event.save
+    #many to many through
+    if( current_user.events << @event )
       if eventName && eventPlace && eventCountry && eventAdress && eventDepartment && eventWebsite && eventFacebook && eventInstagram && eventFname && eventLname && eventEmail && eventPhone
         redirect_to home_picto_event_path( @event.id ), notice: "Evènement créé !"
       elsif !eventName

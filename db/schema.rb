@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200726170833) do
+ActiveRecord::Schema.define(version: 20201104213517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -285,6 +285,13 @@ ActiveRecord::Schema.define(version: 20200726170833) do
     t.index ["runner_id"], name: "index_scores_on_runner_id", using: :btree
   end
 
+  create_table "sportpics", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "event_id"
+    t.index ["event_id"], name: "index_sportpics_on_event_id", using: :btree
+    t.index ["user_id"], name: "index_sportpics_on_user_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -305,4 +312,6 @@ ActiveRecord::Schema.define(version: 20200726170833) do
   add_foreign_key "photos", "races"
   add_foreign_key "pictures", "editions"
   add_foreign_key "results", "races"
+  add_foreign_key "sportpics", "events"
+  add_foreign_key "sportpics", "users"
 end

@@ -32,7 +32,9 @@ class Event < ApplicationRecord
   has_many :races, through: :editions
   belongs_to :challenge
   has_many :runners, through: :editions
-  belongs_to :user
+
+  has_many :sportpics
+  has_many :users, through: :sportpics
 
   validates :name, presence: true, length: { in: 2..50 }
 

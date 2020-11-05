@@ -1,6 +1,6 @@
 
 
-<div id="freshstartEvent">
+<!--<div id="freshstartEvent">
 
   <h3> Evénement Freshstart  </h3>
   
@@ -14,17 +14,19 @@
     <% end %>
   <% end %>
 
+</div>-->
+
+<div id="allEvents">
+  <h3> Evénement personnel  </h3>
+  <% if @events.blank? %>
+    <p> Il n'y pas encore d'évènement  </p>
+  <% end %>
+
+
+  <% @events.each do |event| %>
+    <%= render partial: "event_card", locals: {event: event} %>
+  <% end %>
 </div>
-
-<h3> Evénement personnel  </h3>
-<% if @events.blank? %>
-  <p> Il n'y pas encore d'évènement  </p>
-<% end %>
-
-
-<% @events.each do |event| %>
-  <%= render partial: "event_card", locals: {event: event} %>
-<% end %>
 
 
 
