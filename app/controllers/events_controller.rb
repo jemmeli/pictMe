@@ -83,16 +83,16 @@ class EventsController < ApplicationController
     #For sorting
     order = params[:option]
     if ( order == "asc" )
-      @events = current_user.events.pictme.order( name: :asc )
+      @events = current_user.events.order( name: :asc )
     end
     if ( order == "desc" )
-      @events = current_user.events.pictme.order( name: :desc )
+      @events = current_user.events.order( name: :desc )
     end
     if ( order == "newest" )
-      @events = current_user.events.pictme.order( created_at: :desc )
+      @events = current_user.events.order( created_at: :desc )
     end
     if ( order == "oldest" )
-      @events = current_user.events.pictme.order( created_at: :asc )
+      @events = current_user.events.order( created_at: :asc )
     end
     
   end
