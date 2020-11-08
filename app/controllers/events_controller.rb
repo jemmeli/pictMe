@@ -99,20 +99,22 @@ class EventsController < ApplicationController
 
   def home_picto
     @months = ["janvier" ,"février" ,"mars" ,"avril" ,"mai" ,"juin" ,"juillet" ,"août" ,"septembre" ,"octobre" ,"novembre" ,"décembre"]
+    #detect if belong to freshstart == "false"
+    @is_freshstart = @event.pictme
 
-    if params[:duplicate] == "duplicate"
+    #if params[:duplicate] == "duplicate"
 
-      eventToDuplicate = Event.find( params[:id] )
-      @event = eventToDuplicate.dup
-      @event.name = eventToDuplicate.name + " Dupliqué "
+      #eventToDuplicate = Event.find( params[:id] )
+      #@event = eventToDuplicate.dup
+      #@event.name = eventToDuplicate.name + " Dupliqué "
 
-      if @event.save
-        redirect_to home_picto_event_path( @event.id ), notice: "Evènement Dupliqué."
-      else
-        redirect_to root_path, alert: "Evènement n'a pas Dupliqué."
-      end
+      #if @event.save
+        #redirect_to home_picto_event_path( @event.id ), notice: "Evènement Dupliqué."
+      #else
+        #redirect_to root_path, alert: "Evènement n'a pas Dupliqué."
+      #end
 
-    end
+    #end
 
   end
 

@@ -183,8 +183,10 @@
 
         <br>
         <p class="eventTabsActions">
-          <%= f.submit "Enregistrer", class: "btn btn-default btn-lg pull-right btn-orange" %>
-          <a href="#eventDeleteModal" role="button" class="btn btn-default btn-lg pull-right btn-grey" data-toggle="modal">Supprimer l'événement</a>
+          <% if @is_freshstart == "false" %>
+            <%= f.submit "Enregistrer", class: "btn btn-default btn-lg pull-right btn-orange" %>
+            <a href="#eventDeleteModal" role="button" class="btn btn-default btn-lg pull-right btn-grey" data-toggle="modal">Supprimer l'événement</a>
+          <% end %>
           <%#= f.submit "Supprimer l'événement", class: "btn btn-default btn-lg pull-right btn-grey" %>
           <!--  modal delete event  -->
           <div id="eventDeleteModal" class="modal fade eventDeleteModal">
