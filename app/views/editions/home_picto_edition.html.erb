@@ -39,22 +39,20 @@
     <div class="col-md-12 editionBox">
       <h2 class="courseDate">
         PHOTOS
-        <a href="#">
-          <%= link_to(image_tag("editIcon.png", width: 15, height: 15), "#" ) %>
-        </a>
+          <%= link_to(image_tag("editIcon.png", width: 15, height: 15), new_event_picture_path( params[:event_id], params[:id] ) ) %>
       </h2>
       <br>
       <ul class="list-inline statisticsCourse">
         <li>
-          <span class="coursePhotos">1245</span> <br>
+          <span class="coursePhotos"> <%= @edition.pictures.all.count %> </span> <br>
           PHOTOS
         </li>
         <li class="middleList">
-          <span class="courseContacts">780</span> <br>
+          <span class="courseContacts"> <%= @edition.contacts.all.count %> </span> <br>
           CONTACTS
         </li>
         <li>
-          <span class="courseCampagnes">3</span> <br>
+          <span class="courseCampagnes"> <%= @edition.campaigns.all.count %> </span> <br>
           CAMPAGNES
         </li>
       </ul>
@@ -67,9 +65,7 @@
     <div class="col-md-12 editionBox editionContactsBox">
       <h2 class="courseDate">
         CONTACTS
-        <a href="#">
-          <%= link_to(image_tag("editIcon.png", width: 15, height: 15), "#" ) %>
-        </a>
+        <%= link_to(image_tag("editIcon.png", width: 15, height: 15), contacts_picto_edition_event_edition_path( params[:event_id], params[:id] ) ) %>
       </h2>
       <br>
       <ul class="list-inline statisticsCourse">

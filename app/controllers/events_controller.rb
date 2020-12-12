@@ -101,6 +101,7 @@ class EventsController < ApplicationController
     @months = ["janvier" ,"février" ,"mars" ,"avril" ,"mai" ,"juin" ,"juillet" ,"août" ,"septembre" ,"octobre" ,"novembre" ,"décembre"]
     #detect if belong to freshstart == "false"
     @is_freshstart = @event.pictme
+    #binding.pry
 
     #if params[:duplicate] == "duplicate"
 

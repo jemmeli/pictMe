@@ -154,10 +154,7 @@ class EditionsController < ApplicationController
   end
 
   def contacts_picto_edition
-
     gon.firstRowCsv = session[:firstRowCsv]
-
-    #gon.firstRowCsv = { "Telephone" => session[:firstRowCsv]["Email"], "Email"=>session[:firstRowCsv]["Email"], "Prenom"=>session[:firstRowCsv]["Prenom"], "Nom"=>session[:firstRowCsv]["Nom"], "Doss"=>session[:firstRowCsv]["Doss"].to_i }
   end
 
   def send_email_modal
@@ -175,22 +172,25 @@ class EditionsController < ApplicationController
   end
 
 
-  def process_csv_picto
+  #def process_csv_picto
     #read the CSV
-    readCsv= CSV.parse open( params[:edition][:description].path ).read, :headers=>true, :converters=>:numeric
-    session[:firstRowCsv] = readCsv.first
-    session[:pathCsv] = params[:edition][:description].path
-  end
+    #readCsv= CSV.parse open( params[:edition][:description].path ).read, :headers=>true, :converters=>:numeric
+    #session[:firstRowCsv] = readCsv.first
+    #session[:pathCsv] = params[:edition][:description].path
+  #end
 
   def upload_csv_picto
-    # 1-telephone row[1]
-    # 2-email     row[2]
-    # 3-dossars   row[3]
-    # 4-nom       row[4]
-    # 5-prenom    row[5]
-    #byebug
+    redirect_to "http://www.rubyonrails.org"
+      
+    #process_csv_picto
+    readCsv = CSV.parse open( params[:edition][:description].path ).read, :headers=>true, :converters=>:numeric
+    #session[:firstRowCsv] = readCsv.first
+    pathCsv = params[:edition][:description].path
+
+  
     counter = 0
-    CSV.foreach(session[:pathCsv],  headers: true) do |row|
+    CSV.foreach(pathCsv,  headers: true) do |row|
+      #binding.pry
       contact = Contact.where( email: row["Email"], edition_id: params[:id] ).first_or_initialize
       contact.assign_attributes(
           telephone: row["Telephone"],
@@ -206,7 +206,15 @@ class EditionsController < ApplicationController
         #show eny error msg
         puts "#{email} - #{user.errors.full_messages.join(",")}" if user.errors.any?
       end
+
+      #respond_to do |format|
+        #format.js
+      #end
+      
+
     end
+
+    
     #after import redirect to Contact page throu .js.erb page
   end
 

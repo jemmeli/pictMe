@@ -121,24 +121,14 @@
 
 <div class="dropDiv">
   <p>Glissez votre fichier de contacts ici <br> ou </p>
-  <%#= form_tag process_csv_picto_event_edition_path , multipart: true, class: "uploadCsv", remote: true do %>
-    <%#= file_field_tag 'contacts', id: "processCsv", class: "selectedFile" %>
-<!--    <button class="btn btn-import" id="process" >Sélectionnez le fichier a importer</button>-->
-    <%#= button_tag type: :submit, class: "btn btn-primary someClass" do %>
-      <%#= "Process Csv" %>
-    <%# end %>
-  <%# end %>
 
-  <%= form_for @edition, url: { action: "process_csv_picto" }, method: :post, :html => { class: "processCsv" }, remote: true, data: { type: :html } do |f| %>
-    <%= f.file_field :description, class: "selectedFile", id: "selectedFileProcessCsv"  %>
-    <a class="btn btn-import" id="process" onclick="document.getElementById('selectedFileProcessCsv').click();">Sélectionnez le fichier a importer</a>
-    <%= f.submit "Process Csv", class: "selectedFile" %>
+  
+
+  <%= form_for @edition, url: { action: "upload_csv_picto" }, method: :post, :html => { class: "processCsv" }, data: { type: :html }, remote: true do |f| %>
+    <label for="process" class="btn btn-import">Choisir Fichier CSV</label>
+    <%= f.file_field :description, class: "hidden", id: "process"  %>
+    <%= f.submit "Importer le fichier", class: "btn btn-import hidden" %>
   <% end %>
-
-  <%#= form_for @edition, url: {action: "process_csv_picto"}, method: :post, html: {class: "uploadCsv"}, remote: true do |f| %>
-    <%#= f.text_field :description %>
-    <%#= f.submit "Process Csv" %>
-  <%# end %>
 
 
 </div>
@@ -146,3 +136,13 @@
 <p class="contactPara text-center">
   Vous souhaitez que nous traitions le fichier de contacts à votre place, <a href="#sendEmailModal" data-toggle="modal">contactez-nous en cliquant ici !</a>
 </p>
+
+<script type="text/javascript">
+  $("#process").on('change',function () {
+      //setTimeout(function(){
+          console.log("selectedFileProcessCsv");
+          $("form.processCsv").submit();
+      //}, 1000);
+      window.location.replace("<%= event_contacts_path( params[:event_id], params[:id] ) %>");
+  });
+</script>

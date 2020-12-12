@@ -50,6 +50,9 @@ class CampaignsController < ApplicationController
 
     end
 
+    #Create a meta sender
+    #https://dev.mailjet.com/email/guides/senders-and-domains/
+    #mailjet->transactionnel->general->configuration->l'expediteur
     def demmarrer
         emails = params[:selectedEmails]
         emailsParsed = JSON.parse( emails )

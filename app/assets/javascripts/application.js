@@ -67,13 +67,11 @@ $(function () {
 
     //process csv send form.uploadCsv directly after choose the file
 
-    $("#selectedFileProcessCsv").on('change',function () {
-        setTimeout(function(){
-            console.log("selectedFileProcessCsv");
-            $("form.processCsv").submit();
-        }, 1000);
-    });
+    
+    
 
+    
+    /*
     //show the first row csv
     $(".processCsv").bind("ajax:success", function(){
         firstRowarr = [];
@@ -88,6 +86,7 @@ $(function () {
 
         $("#importCsvModal").modal('show');
     });
+    */
 
     $(".btnUploadCsv").click(function(){
         $("#importCsvModal").modal('hide');

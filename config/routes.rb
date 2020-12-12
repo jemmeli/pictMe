@@ -104,6 +104,7 @@ Rails.application.routes.draw do
         get 'get_campaign_detail', as: 'get_campaign_detail'
         post 'send_email_modal'
         post 'upload_csv_picto'
+        get 'upload_csv_picto'
         post 'process_csv_picto'
         post 'change_bib_contact'
         post 'duplicate_picto'

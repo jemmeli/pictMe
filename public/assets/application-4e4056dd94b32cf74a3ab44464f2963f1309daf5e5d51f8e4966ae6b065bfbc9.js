@@ -47194,7 +47194,7 @@ app.factory( 'dataService',function($http,$q) {
     //get all Campaigns
     function getAllCampaigns( id ){
         var ID = $(this).attr("data-edition");
-        console.log(ID);
+        //console.log(ID);
       
         //abstract the call of https call
         return $http({
@@ -47298,7 +47298,7 @@ app.controller("mainCtrl", function( dataService, $scope ){
 
     function getContactsSuccess( contacts ){
         vm.allContacts = contacts;
-        console.log( vm.allContacts );
+        //console.log( vm.allContacts );
         vm.length = contacts.length;
         calculatePagination();
     }
@@ -47308,7 +47308,7 @@ app.controller("mainCtrl", function( dataService, $scope ){
 
     function getCampaignsSuccess( campaigns ){
         vm.allCampaigns = campaigns;
-        console.log( vm.allCampaigns );
+        //console.log( vm.allCampaigns );
         vm.lengthCampaigns = campaigns.length;
         calculatePaginationCampaign();
     }
@@ -47451,6 +47451,9 @@ app.controller("mainCtrl", function( dataService, $scope ){
         $("#thirdStepCampaign").modal('hide');
         vm.goFirstStep();
     }
+
+    //count of the total number of campaign
+    vm.countCampaign =  null;
 
     
 

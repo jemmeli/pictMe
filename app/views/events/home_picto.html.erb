@@ -30,15 +30,15 @@
         
         <ul class="list-inline statisticsCourse">
           <li>
-            <span class="coursePhotos">1245</span> <br>
+            <span class="coursePhotos"> <%= edition.pictures.all.count %> </span> <br>
             PHOTOS
           </li>
           <li>
-            <span class="courseContacts">780</span> <br>
+            <span class="courseContacts"> <%= edition.contacts.all.count %> </span> <br>
             CONTACTS
           </li>
           <li>
-            <span class="courseCampagnes">3</span> <br>
+            <span class="courseCampagnes"> <%= edition.campaigns.all.count %> </span> <br>
             CAMPAGNES
           </li>
         </ul>
@@ -76,8 +76,8 @@
       </select>
 
       <select name="year" id="year" class="form-control">
-        <%= (1..10).each do |i| %>
-          <option value="<%= Time.current.year + (i-1) %>"> <%= Time.current.year + (i-1) %> </option>
+        <%= (1900..2030).each do |i| %>
+          <option value="<%= i %>"> <%= i %> </option>
         <% end %>
       </select>
 

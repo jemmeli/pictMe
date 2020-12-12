@@ -1,6 +1,6 @@
 <html ng-app="myApp">
 <head>
-  <%= Gon::Base.render_data %>
+  <%#= Gon::Base.render_data %>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>
@@ -12,10 +12,10 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= stylesheet_link_tag 'picto', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'application', media: 'all', "data-turbolinks-track" => "reload" %>
+  <%= stylesheet_link_tag 'picto', media: 'all', "data-turbolinks-track" => "reload" %>
   <!-- <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"> -->
-  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', "data-turbolinks-track" => "reload" %>
   <!-- <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script> -->
   
 
@@ -46,7 +46,7 @@
           </a>
           <% if current_page?( home_picto_edition_event_edition_path( params[:event_id], params[:id] ) ) %>
             <ul class="list-unstyled">
-              <li><%= link_to "Détails", home_picto_edition_event_edition_path( params[:event_id], params[:id] ), class: active_btn_class( home_picto_edition_event_edition_path( params[:event_id], params[:id] ) ) %></li>
+              <li><%= link_to "Dashboard", home_picto_edition_event_edition_path( params[:event_id], params[:id] ), class: active_btn_class( home_picto_edition_event_edition_path( params[:event_id], params[:id] ) ) %></li>
             </ul>
           <% end %>
         </li>
