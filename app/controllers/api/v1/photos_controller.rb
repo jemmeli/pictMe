@@ -4,6 +4,19 @@ class API::V1::PhotosController < API::V1::ApplicationController
   before_action :set_race, only: [:index, :create]
   before_action :set_edition, only: [:index, :create]
   before_action :set_runner, only: [:index, :create]
+  skip_before_action :doorkeeper_authorize!
+
+  
+  #/api/v1/runner/:bib(.:format)  
+  def getRunnerByBib
+    @photo = Photo.where(bib: params[:bib]) 
+    @runner = @photo.first.runner
+    if @runner
+      render json: @runner
+    else
+      render json: {}, status: :not_found
+    end
+  end
 
   def index
     if @race

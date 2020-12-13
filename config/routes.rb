@@ -166,6 +166,7 @@ Rails.application.routes.draw do
 
   namespace :api, :defaults => {:format => :json} do
     namespace :v1 do
+      get 'runner/:bib', to: 'photos#getRunnerByBib', as: 'getRunnerByBib'
 
       concern :result_attachable do
         resources :results
@@ -178,6 +179,8 @@ Rails.application.routes.draw do
       resources :events do
         resources :editions, shallow: true
       end
+
+      
 
       #pictMe For Contacts
       resources :editions do

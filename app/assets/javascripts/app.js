@@ -469,10 +469,6 @@ app.controller("modalPictureCtrl", function( dataService, $scope, $element, $att
 
     var thevalueid = $element.attr("thevalueid");
     var thevalueidevent = $element.attr("thevalueidevent");
-    /* console.log( "-------------" );
-    console.log( thevalueid );
-    console.log( thevalueidevent );
-    console.log( "-------------" ); */
 
     $scope.getObject =  function(obj){
         var myObj = JSON.parse( obj );
@@ -498,11 +494,6 @@ app.controller("modalPictureCtrl", function( dataService, $scope, $element, $att
         }else{
             return false;
         }
-
-        /* firstThumbTopPosition = $(".thumbnail .thumb:first").position().top;
-        console.log("firstThumbTopPosition : " + firstThumbTopPosition);
-        lastThumbTopPosition = $(".thumbnail .thumb:last").position().top + 180;
-        console.log("lastThumbTopPosition : " + lastThumbTopPosition); */
     }
     vm.goPrevImg = function(){
         vm.offset = $(".thumbnail .thumb").position().top;
@@ -514,20 +505,10 @@ app.controller("modalPictureCtrl", function( dataService, $scope, $element, $att
         }else{
             return false;
         }
-
-        /* firstThumbTopPosition = $(".thumbnail .thumb:first").position().top;
-        console.log("firstThumbTopPosition : " + firstThumbTopPosition);
-        lastThumbTopPosition = $(".thumbnail .thumb:last").position().top + 180;
-        console.log("lastThumbTopPosition : " + lastThumbTopPosition); */
     }
     
 
     vm.showCurrentPicture = function( currentPicture, currentIndex, $event){
-        /*console.log( currentPicture );
-        console.log( currentIndex ); 
-        console.log( $element.find("div.thumbnail img") ); 
-        currentImageClickedLink = $event.currentTarget.src;
-        console.log( currentImageClickedLink );*/
         currentImageClickedLink = $event.currentTarget.src;
         $element.find("div.content img").attr("style", "display:none");
         $element.find("div.content img:nth-child("+currentIndex+")").removeAttr( "style" );
@@ -551,6 +532,7 @@ app.controller("modalPictureCtrl", function( dataService, $scope, $element, $att
             theName.html( currentPicture.owner_of_picture[0].nom );
             theLastName.html( currentPicture.owner_of_picture[0].prenom );
         }else{
+            //HERE I have to check the dossard throu fresh start  API Or DB ...
             console.log("owner n'existe pas 1");
             theName.html( "pas de propriétaire" ).css("color", "#ef8e0c");
             theLastName.html( "pas de propriétaire" ).css("color", "#ef8e0c");

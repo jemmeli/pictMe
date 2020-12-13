@@ -180,7 +180,6 @@ class EditionsController < ApplicationController
   #end
 
   def upload_csv_picto
-    redirect_to "http://www.rubyonrails.org"
       
     #process_csv_picto
     readCsv = CSV.parse open( params[:edition][:description].path ).read, :headers=>true, :converters=>:numeric
