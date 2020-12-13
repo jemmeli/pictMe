@@ -47165,7 +47165,8 @@ app.factory( 'dataService',function($http,$q) {
         getAllContacts: getAllContacts,
         getAllCampaigns: getAllCampaigns,
         getAllPictures: getAllPictures,
-        deletePicture: deletePicture
+        deletePicture: deletePicture,
+        getRunnerByBib: getRunnerByBib
     };
 
     //get all Contacts
@@ -47254,6 +47255,25 @@ app.factory( 'dataService',function($http,$q) {
     function deletePictureError( reponse ){
         return $q.reject('Error deleting picture(s). (HTTP status: ' + response.status + ')' );
     }
+
+    //getRunnerByBib
+    function getRunnerByBib( bib ){
+      
+        return $http({
+            method: 'GET',
+            url : '/api/v1/runner/' + bib        
+        })
+            .then( getRunnerByBibSuccess )
+            .catch( getRunnerByBibError );
+
+    }
+    function getRunnerByBibSuccess( reponse ){
+        return reponse.data;
+    }
+    
+    function getRunnerByBibError( reponse ){
+        return $q.reject('Error retreiving Runner(s). (HTTP status: ' + reponse + ')' );
+    } 
     
     
     
@@ -47464,6 +47484,7 @@ app.controller("mainCtrl", function( dataService, $scope ){
 
     $scope.$watch("vm.id", function( newID ){
         if( newID ){
+            //console.log("fffff : " + newID );
             theID = newID;
             //get all Contacts
             dataService.getAllContacts( theID )
@@ -47628,10 +47649,6 @@ app.controller("modalPictureCtrl", function( dataService, $scope, $element, $att
 
     var thevalueid = $element.attr("thevalueid");
     var thevalueidevent = $element.attr("thevalueidevent");
-    /* console.log( "-------------" );
-    console.log( thevalueid );
-    console.log( thevalueidevent );
-    console.log( "-------------" ); */
 
     $scope.getObject =  function(obj){
         var myObj = JSON.parse( obj );
@@ -47657,11 +47674,6 @@ app.controller("modalPictureCtrl", function( dataService, $scope, $element, $att
         }else{
             return false;
         }
-
-        /* firstThumbTopPosition = $(".thumbnail .thumb:first").position().top;
-        console.log("firstThumbTopPosition : " + firstThumbTopPosition);
-        lastThumbTopPosition = $(".thumbnail .thumb:last").position().top + 180;
-        console.log("lastThumbTopPosition : " + lastThumbTopPosition); */
     }
     vm.goPrevImg = function(){
         vm.offset = $(".thumbnail .thumb").position().top;
@@ -47673,26 +47685,18 @@ app.controller("modalPictureCtrl", function( dataService, $scope, $element, $att
         }else{
             return false;
         }
-
-        /* firstThumbTopPosition = $(".thumbnail .thumb:first").position().top;
-        console.log("firstThumbTopPosition : " + firstThumbTopPosition);
-        lastThumbTopPosition = $(".thumbnail .thumb:last").position().top + 180;
-        console.log("lastThumbTopPosition : " + lastThumbTopPosition); */
     }
     
 
     vm.showCurrentPicture = function( currentPicture, currentIndex, $event){
-        /*console.log( currentPicture );
-        console.log( currentIndex ); 
-        console.log( $element.find("div.thumbnail img") ); 
-        currentImageClickedLink = $event.currentTarget.src;
-        console.log( currentImageClickedLink );*/
         currentImageClickedLink = $event.currentTarget.src;
         $element.find("div.content img").attr("style", "display:none");
         $element.find("div.content img:nth-child("+currentIndex+")").removeAttr( "style" );
         $element.find("div.content img:nth-child("+currentIndex+")").attr( "src", currentImageClickedLink );
         let current_id_picture = document.getElementById("current_id_picture");
         let dossard = document.getElementById("dossard");
+        $scope.theRunner = null;
+
         //set id picture
         $("#btnDeletepicture").attr("data-picture-id", currentPicture.id );
         let theName = $("#theName");
@@ -47704,13 +47708,29 @@ app.controller("modalPictureCtrl", function( dataService, $scope, $element, $att
             current_id_picture.value = "";
         }
         dossard.value = currentPicture.bib;
+        console.log( "change assets ..." );
+        console.log( dossard.value );
 
         if( currentPicture.owner_of_picture[0] ){
             console.log("owner existe 1");
             theName.html( currentPicture.owner_of_picture[0].nom );
             theLastName.html( currentPicture.owner_of_picture[0].prenom );
         }else{
-            console.log("owner n'existe pas 1");
+            //HERE I have to check the dossard throu fresh start  API Or DB ...
+            dataService.getRunnerByBib( dossard.value )
+                .then( getRunnerByBibSuccess, getRunnerByBibError );
+
+            function getRunnerByBibSuccess( Runner ){
+                $scope.theRunner = Runner;
+                theName.html( Runner.first_name ).css("color", "#ef8e0c");
+                theLastName.html( Runner.last_name ).css("color", "#ef8e0c");
+            }
+            function getRunnerByBibError( errorMsg ){
+                console.log('Error Message: ' + errorMsg );
+            }
+
+
+            console.log("owner n'existe pas !!!");
             theName.html( "pas de propriétaire" ).css("color", "#ef8e0c");
             theLastName.html( "pas de propriétaire" ).css("color", "#ef8e0c");
         }
@@ -55887,13 +55907,11 @@ $(function () {
 
     //process csv send form.uploadCsv directly after choose the file
 
-    $("#selectedFileProcessCsv").on('change',function () {
-        setTimeout(function(){
-            console.log("selectedFileProcessCsv");
-            $("form.processCsv").submit();
-        }, 1000);
-    });
+    
+    
 
+    
+    /*
     //show the first row csv
     $(".processCsv").bind("ajax:success", function(){
         firstRowarr = [];
@@ -55908,6 +55926,7 @@ $(function () {
 
         $("#importCsvModal").modal('show');
     });
+    */
 
     $(".btnUploadCsv").click(function(){
         $("#importCsvModal").modal('hide');

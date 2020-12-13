@@ -548,6 +548,7 @@ app.controller("modalPictureCtrl", function( dataService, $scope, $element, $att
             current_id_picture.value = "";
         }
         dossard.value = currentPicture.bib;
+        console.log( "change assets ..." );
         console.log( dossard.value );
 
         if( currentPicture.owner_of_picture[0] ){
