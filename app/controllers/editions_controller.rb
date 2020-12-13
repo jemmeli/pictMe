@@ -1,7 +1,7 @@
 class EditionsController < ApplicationController
-  layout "picto_edition_home", only: [:home_picto_edition, :contacts_picto_edition, :upload_csv_picto, :get_campaign_detail]
+  layout "picto_edition_home", only: [:home_picto_edition, :contacts_picto_edition, :upload_csv_picto, :get_campaign_detail, :diffuser_photo]
   before_action :set_edition, only: [:show, :edit, :update, :destroy, :results, :delete_results, :generate_widget, :generate_photos_widget,
-  :generate_diplomas_widget, :generate_diplomas, :delete_diplomas, :send_results, :home_picto_edition, :contacts_picto_edition, :get_campaign_detail]
+  :generate_diplomas_widget, :generate_diplomas, :delete_diplomas, :send_results, :home_picto_edition, :contacts_picto_edition, :get_campaign_detail, :diffuser_photo]
   helper_method :sort_column, :sort_direction
   #skip_before_filter :verify_authenticity_token, :only => :upload_csv_picto
   #http_basic_authenticate_with name: ENV['ADMIN_LOGIN'], password: ENV['ADMIN_PASSWORD'], except: :widget
@@ -53,7 +53,8 @@ class EditionsController < ApplicationController
 
   def generate_widget
     GenerateWidgetJob.perform_later(@edition.id)
-    redirect_to event_edition_path(@edition.event, @edition), notice: "Le widget est en cours de génération."
+    #redirect_to event_edition_path(@edition.event, @edition), notice: "Le widget est en cours de génération."
+    redirect_to diffuser_photo_event_edition_path(@edition.event, @edition), notice: "Le widget est en cours de génération."
   end
 
   def generate_photos_widget
@@ -206,15 +207,12 @@ class EditionsController < ApplicationController
         puts "#{email} - #{user.errors.full_messages.join(",")}" if user.errors.any?
       end
 
-      #respond_to do |format|
-        #format.js
-      #end
-      
-
     end
-
-    
     #after import redirect to Contact page throu .js.erb page
+  end
+
+  def diffuser_photo
+
   end
 
   def add_edition_picto

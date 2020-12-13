@@ -1,0 +1,17 @@
+<h1>Diffuser</h1>
+<% if @edition.widget_generated_at.nil? %>
+    <p>Le widget na pas encore été généré.</p>
+<% else %>
+    <p>Widget généré le #{I18n.l @edition.widget_generated_at}.</p>
+<% end %>
+
+<%= link_to "Générer le widget", generate_widget_event_edition_path(@edition.event, @edition), class: "btn btn-primary", "data-method" => :post %>
+<%= link_to "Afficher le widget", @edition.widget_url, class: "btn btn-default", target: "_widget" unless @edition.widget_generated_at.nil? %>
+
+<% unless @edition.widget_generated_at.nil? %>
+    <h4>Code pour afficher le widget</h4>
+    <textarea class="form-control" rows="5"> <%= @edition.widget_gist %> </textarea>
+
+    <h4>Widget</h4>
+    <%= @edition.widget_gist.html_safe %>
+<% end %>

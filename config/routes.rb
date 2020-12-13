@@ -99,6 +99,7 @@ Rails.application.routes.draw do
     resources :editions do
 
       member do
+        get 'diffuser_photo'
         get 'home_picto_edition'
         get 'contacts_picto_edition', as: 'contacts_picto_edition'
         get 'get_campaign_detail', as: 'get_campaign_detail'

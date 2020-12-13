@@ -38,10 +38,7 @@
       <ul class="list-unstyled">
         <li>
           <a href="<%= home_picto_edition_event_edition_path( params[:event_id], params[:id] ) %>" class="<%= active_btn_class( home_picto_edition_event_edition_path( params[:event_id], params[:id] ) ) %> <%= active_btn_class( home_picto_edition_event_edition_path( params[:event_id], params[:id] ) ) %>" >
-            <!--
-            <span class="helper"></span>
-            <img src="<%= asset_path('icon-home-pictme.png') %>" alt="home">
-            -->
+            
             Descriptif
           </a>
           <% if current_page?( home_picto_edition_event_edition_path( params[:event_id], params[:id] ) ) %>
@@ -53,27 +50,23 @@
         <li>
         
           <a href="<%= new_event_picture_path( params[:event_id], params[:id] ) %>" class="<%= active_btn_class( new_event_picture_path( params[:event_id], params[:id] ) ) %> <%= active_btn_class( event_pictures_path( params[:event_id], params[:id] ) ) %> ">
-            <!--
-            <span class="helper"></span>
-            <img src="<%= asset_path('icon-map-pictme.png') %>" alt="map">
-            -->
+            
             Photos
           </a>
           <% if current_page?( new_event_picture_path( params[:event_id], params[:id] ) ) || 
-                current_page?( event_pictures_path( params[:event_id], params[:id] ) )  %>
+                current_page?( event_pictures_path( params[:event_id], params[:id] ) ) ||
+                current_page?( diffuser_photo_event_edition_path( params[:event_id], params[:id] ) )  %>
             <ul class="list-unstyled">
               <li><%= link_to "Importation", new_event_picture_path( params[:event_id], params[:id] ), class: active_btn_class( new_event_picture_path( params[:event_id], params[:id] ) ) %></li>
               <li><%= link_to "Voir photo", event_pictures_path( params[:event_id], params[:id] ), class: active_btn_class( event_pictures_path( params[:event_id], params[:id] ) ) %></li>
+              <li><%= link_to "Diffuser", diffuser_photo_event_edition_path( params[:event_id], params[:id] ), class: active_btn_class( diffuser_photo_event_edition_path( params[:event_id], params[:id] ) ) %></li>
             </ul>
           <% end %>
         </li>
 
         <li>
           <a href="<%= contacts_picto_edition_event_edition_path( params[:event_id], params[:id] ) %>" class="<%= active_btn_class( contacts_picto_edition_event_edition_path( params[:event_id], params[:id] ) ) %> <%= active_btn_class( event_contacts_path( params[:event_id], params[:id] ) ) %>" >
-            <!--
-            <span class="helper"></span>
-            <img src="<%= asset_path('icon-list-pictme.png') %>" alt="list">
-            -->
+            
             Contacts
           </a>
           <% if current_page?( contacts_picto_edition_event_edition_path( params[:event_id], params[:id] ) ) ||
@@ -87,10 +80,7 @@
 
         <li>
           <a href="<%= new_event_campaign_path( params[:event_id], params[:id] ) %>" class="<%= active_btn_class( new_event_campaign_path( params[:event_id], params[:id] ) ) %> <%= active_btn_class( event_campaigns_path( params[:event_id], params[:id] ) ) %>" >
-            <!--
-            <span class="helper"></span>
-            <img src="<%= asset_path('icon-guage-pictme.png') %>" alt="guage">
-            -->
+            
             Campagnes
           </a>
           <% if current_page?( new_event_campaign_path( params[:event_id], params[:id] ) ) ||
@@ -104,10 +94,7 @@
 
         <li>
           <a href="#">
-            <!--
-            <span class="helper"></span>
-            <img src="<%= asset_path('icon-settings-pictme.png') %>" alt="guage">
-            -->
+            
             Paraméters
           </a>
         </li>
