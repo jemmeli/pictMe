@@ -3,7 +3,7 @@ class PictureSerializer < ActiveModel::Serializer
 
   def owner_of_picture
     #owner_of_picture = Contact.where(dossard: object.bib, edition_id: params[:id])
-    owner_of_picture = Contact.where("dossard = ? AND edition_id = ?", object.bib, params[:id])
+    owner_of_picture = Contact.where("dossard = ? AND edition_id = ?", object.bib, params[:edition_id])
 
     return owner_of_picture
   end
