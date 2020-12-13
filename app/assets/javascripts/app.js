@@ -5,7 +5,8 @@ app.factory( 'dataService',function($http,$q) {
         getAllContacts: getAllContacts,
         getAllCampaigns: getAllCampaigns,
         getAllPictures: getAllPictures,
-        deletePicture: deletePicture
+        deletePicture: deletePicture,
+        getRunnerByBib: getRunnerByBib
     };
 
     //get all Contacts
@@ -94,6 +95,25 @@ app.factory( 'dataService',function($http,$q) {
     function deletePictureError( reponse ){
         return $q.reject('Error deleting picture(s). (HTTP status: ' + response.status + ')' );
     }
+
+    //getRunnerByBib
+    function getRunnerByBib( bib ){
+      
+        return $http({
+            method: 'GET',
+            url : '/api/v1/runner/' + bib        
+        })
+            .then( getRunnerByBibSuccess )
+            .catch( getRunnerByBibError );
+
+    }
+    function getRunnerByBibSuccess( reponse ){
+        return reponse.data;
+    }
+    
+    function getRunnerByBibError( reponse ){
+        return $q.reject('Error retreiving Runner(s). (HTTP status: ' + reponse + ')' );
+    } 
     
     
     
@@ -515,6 +535,8 @@ app.controller("modalPictureCtrl", function( dataService, $scope, $element, $att
         $element.find("div.content img:nth-child("+currentIndex+")").attr( "src", currentImageClickedLink );
         let current_id_picture = document.getElementById("current_id_picture");
         let dossard = document.getElementById("dossard");
+        $scope.theRunner = null;
+
         //set id picture
         $("#btnDeletepicture").attr("data-picture-id", currentPicture.id );
         let theName = $("#theName");
@@ -533,7 +555,20 @@ app.controller("modalPictureCtrl", function( dataService, $scope, $element, $att
             theLastName.html( currentPicture.owner_of_picture[0].prenom );
         }else{
             //HERE I have to check the dossard throu fresh start  API Or DB ...
-            console.log("owner n'existe pas 1");
+            dataService.getRunnerByBib( dossard.value )
+                .then( getRunnerByBibSuccess, getRunnerByBibError );
+
+            function getRunnerByBibSuccess( Runner ){
+                $scope.theRunner = Runner;
+                theName.html( Runner.first_name ).css("color", "#ef8e0c");
+                theLastName.html( Runner.last_name ).css("color", "#ef8e0c");
+            }
+            function getRunnerByBibError( errorMsg ){
+                console.log('Error Message: ' + errorMsg );
+            }
+
+
+            console.log("owner n'existe pas !!!");
             theName.html( "pas de propriétaire" ).css("color", "#ef8e0c");
             theLastName.html( "pas de propriétaire" ).css("color", "#ef8e0c");
         }
