@@ -20,8 +20,11 @@ class PicturesController < ApplicationController
     @picture = Picture.new
     @picturesCount = @edition.pictures.all.count
 
-    @picturesIdentifierCount = Edition.joins(:pictures).merge(Picture.photos_identifier).count
-    @picturesNonIdentifierCount = Edition.joins(:pictures).merge(Picture.photos_no_identifier).count
+    @picturesIdentifierCount = @edition.pictures.photos_identifier.count
+    @picturesNonIdentifierCount = @edition.pictures.photos_no_identifier.count 
+
+    #@picturesIdentifierCount = Edition.joins(:pictures).merge(Picture.photos_identifier).count
+    #@picturesNonIdentifierCount = Edition.joins(:pictures).merge(Picture.photos_no_identifier).count
 
   end
 
