@@ -14,7 +14,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.5'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'redis', '~> 3.3.3'
-gem 'puma', '~> 3.7.1'#3.7.1
+gem 'puma', '~> 5.3.1'#3.7.1
 gem 'imgkit', '~> 1.6.1'
 gem 'wkhtmltoimage-binary', '~> 0.12.2'
 gem 'aws-sdk', '~> 2.3.0'
@@ -103,7 +103,7 @@ end
 #========================================
 group :production do
   gem 'dotenv-rails', '~> 2.1.1' # parsing du fichier ENV en dev
-  gem 'puma', '~> 3.7.1'#3.7.1
+  gem 'puma', '~> 5.3.1'#3.7.1
 end
 
 group :development do
